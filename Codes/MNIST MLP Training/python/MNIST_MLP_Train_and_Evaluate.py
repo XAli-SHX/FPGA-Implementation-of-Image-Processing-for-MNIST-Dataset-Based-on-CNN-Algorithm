@@ -1,4 +1,4 @@
-def main():
+def train(hidden_units):
     # Load the MNIST Dataset from Keras
     from keras.datasets import mnist
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -53,7 +53,6 @@ def main():
     input_size = norm_train.shape[1]
     num_labels = train_labels.shape[1]
     batch_size = 128
-    hidden_units = 10
     dropout = 0.45
 
     from keras.models import Sequential
@@ -92,4 +91,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    train(hidden_units=512)
