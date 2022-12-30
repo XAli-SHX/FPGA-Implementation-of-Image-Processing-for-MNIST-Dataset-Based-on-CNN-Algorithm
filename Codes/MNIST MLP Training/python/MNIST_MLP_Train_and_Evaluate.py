@@ -73,7 +73,9 @@ def train(hidden_units):
     model.compile(loss='categorical_crossentropy', optimizer='adam',
                   metrics=['accuracy'])
     # train our model
-    model.fit(norm_train, train_labels, epochs=20, batch_size=batch_size)
+    history = model.fit(norm_train, train_labels,
+                        epochs=20, batch_size=batch_size)
+    acc = history.history['accuracy'][-1]
 
     # <keras.callbacks.History at 0x126ce9b00>
     score = model.evaluate(norm_test, test_labels, batch_size=batch_size)
@@ -88,6 +90,7 @@ def train(hidden_units):
     num = model.predict(sample)
     print("probability: ", num)
     print("prediction: ", num.argmax())
+    return acc
 
 
 if __name__ == "__main__":
