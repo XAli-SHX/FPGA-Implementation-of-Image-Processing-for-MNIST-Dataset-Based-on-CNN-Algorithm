@@ -52,7 +52,7 @@ print('label shape: ', train_labels.shape)
 input_size = norm_train.shape[1]
 num_labels = train_labels.shape[1]
 batch_size = 128
-hidden_units = 256
+hidden_units = 10
 dropout = 0.45
 
 from keras.models import Sequential
