@@ -4,8 +4,6 @@ from MNIST_MLP_Train_and_Evaluate import train
 def main():
     acc = 0
     hidden_units = 1
-    hiddenUnitsList = []
-    accList = []
     csvFile = open('hidden_units accuracy.csv', 'w')
     csvFile.write("hidden_units,accuracy\n")
     while acc < 0.98:
