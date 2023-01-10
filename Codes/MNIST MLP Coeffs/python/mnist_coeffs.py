@@ -1,79 +1,99 @@
-"""
-=====================================
-Visualization of MLP weights on MNIST
-=====================================
+def train(hidden_units):
+    # Load the MNIST Dataset from Keras
+    from keras.datasets import mnist
+    (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    # show the dimensions of the loaded training and test data sets
+    # print(x_train.shape)
+    # x_train is an array of gray-scale images (28x28 pixels)
+    # print(y_train.shape)
+    # y_train is an array of labels corresponding to the x_train images
+    # print(x_test.shape)
+    # x_test is an array of gray-scale images that will be used for testing
+    # print(y_test.shape)
+    # y_test is an array of labels for testing
+    # display some sample images from the training and testing datasets
+    # show first image
+    # %matplotlib inline
+    import matplotlib.pyplot as plt
+    img = x_train[0]
+    plt.imshow(img, cmap='gray')
 
-Sometimes looking at the learned coefficients of a neural network can provide
-insight into the learning behavior. For example if weights look unstructured,
-maybe some were not used at all, or if very large coefficients exist, maybe
-regularization was too low or the learning rate too high.
+    img = x_test[0]
+    plt.imshow(img, cmap='gray')
+    # plt.show()
 
-This example shows how to plot some of the first layer weights in a
-MLPClassifier trained on the MNIST dataset.
+    # show the corresponding labels
+    label = y_train[0]
+    # print(label)
+    label = y_test[0]
+    # print(label)
 
-The input data consists of 28x28 pixel handwritten digits, leading to 784
-features in the dataset. Therefore the first layer weight matrix has the shape
-(784, hidden_layer_sizes[0]).  We can therefore visualize a single column of
-the weight matrix as a 28x28 pixel image.
+    dim = img.shape[0]
+    # flatten the images
+    flat_train = x_train.reshape([-1, dim * dim])
+    flat_test = x_test.reshape([-1, dim * dim])
+    # print('flattened shape: ', flat_train.shape)
 
-To make the example run faster, we use very few hidden units, and train only
-for a very short time. Training longer would result in weights with a much
-smoother spatial appearance. The example will throw a warning because it
-doesn't converge, in this case this is what we want because of resource
-usage constraints on our Continuous Integration infrastructure that is used
-to build this documentation on a regular basis.
-"""
+    # show sample values
+    # print(flat_train[0])
 
-import warnings
-import matplotlib.pyplot as plt
-from sklearn.datasets import fetch_openml
-from sklearn.exceptions import ConvergenceWarning
-from sklearn.neural_network import MLPClassifier
-from sklearn.model_selection import train_test_split
+    # normalize the values
+    norm_train = flat_train.astype('float32') / 255
+    norm_test = flat_test.astype('float32') / 255
 
-# Load data from https://www.openml.org/d/554
-X, y = fetch_openml(
-    "mnist_784", version=1, return_X_y=True, as_frame=False, parser="pandas"
-)
-X = X / 255.0
+    # show sample normalized values
+    # print(norm_train[0])
 
-# Split data into train partition and test partition
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, random_state=0, test_size=0.7)
+    # transform labels as categorical values
+    from keras.utils import to_categorical
+    train_labels = to_categorical(y_train)
+    test_labels = to_categorical(y_test)
+    # print('label shape: ', train_labels.shape)
 
-mlp = MLPClassifier(
-    hidden_layer_sizes=(40,),
-    max_iter=8,
-    alpha=1e-4,
-    solver="sgd",
-    verbose=10,
-    random_state=1,
-    learning_rate_init=0.2,
-)
+    # set configurable parameters
+    input_size = norm_train.shape[1]
+    num_labels = train_labels.shape[1]
+    batch_size = 128
+    dropout = 0.45
 
-# this example won't converge because of resource usage constraints on
-# our Continuous Integration infrastructure, so we catch the warning and
-# ignore it here
-with warnings.catch_warnings():
-    warnings.filterwarnings(
-        "ignore", category=ConvergenceWarning, module="sklearn")
-    mlp.fit(X_train, y_train)
+    from keras.models import Sequential
+    from keras.layers import Dense, Activation, Dropout
 
-print("Training set score: %f" % mlp.score(X_train, y_train))
-print("Test set score: %f" % mlp.score(X_test, y_test))
+    model = Sequential()
+    model.add(Dense(hidden_units, input_dim=input_size))
+    model.add(Activation('relu'))
+    model.add(Dropout(dropout))
+    # model.add(Dense(hidden_units))
+    # model.add(Activation('relu'))
+    # model.add(Dropout(dropout))
+    model.add(Dense(num_labels))
+    model.add(Activation('softmax'))
+    model.summary()
 
-fig, axes = plt.subplots(4, 4)
-# use global min / max to ensure all weights are shown on the same scale
-vmin, vmax = mlp.coefs_[0].min(), mlp.coefs_[0].max()
-for coef, ax in zip(mlp.coefs_[0].T, axes.ravel()):
-    ax.matshow(coef.reshape(28, 28), cmap=plt.cm.gray,
-               vmin=0.5 * vmin, vmax=0.5 * vmax)
-    ax.set_xticks(())
-    ax.set_yticks(())
+    # compile our model
+    model.compile(loss='categorical_crossentropy', optimizer='adam',
+                  metrics=['accuracy'])
+    # train our model
+    history = model.fit(norm_train, train_labels,
+                        epochs=20, batch_size=batch_size)
+    acc = history.history['accuracy'][-1]
 
-# plt.show()
+    # <keras.callbacks.History at 0x126ce9b00>
+    score = model.evaluate(norm_test, test_labels, batch_size=batch_size)
 
-f = open('coeffs.txt', 'w')
-for coef in mlp.coefs_[0].T:
-    f.write(f'{str(coef)}\n')
-f.close()
+    sample = norm_train[1]
+    sample = sample.reshape([1, -1])
+    num = model.predict(sample)
+
+    print(f"predicted number = {num}")
+    num.argmax()
+    sample = norm_test[0].reshape([1, -1])
+    num = model.predict(sample)
+    # print("probability: ", num)
+    # print("prediction: ", num.argmax())
+    model.save("mnist_model")
+    return acc
+
+
+if __name__ == "__main__":
+    train(hidden_units=100)
