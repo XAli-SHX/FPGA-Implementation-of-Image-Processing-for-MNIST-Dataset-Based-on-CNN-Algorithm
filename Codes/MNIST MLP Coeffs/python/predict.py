@@ -1,9 +1,10 @@
 from tensorflow import keras
 from PIL import Image, ImageOps
+import numpy as np
 
 
 def loadModel(path):
-    return keras.models.load_model(path)
+    return keras.models.load_model(path, compile=True)
 
 
 def loadImage(path) -> list:
@@ -17,13 +18,15 @@ def loadImage(path) -> list:
     pixels = []
     for x in range(28):
         for y in range(28):
-            pixels.append(mnistCompatible.getpixel((x, y)))
+            pixels.append(mnistCompatible.getpixel((x, y)) / 256)
+    pixels = np.array(pixels)
+    pixels = pixels.reshape([1, -1])
     return pixels
 
 
-def predict(model, img) -> int:
+def predict(model, img: list) -> int:
     print(model)
-    num = model.predict(img)
+    num = model.predict(img)[0]
     maxIndex = 0
     maxVal = num[maxIndex]
     for i in range(10):
