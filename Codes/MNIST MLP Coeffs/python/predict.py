@@ -38,7 +38,7 @@ def predict(model, img: list) -> int:
 
 def main():
     model = loadModel(path="mnist_model")
-    img = loadImage(path="tests/img.jpg")
+    img = loadImage(path="tests/img7.jpg")
     num = predict(model, img)
     print(f"predicted number = {num}")
 
