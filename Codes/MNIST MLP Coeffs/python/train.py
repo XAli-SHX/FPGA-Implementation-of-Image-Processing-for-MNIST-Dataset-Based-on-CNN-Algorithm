@@ -91,7 +91,7 @@ def train(hidden_units):
     num = model.predict(sample)
     # print("probability: ", num)
     # print("prediction: ", num.argmax())
-    # model.save("mnist_model")
+    model.save("mnist_model")
     return acc
 
 
