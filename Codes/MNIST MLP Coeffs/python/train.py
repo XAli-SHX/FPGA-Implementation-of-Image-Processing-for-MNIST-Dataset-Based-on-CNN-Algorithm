@@ -2,7 +2,7 @@ def train(hidden_units):
     # Load the MNIST Dataset from Keras
     from keras.datasets import mnist
     (x_train, y_train), (x_test, y_test) = mnist.load_data()
-    # show the dimensions of the loaded training and test data sets
+    # show the dimensions of the loaded training and tests data sets
     # print(x_train.shape)
     # x_train is an array of gray-scale images (28x28 pixels)
     # print(y_train.shape)
