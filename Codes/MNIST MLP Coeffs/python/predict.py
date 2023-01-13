@@ -44,7 +44,7 @@ def predict(model, img: list, printOutputs: bool = False) -> int:
 
 def main():
     model = loadModel(path="mnist_model")
-    img = loadImage(path="tests/handwrite_blue_thicker/img0.png")
+    img = loadImage(path="tests/handwrite_black_pixel28x28/img0.png")
     num = predict(model, img, True)
     print(f"predicted number = {num}")
     # img = loadImage(path="tests/handwrite_blue/img9.png")
