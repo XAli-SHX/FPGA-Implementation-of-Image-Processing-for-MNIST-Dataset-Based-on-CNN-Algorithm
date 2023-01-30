@@ -3,3 +3,6 @@ https://scikit-learn.org/stable/auto_examples/neural_networks/plot_mnist_filters
 https://www.tensorflow.org/guide/keras/save_and_serialize
 
 https://github.com/christianversloot/machine-learning-articles/blob/main/how-to-predict-new-samples-with-your-keras-model.md
+
+https://www.geeksforgeeks.org/applying-convolutional-neural-network-on-mnist-dataset/
+
