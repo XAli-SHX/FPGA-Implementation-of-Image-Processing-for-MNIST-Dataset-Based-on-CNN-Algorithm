@@ -62,10 +62,16 @@ def train(hidden_units):
     model = Sequential()
     model.add(Dense(hidden_units, input_dim=input_size))
     model.add(Activation('relu'))
+
     model.add(Dropout(dropout))
+    model.add(Dense(hidden_units))
+    model.add(Activation('relu'))
+
+    # model.add(Dropout(dropout))
     # model.add(Dense(hidden_units))
     # model.add(Activation('relu'))
-    # model.add(Dropout(dropout))
+
+    model.add(Dropout(dropout))
     model.add(Dense(num_labels))
     model.add(Activation('softmax'))
     model.summary()
@@ -89,6 +95,12 @@ def train(hidden_units):
     num.argmax()
     sample = norm_test[0].reshape([1, -1])
     num = model.predict(sample)
+    # import PIL.Image as Image
+    # img = Image.new('L', (28, 28))
+    # for x in range(28):
+    #     for y in range(28):
+    #         img.putpixel((x, y), int(sample[0][x * 28 + y] * 255))
+    # img.show()
     # print("probability: ", num)
     # print("prediction: ", num.argmax())
     model.save("mnist_model")
@@ -96,4 +108,4 @@ def train(hidden_units):
 
 
 if __name__ == "__main__":
-    train(hidden_units=100)
+    train(hidden_units=1000)

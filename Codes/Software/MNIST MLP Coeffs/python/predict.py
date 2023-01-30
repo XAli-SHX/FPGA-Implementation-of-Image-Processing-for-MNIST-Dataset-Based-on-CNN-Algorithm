@@ -11,11 +11,14 @@ def loadImage(path) -> list:
     original = Image.open(path)
     # original.show("original")
     grayscale = ImageOps.grayscale(original)
+    grayscale = ImageOps.flip(grayscale)
+    grayscale = grayscale.rotate(-90)
     # grayscale.show("grayscale")
     size = (28, 28)
     mnistCompatible = grayscale.resize(size)
     mnistCompatibleInv = ImageOps.invert(mnistCompatible)
     mnistCompatibleInv.save("img0_inv.png")
+    print(mnistCompatibleInv.size)
     pixels = []
     for x in range(28):
         for y in range(28):
@@ -44,7 +47,16 @@ def predict(model, img: list, printOutputs: bool = False) -> int:
 
 def main():
     model = loadModel(path="mnist_model")
-    img = loadImage(path="tests/handwrite_black_pixel28x28/img0.png")
+    img = loadImage(path="tests/handwrite_black_pixel28x28/img5.png")
+
+    # from keras.datasets import mnist
+    # (x_train, y_train), (x_test, y_test) = mnist.load_data()
+    # img = x_test[0]
+    # dim = img.shape[0]
+    # flat_test = x_test.reshape([-1, dim * dim])
+    # norm_test = flat_test.astype('float32') / 255
+    # sample = norm_test[0].reshape([1, -1])
+
     num = predict(model, img, True)
     print(f"predicted number = {num}")
     # img = loadImage(path="tests/handwrite_blue/img9.png")
