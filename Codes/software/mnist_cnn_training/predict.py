@@ -7,17 +7,36 @@ def loadModel(path):
     return keras.models.load_model(path, compile=True)
 
 
+def centerSquaredCrop(original):
+    width, height = original.size
+    if height > width:
+        original = original.rotate(90)
+    left = width // 4
+    top = 0
+    right = left + width // 2
+    bottom = height
+    cropBox = (left, top, right, bottom)
+    original = original.crop(cropBox)
+    if height > width:
+        original = original.rotate(-90)
+    return original
+
+
 def loadImage(path) -> list:
     original = Image.open(path)
-    # original.show("original")
-    grayscale = ImageOps.grayscale(original)
+    original.show("original")
+
+    cropped = centerSquaredCrop(original)
+    cropped.show("cropped")
+
+    grayscale = ImageOps.grayscale(cropped)
     grayscale = ImageOps.flip(grayscale)
     grayscale = grayscale.rotate(-90)
     # grayscale.show("grayscale")
     size = (28, 28)
     mnistCompatible = grayscale.resize(size)
     mnistCompatibleInv = ImageOps.invert(mnistCompatible)
-    # mnistCompatibleInv.save("img0_inv.png")
+    mnistCompatibleInv.show("img0_inv.png")
     print(mnistCompatibleInv.size)
     pixels = []
     for x in range(28):
@@ -45,7 +64,7 @@ def predict(model, img: list, printOutputs: bool = False) -> int:
     return maxIndex
 
 
-def main(modelPath="trained_model.h5", imgPath="tests/handwrite_black_pixel28x28/img7.png"):
+def main(modelPath="trained_model.h5", imgPath="tests/handwrite_black/img4.png"):
     model = loadModel(path=modelPath)
     img = loadImage(path=imgPath)
 
