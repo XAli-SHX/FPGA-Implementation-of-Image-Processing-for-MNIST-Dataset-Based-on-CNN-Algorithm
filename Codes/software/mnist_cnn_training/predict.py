@@ -24,10 +24,12 @@ def centerSquaredCrop(original):
 
 def loadImage(path) -> list:
     original = Image.open(path)
-    original.show("original")
-
-    cropped = centerSquaredCrop(original)
-    cropped.show("cropped")
+    # original.show("original")
+    width, height = original.size
+    cropped = original
+    if width != height and width > 28 and height > 28:
+        cropped = centerSquaredCrop(original)
+    # cropped.show("cropped")
 
     grayscale = ImageOps.grayscale(cropped)
     grayscale = ImageOps.flip(grayscale)
@@ -36,7 +38,7 @@ def loadImage(path) -> list:
     size = (28, 28)
     mnistCompatible = grayscale.resize(size)
     mnistCompatibleInv = ImageOps.invert(mnistCompatible)
-    mnistCompatibleInv.show("img0_inv.png")
+    # mnistCompatibleInv.show("img_inv.png")
     print(mnistCompatibleInv.size)
     pixels = []
     for x in range(28):
@@ -64,7 +66,7 @@ def predict(model, img: list, printOutputs: bool = False) -> int:
     return maxIndex
 
 
-def main(modelPath="trained_model.h5", imgPath="tests/handwrite_black/img4.png"):
+def main(modelPath="trained_model.h5", imgPath="tests/handwrite_black_pixel28x28/img9.png"):
     model = loadModel(path=modelPath)
     img = loadImage(path=imgPath)
 
