@@ -17,36 +17,36 @@ class TrainedModelTest:
         for i in range(10):
             blockPrint()
             actual = predict.main("trained_model.h5", f"tests/handwrite_black_pixel28x28/img{i}.png")
-            excepted = i
+            expected = i
             enablePrint()
-            print(f"type: handwrite_black_pixel28x28, actual: {actual}, excepted: {excepted}")
+            print(f"type: handwrite_black_pixel28x28, actual: {actual}, expected: {expected}")
 
     @staticmethod
     def testHandwrittenBlack():
         for i in range(10):
             blockPrint()
             actual = predict.main("trained_model.h5", f"tests/handwrite_black/img{i}.png")
-            excepted = i
+            expected = i
             enablePrint()
-            print(f"type: handwrite_black, actual: {actual}, excepted: {excepted}")
+            print(f"type: handwrite_black, actual: {actual}, expected: {expected}")
 
     @staticmethod
     def testHandwrittenBlue():
         for i in range(10):
             blockPrint()
             actual = predict.main("trained_model.h5", f"tests/handwrite_blue/img{i}.png")
-            excepted = i
+            expected = i
             enablePrint()
-            print(f"type: handwrite_blue, actual: {actual}, excepted: {excepted}")
+            print(f"type: handwrite_blue, actual: {actual}, expected: {expected}")
 
     @staticmethod
     def testHandwrittenBlueThicker():
         for i in range(10):
             blockPrint()
             actual = predict.main("trained_model.h5", f"tests/handwrite_blue_thicker/img{i}.png")
-            excepted = i
+            expected = i
             enablePrint()
-            print(f"type: handwrite_blue_thicker, actual: {actual}, excepted: {excepted}")
+            print(f"type: handwrite_blue_thicker, actual: {actual}, expected: {expected}")
 
 
 if __name__ == '__main__':
