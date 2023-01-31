@@ -50,7 +50,7 @@ def main():
     print("Test loss:", score[0])
     print("Test accuracy:", score[1])
 
-    model.save('trained_model')
+    model.save('trained_model.h5', save_format='h5')
 
 
 if __name__ == "__main__":
