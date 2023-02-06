@@ -1,0 +1,27 @@
+layer0 [Conv2D]
+input  (None, 28, 28, 1)
+output (None, 26, 26, 32)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+layer1 [MaxPooling2D]
+input  (None, 26, 26, 32)
+output (None, 13, 13, 32)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+layer2 [Conv2D]
+input  (None, 13, 13,32)
+output (None, 11, 11, 64)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+layer3 [MaxPooling2D]
+input  (None, 11, 11, 64)
+output (None, 5, 5, 64)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+layer4 [Flatten]
+input  (None, 5, 5, 64)
+output (None, 1600)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+layer5 [Dropout]
+input  (None, 1600)
+output (None, 1600)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+layer6 [Dense]
+input  (None, 1600)
+output (None, 10)
