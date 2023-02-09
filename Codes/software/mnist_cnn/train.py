@@ -51,6 +51,7 @@ def main():
     print("Test accuracy:", score[1])
 
     model.save('trained_model.h5', save_format='h5')
+    model.save_weights('trained_model_weights.h5', save_format='h5')
 
 
 if __name__ == "__main__":
