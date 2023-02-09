@@ -19,7 +19,7 @@ model = keras.Sequential(
 
 
 def dumpWeights(weights, fileName):
-    file = open(f"./coeffs/{fileName}.txt", "w")
+    file = open(f"./weights/{fileName}.txt", "w")
     file.write(str(weights))
     file.close()
 
