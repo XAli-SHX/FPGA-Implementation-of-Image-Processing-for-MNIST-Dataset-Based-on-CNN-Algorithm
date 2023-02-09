@@ -17,6 +17,13 @@ model = keras.Sequential(
     )
 """
 
+
+def dumpWeights(weights, fileName):
+    file = open(f"./coeffs/{fileName}.txt", "w")
+    file.write(str(weights))
+    file.close()
+
+
 if __name__ == "__main__":
     model = keras.models.load_model("./trained_model.h5", compile=True)
 
@@ -24,16 +31,12 @@ if __name__ == "__main__":
     layer2_conv2d = model.layers[2]
     layer6_dense = model.layers[6]
 
-    file = open(f"./coeffs/layer0_conv2d.txt", "w")
-    file.write(str(layer0_conv2d.weights))
-    file.close()
+    layer0_conv2d_weights = layer0_conv2d.weights
+    layer2_conv2d_weights = layer2_conv2d.weights
+    layer6_dense_weights = layer6_dense.weights
 
-    file = open(f"./coeffs/layer2_conv2d.txt", "w")
-    file.write(str(layer2_conv2d.weights))
-    file.close()
-
-    file = open(f"./coeffs/layer6_dense.txt", "w")
-    file.write(str(layer6_dense.weights))
-    file.close()
+    dumpWeights(layer0_conv2d_weights, "layer0_conv2d")
+    dumpWeights(layer2_conv2d_weights, "layer2_conv2d")
+    dumpWeights(layer6_dense_weights, "layer6_dense")
 
     print("hi")
