@@ -35,8 +35,9 @@ if __name__ == "__main__":
     layer2_conv2d_weights = layer2_conv2d.weights
     layer6_dense_weights = layer6_dense.weights
 
+    np.set_printoptions(threshold=np.inf)
     dumpWeights(layer0_conv2d_weights, "layer0_conv2d")
     dumpWeights(layer2_conv2d_weights, "layer2_conv2d")
     dumpWeights(layer6_dense_weights, "layer6_dense")
 
-    print("hi")
+    print("THE BOYS")
