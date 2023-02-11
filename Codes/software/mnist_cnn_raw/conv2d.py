@@ -16,11 +16,13 @@ def conv2d(inputImage, inputShape, kernel, kernelShape):
             for ky in range(KY_SIZE):
                 for kx in range(KX_SIZE):
                     for chOut in range(CHANNEL_OUT):
-                        bias = kernel[1][chOut]
                         for chIn in range(CHANNEL_IN):
                             if ((y + ky) >= HEIGHT) or ((x + kx) >= WIDTH):
                                 continue
-                            outputImage[y][x][chOut] += \
-                                inputImage[y + ky][x + kx][chIn] * kernel[0][ky][kx][chIn][chOut] + bias
+                            kr = kernel[0][ky][kx][chIn][chOut]
+                            px = inputImage[y + ky][x + kx][chIn]
+                            outputImage[y][x][chOut] += kr * px
+                        bias = kernel[1][chOut]
+                        outputImage[y][x][chOut] += bias
 
     return outputImage
