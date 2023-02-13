@@ -9,7 +9,7 @@ def conv2d(inputImage, inputShape, kernel, kernelShape):
     KY_SIZE = kernelShape[1]
     CHANNEL_OUT = kernelShape[2]
 
-    outputImage = np.zeros((HEIGHT, WIDTH, CHANNEL_OUT))
+    outputImage = np.zeros((CHANNEL_OUT, HEIGHT, WIDTH))
 
     for y in range(HEIGHT):
         print(f"progress = {int(y / HEIGHT * 100)}%")
