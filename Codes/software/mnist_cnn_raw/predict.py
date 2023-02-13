@@ -1,6 +1,7 @@
 from tensorflow import keras
 import numpy as np
 import show1dImage as show1d
+import layers
 
 
 def _loadTestData():
@@ -27,8 +28,10 @@ def main():
     layer6_dense_weights = layer6_dense.weights
     testModel = _loadTestData()
     show1d.show1dGrayImage(testModel.flatten(), 28, 28, False)
-    actual = model.predict(testModel)
-    print(f"Actual: {actual}")
+    expected = model.predict(testModel)
+    print(f"expected: {expected}")
+    layer0Out = layers.conv2d(testModel, (28, 28, 1), layer0_conv2d_weights, (3, 3, 32))
+    print(layer0Out)
 
 
 if __name__ == "__main__":
