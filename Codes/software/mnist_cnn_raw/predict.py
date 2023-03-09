@@ -42,63 +42,74 @@ def main():
     layer2_conv2d_weights = _loadWeightsFromJson('./weights/json/layer2_conv2d.json')
     layer6_dense_weights = _loadWeightsFromJson('./weights/json/layer6_dense.json')
     testModel = _loadTestData()
+    # testModel = testModel.reshape((1, 28, 28))
+    # print(model.layers[0])
+    # print(testModel)
     show1dGrayImage(testModel.flatten(), 28, 28, False)
     expected = model.predict(testModel)
     print(f"expected: {expected}")
 
-    # layer 0 --> conv2d
+    # layer 0 -> conv2d
     # in shape = (28, 28, 1)
     # out shape = (26, 26, 32)
-    layer0Out = conv2d(testModel, (28, 28, 1), layer0_conv2d_weights, (3, 3, 32))
-    print(f"layer0Out: {layer0Out}")
+    layer0Out = conv2d(testModel[0], (28, 28, 1), layer0_conv2d_weights, (3, 3, 32))
+    # print(f"layer0Out: {layer0Out}")
 
-    # layer 0 activation function
-    # in shape = (28, 28, 1)
+    # layer 0 activation function -> ReLU
+    # in shape = (26, 26, 32)
     # out shape = (26, 26, 32)
     layer0ReLU = ReLU(layer0Out, (26, 26, 32))
-    print(f"layer0ReLU: {layer0ReLU}")
+    # print(f"layer0ReLU: {layer0ReLU}")
 
-    # layer 1 --> max pooling 2d
+    # layer 1 -> max pooling 2d
     # in shape = (26, 26, 32)
     # out shape = (13, 13, 32)
     layer1Out = maxPooling2d(layer0ReLU, (26, 26, 32), (2, 2))
-    print(f"layer1Out: {layer1Out}")
+    # print(f"layer1Out: {layer1Out}")
 
-    # layer 2 --> conv2d
+    # layer 2 -> conv2d
     # in shape = (13, 13, 32)
     # out shape = (11, 11, 64)
     layer2Out = conv2d(layer1Out, (13, 13, 32), layer2_conv2d_weights, (3, 3, 64))
-    print(f"layer2Out: {layer2Out}")
+    # print(f"layer2Out: {layer2Out}")
 
-    # layer 2 activation function
-    # in shape = (13, 13, 32)
+    # layer 2 activation function -> ReLU
+    # in shape = (11, 11, 64)
     # out shape = (11, 11, 64)
     layer2ReLU = ReLU(layer2Out, (11, 11, 64))
-    print(f"layer2ReLU: {layer2ReLU}")
+    # print(f"layer2ReLU: {layer2ReLU}")
 
-    # layer 3 --> max pooling 2d
+    # layer 3 -> max pooling 2d
     # in shape = (11, 11, 64)
     # out shape = (5, 5, 64)
     layer3Out = maxPooling2d(layer2ReLU, (11, 11, 64), (2, 2))
-    print(f"layer3Out: {layer3Out}")
+    # print(f"layer3Out: {layer3Out}")
 
-    # layer 4 --> flatten
+    # layer 4 -> flatten
     # in shape = (5, 5, 64)
     # out shape = 1600
     layer4Flatten = flatten(layer3Out)
-    print(f"layer4Flatten: {layer4Flatten}")
+    # print(f"layer4Flatten: {layer4Flatten}")
     
-    # layer 5 --> Dropout
+    # layer 5 -> Dropout
     # in shape = 1600
     # out shape = 1600
     layer5Dropout = dropout(layer4Flatten, 0.5)
-    print(f"layer5Dropout: {layer5Dropout}")
+    # print(f"layer5Dropout: {layer5Dropout}")
 
-    # layer 6 --> Dense (fully connected)
+    # layer 6 -> Dense (fully connected)
     # in shape = 1600
     # out shape = 10
-    print(len(layer5Dropout))
-    # layer6Dense = dense(layer5Dropout, layer6_dense_weights, (1600, 10))
+    layer6Dense = dense(layer5Dropout, layer6_dense_weights, (1600, 10))
+    # print(f"layer6Dense: {layer6Dense}")
+
+    # layer 6 activation function -> softmax
+    # in shape = 10
+    # out shape = 10
+    layer6Softmax = softmax(layer6Dense)
+    # print(f"layer6Softmax: {layer6Softmax}")
+
+    print(f"actual: {layer6Softmax}")
 
 if __name__ == "__main__":
     main()
