@@ -1,3 +1,6 @@
+from ..mnist_cnn_raw.predict import loadWeightsFromJson
+
+
 def main():
     pass
 
