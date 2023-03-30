@@ -19,7 +19,7 @@ def show1dGrayImage(imgArr, xSize, ySize, xTraverse=True):
     img.show()
 
 
-def _loadTestData():
+def loadTestData():
     # Load the data and split it between train and test sets
     (x_train, y_train), (x_test, y_test) = keras.datasets.mnist.load_data()
     # Scale images to the [0, 1] range
@@ -33,7 +33,7 @@ def _loadTestData():
     return testModel
 
 
-def _loadWeightsFromJson(path: str) -> list:
+def loadWeightsFromJson(path: str) -> list:
     with open(path, 'r') as fp:
         data = json.load(fp)
         fp.close()
@@ -42,10 +42,10 @@ def _loadWeightsFromJson(path: str) -> list:
 
 def main():
     model = keras.models.load_model("./trained_model.h5", compile=True)
-    layer0_conv2d_weights = _loadWeightsFromJson('./weights/json/layer0_conv2d.json')
-    layer2_conv2d_weights = _loadWeightsFromJson('./weights/json/layer2_conv2d.json')
-    layer6_dense_weights = _loadWeightsFromJson('./weights/json/layer6_dense.json')
-    testModel = _loadTestData()
+    layer0_conv2d_weights = loadWeightsFromJson('./weights/json/layer0_conv2d.json')
+    layer2_conv2d_weights = loadWeightsFromJson('./weights/json/layer2_conv2d.json')
+    layer6_dense_weights = loadWeightsFromJson('./weights/json/layer6_dense.json')
+    testModel = loadTestData()
     # testModel = testModel.reshape((1, 28, 28))
     # print(model.layers[0])
     # print(testModel)
