@@ -1,1 +1,1 @@
-FPGA Implementation of Image Processing for MNIST Dataset Based on MLP Neural Network Algorithm
+FPGA Implementation of Image Processing for MNIST Dataset Based on Convolutional Neural Network Algorithm (CNN)
