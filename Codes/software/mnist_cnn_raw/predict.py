@@ -4,6 +4,7 @@ import show1dImage as show1d
 from layers import ReLU, conv2d, dropout, flatten, maxPooling2d
 import json
 
+
 def show1dGrayImage(imgArr, xSize, ySize, xTraverse=True):
     from PIL import Image
     img = Image.new('L', (xSize, ySize))
@@ -16,6 +17,7 @@ def show1dGrayImage(imgArr, xSize, ySize, xTraverse=True):
             for y in range(ySize):
                 img.putpixel((x, y), int(imgArr[y * xSize + x] * 255))
     img.show()
+
 
 def _loadTestData():
     # Load the data and split it between train and test sets
@@ -30,11 +32,13 @@ def _loadTestData():
     testModel = x_test[0].reshape([1, 28, 28, -1])
     return testModel
 
+
 def _loadWeightsFromJson(path: str) -> list:
     with open(path, 'r') as fp:
         data = json.load(fp)
         fp.close()
     return data
+
 
 def main():
     model = keras.models.load_model("./trained_model.h5", compile=True)
@@ -90,7 +94,7 @@ def main():
     # out shape = 1600
     layer4Flatten = flatten(layer3Out)
     # print(f"layer4Flatten: {layer4Flatten}")
-    
+
     # layer 5 -> Dropout
     # in shape = 1600
     # out shape = 1600
@@ -110,6 +114,7 @@ def main():
     # print(f"layer6Softmax: {layer6Softmax}")
 
     print(f"actual: {layer6Softmax}")
+
 
 if __name__ == "__main__":
     main()
