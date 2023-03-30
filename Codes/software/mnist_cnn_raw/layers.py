@@ -2,6 +2,7 @@ import numpy as np
 import random
 import math
 
+
 def ReLU(image: list, shape: tuple) -> list:
     width = shape[0]
     height = shape[1]
@@ -16,12 +17,14 @@ def ReLU(image: list, shape: tuple) -> list:
     # print(f"in shape: {np.array(image).shape}")
     return out.tolist()
 
-def softmax(image: list) ->list:
+
+def softmax(image: list) -> list:
     imgLen = len(image)
     exps = [math.exp(pxi) for pxi in image]
     expSum = sum(exps)
     out = [ei / expSum for ei in exps]
     return out
+
 
 def conv2d(inputImage: list, inputShape: tuple, kernel: list, kernelShape: tuple) -> list:
     width = inputShape[0]
@@ -39,7 +42,7 @@ def conv2d(inputImage: list, inputShape: tuple, kernel: list, kernelShape: tuple
                 for chIn in range(channelIn):
                     for ky in range(kySize):
                         for kx in range(kxSize):
-                    
+
                             if ((y + ky) >= height) or ((x + kx) >= width):
                                 continue
                             kr = kernel[0][kx][ky][chIn][chOut]
@@ -50,6 +53,7 @@ def conv2d(inputImage: list, inputShape: tuple, kernel: list, kernelShape: tuple
                 outputImage[x][y][chOut] += bias
     return outputImage.tolist()
 
+
 def maxPooling2d(inputImage: list, shape: tuple, poolSize: tuple):
     width = shape[0]
     height = shape[1]
@@ -59,23 +63,25 @@ def maxPooling2d(inputImage: list, shape: tuple, poolSize: tuple):
     outImage = np.zeros((width // pxSize, height // pySize, channelIn))
     for y in range(0, height, pySize):
         for x in range(0, width, pxSize):
-            for chIn in range(channelIn): 
-                if ((y + pySize) >= height) or ((x + pxSize) >= width):
-                    continue
+            for chIn in range(channelIn):
                 max = inputImage[x][y][chIn]
                 for py in range(pySize):
                     for px in range(pxSize):
+                        if (x + px) >= width or (y + py) >= height:
+                            continue
                         if inputImage[x + px][y + py][chIn] > max:
                             max = inputImage[x + px][y + py][chIn]
                             if (y // pySize >= height // pySize) or \
-                               (x // pxSize >= width // pxSize):
+                                    (x // pxSize >= width // pxSize):
                                 continue
                             outImage[x // pxSize][y // pySize][chIn] = max
     return outImage.tolist()
 
+
 def flatten(inputImage: list) -> list:
     arr = np.array(inputImage)
     return arr.flatten().tolist()
+
 
 def dropout(inputImageFlat: list, rate: float) -> list:
     out = np.zeros(len(inputImageFlat))
@@ -84,7 +90,9 @@ def dropout(inputImageFlat: list, rate: float) -> list:
             out[i] = 0
         else:
             out[i] = inputImageFlat[i]
+    # bypass layer
     return inputImageFlat
+
 
 def dense(inputImageFlat: list, weights: list, shape: tuple) -> list:
     inLen = shape[0]
