@@ -22,8 +22,8 @@ def main():
 
     layer0_conv2d_weights_flatten = np.array(layer0_conv2d_weights[0]).flatten().tolist()
     layer0_conv2d_biases_flatten = np.array(layer0_conv2d_weights[1]).flatten().tolist()
-    _saveListAsJson(layer0_conv2d_weights_flatten, "./weights/flat/layer0_conv2d_weights.json")
-    _saveListAsJson(layer0_conv2d_biases_flatten, "./weights/flat/layer0_conv2d_biases.json")
+    _saveListAsJson(layer0_conv2d_weights_flatten, "./weights/flat/layer0_conv2d_weights_flatten.json")
+    _saveListAsJson(layer0_conv2d_biases_flatten, "./weights/flat/layer0_conv2d_biases_flatten.json")
 
     layer2_conv2d_weights_flatten = np.array(layer2_conv2d_weights[0]).flatten().tolist()
     layer2_conv2d_biases_flatten = np.array(layer2_conv2d_weights[1]).flatten().tolist()
