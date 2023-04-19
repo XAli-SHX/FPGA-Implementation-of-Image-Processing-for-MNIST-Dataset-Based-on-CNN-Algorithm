@@ -37,7 +37,7 @@ def main():
 
     expectedAnswer(model, testModel)
 
-    actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weights, testModel)
+    print(f"actual: {actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weights, testModel)}")
 
 
 def actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weights, testModel):
@@ -91,7 +91,7 @@ def actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weig
     # out shape = 10
     layer6Softmax = softmax(layer6Dense)
     # print(f"layer6Softmax: {layer6Softmax}")
-    print(f"actual: {layer6Softmax}")
+    return layer6Softmax
 
 
 def expectedAnswer(model, testModel):
