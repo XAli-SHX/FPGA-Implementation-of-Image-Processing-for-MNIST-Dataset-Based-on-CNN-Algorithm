@@ -3,18 +3,16 @@ import random
 import math
 
 
-def ReLU(image: list, shape: tuple) -> list:
+def reluFlat(image: list, shape: tuple) -> list:
     width = shape[0]
     height = shape[1]
     channelIn = shape[2]
-    out = np.zeros((width, height, channelIn))
+    out = np.zeros(width * height * channelIn)
     for y in range(height):
         for x in range(width):
             for chIn in range(channelIn):
-                data = image[x][y][chIn]
-                out[x][y][chIn] = data * (data > 0)
-    # print(f"out shape: {out.shape}")
-    # print(f"in shape: {np.array(image).shape}")
+                data = image[(x * height * channelIn) + (y * channelIn) + chIn]
+                out[(x * height * channelIn) + (y * channelIn) + chIn] = data * (data > 0)
     return out.tolist()
 
 
@@ -26,15 +24,19 @@ def softmax(image: list) -> list:
     return out
 
 
-def conv2d(inputImage: list, inputShape: tuple, kernel: list, kernelShape: tuple) -> list:
+def conv2dFlat(inputImage: list, inputShape: tuple, kernel: list, kernelShape: tuple) -> list:
     width = inputShape[0]
     height = inputShape[1]
     channelIn = inputShape[2]
     kxSize = kernelShape[0]
     kySize = kernelShape[1]
     channelOut = kernelShape[2]
+    weights = kernel[0]
+    biases = kernel[1]
 
-    outputImage = np.zeros((width - kxSize + 1, height - kySize + 1, channelOut))
+    outWidthSize = (width - kxSize + 1)
+    outHeightSize = (height - kySize + 1)
+    outputImage = np.zeros(outWidthSize * outHeightSize * channelOut)
 
     for y in range(height - kySize + 1):
         for x in range(width - kxSize + 1):
@@ -42,39 +44,47 @@ def conv2d(inputImage: list, inputShape: tuple, kernel: list, kernelShape: tuple
                 for chIn in range(channelIn):
                     for ky in range(kySize):
                         for kx in range(kxSize):
-
                             if ((y + ky) >= height) or ((x + kx) >= width):
                                 continue
-                            kr = kernel[0][kx][ky][chIn][chOut]
-                            # print(f"x = {x}, y = {y}, chIn = {chIn}, kx = {kx}, ky = {ky}, chOut = {chOut}")
-                            px = inputImage[x + kx][y + ky][chIn]
-                            outputImage[x][y][chOut] += kr * px
-                bias = kernel[1][chOut]
-                outputImage[x][y][chOut] += bias
+                            kr = weights[
+                                (kx * kySize * channelIn * channelOut) +
+                                (ky * channelIn * channelOut) +
+                                (chIn * channelOut) +
+                                chOut]
+                            px = inputImage[
+                                ((x + kx) * outHeightSize * channelIn) +
+                                ((y + ky) * channelIn) +
+                                chIn]
+                            outputImage[(x * outHeightSize * channelOut) + (y * channelOut) + chOut] += kr * px
+                bias = biases[chOut]
+                outputImage[
+                    (x * outHeightSize * channelOut) + (y * channelOut) + chOut] += bias
     return outputImage.tolist()
 
 
-def maxPooling2d(inputImage: list, shape: tuple, poolSize: tuple):
+def maxPooling2dFlat(inputImage: list, shape: tuple, poolSize: tuple) -> list:
     width = shape[0]
     height = shape[1]
     channelIn = shape[2]
     pxSize = poolSize[0]
     pySize = poolSize[1]
-    outImage = np.zeros((width // pxSize, height // pySize, channelIn))
+    outImage = np.zeros((width // pxSize) * (height // pySize) * channelIn)
     for y in range(0, height, pySize):
         for x in range(0, width, pxSize):
             for chIn in range(channelIn):
-                max = inputImage[x][y][chIn]
+                max = inputImage[(x * height * channelIn) + (y * channelIn) + chIn]
                 for py in range(pySize):
                     for px in range(pxSize):
                         if (x + px) >= width or (y + py) >= height:
                             continue
-                        if inputImage[x + px][y + py][chIn] > max:
-                            max = inputImage[x + px][y + py][chIn]
+                        if inputImage[((x + px) * height * channelIn) + ((y + py) * channelIn) + chIn] > max:
+                            max = inputImage[((x + px) * height * channelIn) + ((y + py) * channelIn) + chIn]
                             if (y // pySize >= height // pySize) or \
                                     (x // pxSize >= width // pxSize):
                                 continue
-                            outImage[x // pxSize][y // pySize][chIn] = max
+                            outImage[((x // pxSize) * (height // pySize) * channelIn) +
+                                     ((y // pySize) * channelIn) +
+                                     chIn] = max
     return outImage.tolist()
 
 
@@ -94,7 +104,7 @@ def dropout(inputImageFlat: list, rate: float) -> list:
     return inputImageFlat
 
 
-def dense(inputImageFlat: list, weights: list, shape: tuple) -> list:
+def denseFlat(inputImageFlat: list, weights: list, shape: tuple) -> list:
     inLen = shape[0]
     outLen = shape[1]
     mulWeights = weights[0]
@@ -102,6 +112,6 @@ def dense(inputImageFlat: list, weights: list, shape: tuple) -> list:
     out = np.zeros(outLen)
     for o in range(outLen):
         for i in range(inLen):
-            out[o] += inputImageFlat[i] * mulWeights[i][o]
+            out[o] += inputImageFlat[i] * mulWeights[i * outLen + o]
         out[o] += biasWeights[o]
     return out.tolist()
