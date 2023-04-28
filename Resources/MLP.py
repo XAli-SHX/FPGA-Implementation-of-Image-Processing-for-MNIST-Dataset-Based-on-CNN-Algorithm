@@ -12,7 +12,7 @@ y_test.shape
 #y_test is an array of labels for testing
 #display some sample images from the training and testing datasets
 #show first image
-%matplotlib inline
+# %matplotlib inline
 import matplotlib.pyplot as plt
 img = x_train[0]
 plt.imshow(img, cmap='gray')
