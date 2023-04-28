@@ -38,8 +38,8 @@ def conv2dFlat(inputImage: list, inputShape: tuple, kernel: list, kernelShape: t
     outHeightSize = (height - kySize + 1)
     outputImage = np.zeros(outWidthSize * outHeightSize * channelOut)
 
-    for y in range(height - kySize + 1):
-        for x in range(width - kxSize + 1):
+    for y in range(outHeightSize):
+        for x in range(outWidthSize):
             for chOut in range(channelOut):
                 for chIn in range(channelIn):
                     for ky in range(kySize):
