@@ -68,7 +68,11 @@ def maxPooling2dFlat(inputImage: list, shape: tuple, poolSize: tuple) -> list:
     channelIn = shape[2]
     pxSize = poolSize[0]
     pySize = poolSize[1]
-    outImage = np.zeros((width // pxSize) * (height // pySize) * channelIn)
+
+    outWidthSize = width // pxSize
+    outHeightSize = height // pySize
+    outImage = np.zeros(outWidthSize * outHeightSize * channelIn)
+
     for y in range(0, height, pySize):
         for x in range(0, width, pxSize):
             for chIn in range(channelIn):
@@ -82,7 +86,7 @@ def maxPooling2dFlat(inputImage: list, shape: tuple, poolSize: tuple) -> list:
                             if (y // pySize >= height // pySize) or \
                                     (x // pxSize >= width // pxSize):
                                 continue
-                            outImage[((x // pxSize) * (height // pySize) * channelIn) +
+                            outImage[((x // pxSize) * outHeightSize * channelIn) +
                                      ((y // pySize) * channelIn) +
                                      chIn] = max
     return outImage.tolist()
