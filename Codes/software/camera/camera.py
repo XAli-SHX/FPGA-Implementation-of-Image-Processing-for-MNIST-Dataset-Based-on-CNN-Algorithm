@@ -24,9 +24,9 @@ class Camera:
         cap_height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
         cap_fps = cap.get(cv2.CAP_PROP_FPS)
         fps_sleep = int(1000 / cap_fps)
-        print('* Capture width:', cap_width)
-        print('* Capture height:', cap_height)
-        print('* Capture FPS:', cap_fps, 'ideal wait time between frames:', fps_sleep, 'ms')
+        print('Capture width:', cap_width)
+        print('Capture height:', cap_height)
+        print('Capture FPS:', cap_fps, 'ideal wait time between frames:', fps_sleep, 'ms')
 
         # initialize time and frame count variables
         last_time = datetime.datetime.now()
@@ -72,6 +72,10 @@ class Camera:
 
     def start_camera(self, has_windows=True):
         Thread(target=self._start_camera, args=(has_windows,)).start()
+
+    def await_first_frame(self):
+        while self.frame is None:
+            pass
 
     def save_image(self, path: str = "picture.png") -> bool:
         if self.frame is None:

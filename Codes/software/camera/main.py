@@ -4,7 +4,7 @@ from camera import Camera
 def main():
     camera = Camera()
     camera.start_camera(has_windows=True)
-    print("Camera started!!!!")
+    camera.await_first_frame()
     camera.save_image()
 
 
