@@ -1,12 +1,16 @@
 from camera import Camera
 import predict
+import sys
+import utils
 
 
 def on_image_saved(path):
-    predict.main(imgPath=path)
+    num, percent = predict.main(imgPath=path)
+    print(f"predicted number = {num}")
+    print(f"probability percent = {(percent * 100):.0f}%")
 
 
-def nothing(x):
+def nothing(_):
     pass
 
 
@@ -16,7 +20,11 @@ def realtime_main():
     camera.await_first_frame()
     while True:
         camera.save_image()
-        predict.main(imgPath="picture.png")
+        utils.block_print()
+        num, percent = predict.main(imgPath="picture.png", printOutputs=False)
+        utils.enable_print()
+        sys.stdout.write(f"\rnumber = {num}, probability = {(percent * 100):.0f}%")
+        sys.stdout.flush()
 
 
 def main():
@@ -27,7 +35,7 @@ def main():
 
 
 if __name__ == "__main__":
-    REALTIME = False
+    REALTIME = True
     if REALTIME:
         realtime_main()
     else:
