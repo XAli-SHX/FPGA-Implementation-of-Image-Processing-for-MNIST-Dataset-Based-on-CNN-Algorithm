@@ -10,6 +10,7 @@ class Camera:
 
     def __init__(self):
         self.frame = None
+        self.is_new_frame = False
 
     def _start_camera(self, has_windows=True):
         # create display window
@@ -38,6 +39,7 @@ class Camera:
             success, frame = cap.read()
             frames += 1
             self.frame = frame
+            self.is_new_frame = True
 
             # compute fps: current_time - last_time
             delta_time = datetime.datetime.now() - last_time
@@ -80,5 +82,8 @@ class Camera:
     def save_image(self, path: str = "picture.png") -> bool:
         if self.frame is None:
             return False
-        cv2.imwrite(path, self.frame)
-        return True
+        if self.is_new_frame:
+            cv2.imwrite(path, self.frame)
+            self.is_new_frame = False
+            return True
+        return False
