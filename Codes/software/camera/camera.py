@@ -89,7 +89,7 @@ class Camera:
             cap_width = frame.shape[1]
             cap_height = frame.shape[0]
             end_point, start_point = self._get_rect_points(cap_height, cap_width)
-            frame = frame[start_point[1]:end_point[1], start_point[0]:end_point[0]]
+            frame = frame[start_point[1] + 2:end_point[1] - 2, start_point[0] + 2:end_point[0] - 2]
             # save frame
             cv2.imwrite(path, frame)
             self.is_new_frame = False
