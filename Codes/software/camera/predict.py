@@ -66,13 +66,11 @@ def predict(model, img: list, printOutputs: bool = False) -> (int, int):
     return maxIndex, maxVal
 
 
-def main(modelPath="trained_model.h5", imgPath="tests/handwrite_black_pixel28x28/img9.png"):
+def main(modelPath="trained_model.h5", imgPath="tests/handwrite_black_pixel28x28/img9.png", printOutputs=True):
     model = load_model(path=modelPath)
     img = load_image(path=imgPath)
-    num, percent = predict(model, img, True)
-    print(f"predicted number = {num}")
-    print(f"probability percent = {(percent * 100):.0f}%")
-    return num
+    num, percent = predict(model, img, printOutputs=printOutputs)
+    return num, percent
 
 
 if __name__ == "__main__":
