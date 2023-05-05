@@ -8,9 +8,10 @@ class Camera:
     CAP_RECT_WIDTH = 100
     CAP_RECT_HEIGHT = 100
 
-    def __init__(self):
+    def __init__(self, on_image_saved):
         self.frame = None
         self.is_new_frame = False
+        self.on_image_saved = on_image_saved
 
     def _start_camera(self, has_windows=True):
         # create display window
@@ -50,10 +51,7 @@ class Camera:
             if has_windows:
                 cv2.putText(frame, 'FPS: ' + str(cur_fps), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2,
                             cv2.LINE_AA)
-                start_point = (
-                    int(cap_width / 2 - self.CAP_RECT_WIDTH / 2), int(cap_height / 2 - self.CAP_RECT_HEIGHT / 2))
-                end_point = (
-                    int(cap_width / 2 + self.CAP_RECT_WIDTH / 2), int(cap_height / 2 + self.CAP_RECT_HEIGHT / 2))
+                end_point, start_point = self._get_rect_points(cap_height, cap_width)
                 cv2.rectangle(
                     img=frame,
                     pt1=start_point,
@@ -86,7 +84,22 @@ class Camera:
         if self.frame is None:
             return False
         if self.is_new_frame:
-            cv2.imwrite(path, self.frame)
+            frame = self.frame
+            # crop frame
+            cap_width = frame.shape[1]
+            cap_height = frame.shape[0]
+            end_point, start_point = self._get_rect_points(cap_height, cap_width)
+            frame = frame[start_point[1]:end_point[1], start_point[0]:end_point[0]]
+            # save frame
+            cv2.imwrite(path, frame)
             self.is_new_frame = False
+            self.on_image_saved(path)
             return True
         return False
+
+    def _get_rect_points(self, cap_height, cap_width):
+        start_point = (
+            int(cap_width / 2 - self.CAP_RECT_WIDTH / 2), int(cap_height / 2 - self.CAP_RECT_HEIGHT / 2))
+        end_point = (
+            int(cap_width / 2 + self.CAP_RECT_WIDTH / 2), int(cap_height / 2 + self.CAP_RECT_HEIGHT / 2))
+        return end_point, start_point
