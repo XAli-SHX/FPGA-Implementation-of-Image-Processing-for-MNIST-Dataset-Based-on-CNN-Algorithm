@@ -5,6 +5,8 @@ from threading import Thread
 
 
 class Camera:
+    CAP_RECT_WIDTH = 28
+    CAP_RECT_HEIGHT = 28
 
     def _start_camera(self, has_windows=True):
         # create display window
@@ -30,9 +32,9 @@ class Camera:
         # main loop: retrieves and displays a frame from the camera
         while True:
             # blocks until the entire frame is read
-            success, img = cap.read()
+            success, frame = cap.read()
             frames += 1
-            self.img = img
+            self.frame = frame
 
             # compute fps: current_time - last_time
             delta_time = datetime.datetime.now() - last_time
@@ -41,9 +43,9 @@ class Camera:
 
             # draw FPS text and display image
             if has_windows:
-                cv2.putText(img, 'FPS: ' + str(cur_fps), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2,
+                cv2.putText(frame, 'FPS: ' + str(cur_fps), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2,
                             cv2.LINE_AA)
-                cv2.imshow("webcam", img)
+                cv2.imshow("webcam", frame)
 
             # wait 1ms for ESC to be pressed
             key = cv2.waitKey(1)
@@ -58,4 +60,4 @@ class Camera:
         Thread(target=self._start_camera, args=(has_windows,)).start()
 
     def save_image(self, path: str = "picture.png"):
-        cv2.imwrite(path, self.img)
+        cv2.imwrite(path, self.frame)
