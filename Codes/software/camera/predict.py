@@ -49,7 +49,7 @@ def load_image(path) -> list:
     return pixels
 
 
-def predict(model, img: list, printOutputs: bool = False) -> int:
+def predict(model, img: list, printOutputs: bool = False) -> (int, int):
     print(model)
     num = model.predict(img)[0]
     if printOutputs:
@@ -63,14 +63,15 @@ def predict(model, img: list, printOutputs: bool = False) -> int:
         if num[i] > maxVal:
             maxVal = num[i]
             maxIndex = i
-    return maxIndex
+    return maxIndex, maxVal
 
 
 def main(modelPath="trained_model.h5", imgPath="tests/handwrite_black_pixel28x28/img9.png"):
     model = load_model(path=modelPath)
     img = load_image(path=imgPath)
-    num = predict(model, img, True)
+    num, percent = predict(model, img, True)
     print(f"predicted number = {num}")
+    print(f"probability percent = {(percent * 100):.0f}%")
     return num
 
 
