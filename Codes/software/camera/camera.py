@@ -5,8 +5,11 @@ from threading import Thread
 
 
 class Camera:
-    CAP_RECT_WIDTH = 28
-    CAP_RECT_HEIGHT = 28
+    CAP_RECT_WIDTH = 100
+    CAP_RECT_HEIGHT = 100
+
+    def __init__(self):
+        self.frame = None
 
     def _start_camera(self, has_windows=True):
         # create display window
@@ -45,6 +48,17 @@ class Camera:
             if has_windows:
                 cv2.putText(frame, 'FPS: ' + str(cur_fps), (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2,
                             cv2.LINE_AA)
+                start_point = (
+                    int(cap_width / 2 - self.CAP_RECT_WIDTH / 2), int(cap_height / 2 - self.CAP_RECT_HEIGHT / 2))
+                end_point = (
+                    int(cap_width / 2 + self.CAP_RECT_WIDTH / 2), int(cap_height / 2 + self.CAP_RECT_HEIGHT / 2))
+                cv2.rectangle(
+                    img=frame,
+                    pt1=start_point,
+                    pt2=end_point,
+                    color=(0, 255, 0),
+                    thickness=2
+                )
                 cv2.imshow("webcam", frame)
 
             # wait 1ms for ESC to be pressed
@@ -59,5 +73,8 @@ class Camera:
     def start_camera(self, has_windows=True):
         Thread(target=self._start_camera, args=(has_windows,)).start()
 
-    def save_image(self, path: str = "picture.png"):
+    def save_image(self, path: str = "picture.png") -> bool:
+        if self.frame is None:
+            return False
         cv2.imwrite(path, self.frame)
+        return True
