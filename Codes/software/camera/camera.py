@@ -67,6 +67,9 @@ class Camera:
             key = cv2.waitKey(1)
             if key == 27:
                 break
+            if key == 13:
+                self.save_image()
+                print("Image saved")
 
         # release resources
         cv2.destroyAllWindows()
