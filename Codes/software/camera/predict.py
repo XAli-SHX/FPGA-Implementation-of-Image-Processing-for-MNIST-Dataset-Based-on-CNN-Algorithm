@@ -38,7 +38,7 @@ def load_image(path) -> list:
     size = (28, 28)
     mnistCompatible = grayscale.resize(size)
     mnistCompatibleInv = ImageOps.invert(mnistCompatible)
-    mnistCompatibleInv.show("img_inv.png")
+    # mnistCompatibleInv.show("img_inv.png")
     print(mnistCompatibleInv.size)
     pixels = []
     for x in range(28):
