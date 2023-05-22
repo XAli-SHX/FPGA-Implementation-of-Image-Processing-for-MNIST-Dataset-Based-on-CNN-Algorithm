@@ -1,5 +1,5 @@
 from camera import Camera
-import predict
+import predict_raw as predict
 import sys
 import utils
 

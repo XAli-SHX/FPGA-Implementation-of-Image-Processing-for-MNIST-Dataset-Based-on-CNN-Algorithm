@@ -3,6 +3,7 @@ import numpy as np
 import show1dImage as show1d
 from layers import *
 import json
+from PIL import Image, ImageOps
 
 
 def loadTestData():
@@ -26,18 +27,65 @@ def loadWeightsFromJson(path: str) -> list:
     return data
 
 
-def main():
+def crop_to_make_square(original):
+    width, height = original.size
+    if height > width:
+        original = original.rotate(90)
+    left = width // 4
+    top = 0
+    right = left + width // 2
+    bottom = height
+    cropBox = (left, top, right, bottom)
+    original = original.crop(cropBox)
+    if height > width:
+        original = original.rotate(-90)
+    return original
+
+
+def load_image(path) -> list:
+    original = Image.open(path)
+    # original.show("original")
+    width, height = original.size
+    cropped = original
+    if width != height and width > 28 and height > 28:
+        cropped = crop_to_make_square(original)
+    # cropped.show("cropped")
+
+    grayscale = ImageOps.grayscale(cropped)
+    grayscale = ImageOps.flip(grayscale)
+    grayscale = grayscale.rotate(-90)
+    # grayscale.show("grayscale")
+    size = (28, 28)
+    mnistCompatible = grayscale.resize(size)
+    mnistCompatibleInv = ImageOps.invert(mnistCompatible)
+    # mnistCompatibleInv.show("img_inv.png")
+    print(mnistCompatibleInv.size)
+    pixels = []
+    for x in range(28):
+        for y in range(28):
+            pixels.append(mnistCompatibleInv.getpixel((x, y)))
+    pixels = np.array(pixels).astype('float32') / 255
+    pixels = pixels.reshape([1, 28, 28, -1])
+    return pixels
+
+
+def main(imgPath: str, printOutputs: bool = True) -> (int, float):
     model = loadModel()
     layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weights = loadLayers()
-    testModel = loadTestData()
+    testModel = load_image(imgPath)
     # testModel = testModel.reshape((1, 28, 28))
     # print(model.layers[0])
     # print(testModel)
-    show1d.show1dGrayImage(testModel.flatten(), 28, 28, False)
-
+    # show1d.show1dGrayImage(testModel.flatten(), 28, 28, False)
     expectedAnswer(model, testModel)
-
-    actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weights, testModel)
+    num = actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weights, testModel)
+    maxIndex = 0
+    maxVal = num[maxIndex]
+    for i in range(10):
+        if num[i] > maxVal:
+            maxVal = num[i]
+            maxIndex = i
+    return maxIndex, maxVal
 
 
 def actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weights, testModel):
@@ -92,6 +140,7 @@ def actualAnswer(layer0_conv2d_weights, layer2_conv2d_weights, layer6_dense_weig
     layer6Softmax = softmax(layer6Dense)
     # print(f"layer6Softmax: {layer6Softmax}")
     print(f"actual: {layer6Softmax}")
+    return layer6Softmax
 
 
 def expectedAnswer(model, testModel):
