@@ -1,14 +1,15 @@
 module DenseController (
+    // input
     clk, 
     rst,
     start,
+    // state signals
     gotData,
     mulDone,
     calcDone,
     putData,
-
+    // controll signals
     clear,
-    busy,
     rdi,
     wri,
     rdo,
@@ -17,11 +18,14 @@ module DenseController (
     clearReg,
     WorB,
     load,
-    outCntEn
+    outCntEn,
+    // output
+    busy,
+    valid
 );
 
     input clk, rst, start, gotData, mulDone, calcDone, putData;
-    output reg clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn;
+    output reg clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn, valid;
 
     localparam STATE_Idle = 0, 
                STATE_Init = 1, 
@@ -60,7 +64,7 @@ module DenseController (
 
     // issue output logic
     always @(*) begin
-        {clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn} = 11'b0;
+        {clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn, valid} = 12'b0;
         case (ps)
             STATE_Idle: ;
             STATE_Init: clear = 1'b1;
@@ -91,11 +95,13 @@ module DenseController (
             STATE_ReInitOutputCounter: begin
                 busy = 1;
                 clear = 1;
+                valid = 1;
             end
             STATE_PutData: begin
                 busy = 1;
                 outCntEn = 1;
                 rdo = 1;
+                valid = 1;
             end
         endcase
     end
