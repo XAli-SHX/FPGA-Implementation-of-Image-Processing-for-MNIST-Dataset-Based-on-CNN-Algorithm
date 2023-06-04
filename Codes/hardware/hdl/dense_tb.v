@@ -1,9 +1,9 @@
 module TB_Dense ();
     
-    localparam IN_COUNT = 10, OUT_COUNT = 3, DATA_SIZE = 8;
+    localparam IN_COUNT = 10, OUT_COUNT = 3, DATA_SIZE = 16;
 
-    reg clk, rst, start;
-    reg [DATA_SIZE-1:0] dataIn;
+    reg clk = 0, rst = 0, start = 0;
+    reg [DATA_SIZE-1:0] dataIn = {DATA_SIZE{1'b0}};
     wire busy, valid;
     wire [DATA_SIZE-1:0] weightData, biasData;
     wire [DATA_SIZE-1:0] dataOut;
