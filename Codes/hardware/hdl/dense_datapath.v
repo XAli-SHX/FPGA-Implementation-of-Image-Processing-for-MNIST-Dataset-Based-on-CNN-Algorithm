@@ -29,16 +29,17 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     dataOut
 );
 
-    input clk, rst, start, dataIn;
+    input clk, rst, start;
     input clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn;
-    input [DATA_SIZE-1:0] weightData, biasData;
+    input [DATA_SIZE-1:0] dataIn, weightData, biasData;
     output gotData, mulDone, calcDone, putData;
     output [$clog2(IN_COUNT*OUT_COUNT)-1:0] weightAdr;
     output [$clog2(OUT_COUNT)-1:0] biasAdr;
     output [DATA_SIZE-1:0] dataOut;
 
 
-    wire inputIndexGenerator_co, inputIndexGenerator_cnt;
+    wire inputIndexGenerator_co;
+    wire [$clog2(IN_COUNT)-1:0] inputIndexGenerator_cnt;
     LoopCounter #(IN_COUNT) inputIndexGenerator (
         .clk(clk), 
         .rst(rst),
@@ -65,7 +66,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     assign putData = outputIndexGenerator_co;
 
 
-    wire [$clog2(OUT_COUNT)-1:0] inputsRam_adr;
+    wire [$clog2(IN_COUNT)-1:0] inputsRam_adr;
     wire [DATA_SIZE-1:0] inputsRam_dataOut;
     Ram #(DATA_SIZE, IN_COUNT) inputsRam (
         .clk(clk), 
@@ -100,23 +101,23 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
 
     localparam CALC_DATA_SIZE = DATA_SIZE * IN_COUNT + OUT_COUNT; // TODO: check if this is correct
 
-    wire [CALC_DATA_SIZE] mul_prod;
+    wire [CALC_DATA_SIZE-1:0] mul_prod;
     Multiplier #(DATA_SIZE, CALC_DATA_SIZE) mul (
         .data0(inputsRam_dataOut),
         .data1(weightData),
         .prod(mul_prod)
     );
 
-    wire [CALC_DATA_SIZE] muxWeightOrBias_out;
+    wire [CALC_DATA_SIZE-1:0] muxWeightOrBias_out;
     Mux2 #(CALC_DATA_SIZE) muxWeightOrBias(
         .data0(mul_prod),
-        .data1(biasData),
+        .data1({{(CALC_DATA_SIZE-DATA_SIZE){biasData[DATA_SIZE-1]}}, biasData}),
         .sel(WorB),
         .out(muxWeightOrBias_out)
     );
 
 
-    wire [CALC_DATA_SIZE] add_data0, add_sum;
+    wire [CALC_DATA_SIZE-1:0] add_data0, add_sum;
     Adder #(CALC_DATA_SIZE, CALC_DATA_SIZE) add (
         .data0(add_data0), 
         .data1(muxWeightOrBias_out),
@@ -125,7 +126,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     assign outputsRam_dataIn = add_sum;
 
 
-    Register #(CALC_DATA_SIZE) (
+    Register #(CALC_DATA_SIZE) partialProductRegister (
         .clk(clk), 
         .rst(rst), 
         .ld(load),

@@ -26,8 +26,8 @@ module TB_Dense ();
 
     Ram #(DATA_SIZE, IN_COUNT * OUT_COUNT) weightsRam (
         .clk(clk), 
-        .rd(1), 
-        .wr(0),
+        .rd(1'b1), 
+        .wr(1'b0),
         .adr(weightAdr), 
         .dataIn({DATA_SIZE{1'b0}}), 
         .dataOut(weightData)
@@ -35,8 +35,8 @@ module TB_Dense ();
 
     Ram #(DATA_SIZE, OUT_COUNT) biasesRam (
         .clk(clk), 
-        .rd(1), 
-        .wr(0),
+        .rd(1'b1), 
+        .wr(1'b0),
         .adr(biasAdr), 
         .dataIn({DATA_SIZE{1'b0}}), 
         .dataOut(biasData)
