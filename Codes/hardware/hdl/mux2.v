@@ -7,7 +7,7 @@ module Mux2 #(parameter SIZE) (
 
     input [SIZE-1:0] data0, data1;
     input sel;
-    output [SIZE-1:0] out;
+    output wire [SIZE-1:0] out;
 
     assign out = sel ? data1 : data0;
     
