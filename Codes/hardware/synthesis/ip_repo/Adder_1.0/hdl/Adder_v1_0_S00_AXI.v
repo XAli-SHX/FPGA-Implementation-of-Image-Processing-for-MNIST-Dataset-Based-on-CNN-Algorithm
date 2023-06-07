@@ -398,7 +398,9 @@
 	end    
 
 	// Add user logic here
-	assign slv_reg0 <= slv_reg1 + slv_reg2;
+	always @(*) begin
+		slv_reg0 = slv_reg1 + slv_reg2;
+	end
 	// User logic ends
 
 	endmodule
