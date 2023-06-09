@@ -24,6 +24,7 @@
     <Option Name="ProjectType" Val="Default"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/axis_mac_1.0"/>
     <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/axis_mac_1.0"/>
+    <Option Name="IPRepoPath" Val="$PPRDIR/../ip_repo/axis_mac_1.0"/>
     <Option Name="IPOutputRepo" Val="$PCACHEDIR/ip"/>
     <Option Name="IPCachePermission" Val="read"/>
     <Option Name="IPCachePermission" Val="write"/>
