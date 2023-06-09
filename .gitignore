@@ -5,3 +5,4 @@ Codes/software/mnist_cnn_training/__pycache__/predict.cpython-38.pyc
 *.pyc
 venv
 Resources/pynq
+Resources/PYNQ_presentation.pptx
