@@ -11,14 +11,14 @@ module Ram #(parameter WORD_SIZE, LENGTH_SIZE) (
     input clk, rd, wr;
     input [ADR_SIZE-1:0] adr;
     input [WORD_SIZE-1:0] dataIn;
-    output reg [WORD_SIZE-1:0] dataOut;
+    output [WORD_SIZE-1:0] dataOut;
 
     reg [WORD_SIZE-1:0] mem [0:LENGTH_SIZE-1];
 
+    assign dataOut = rd ? mem[adr] : {WORD_SIZE{1'bz}};
+
     always @(posedge clk) begin
-        if (rd) 
-            dataOut <= mem[adr];
-        else if (wr)
+        if (wr & (~rd))
             mem[adr] <= dataIn;
     end
 

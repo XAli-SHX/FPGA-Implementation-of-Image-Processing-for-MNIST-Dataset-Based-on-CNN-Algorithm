@@ -90,6 +90,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
         .dataOut(outputsRam_dataOut)
     );
     assign outputsRam_adr = outputIndexGenerator_cnt;
+    assign dataOut = outputsRam_dataOut;
 
 
     assign biasAdr = outputIndexGenerator_cnt;
