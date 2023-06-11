@@ -2,27 +2,26 @@
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 4 -x 920 -y 50 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 4 -x 920 -y 80 -defaultsOSRD
-preplace port reset_rtl -pg 1 -lvl 0 -x 0 -y 300 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 1 -x 210 -y 110 -defaultsOSRD
-preplace inst proc_sys_reset_0 -pg 1 -lvl 1 -x 210 -y 320 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 550 -y 200 -defaultsOSRD
-preplace inst Adder_0 -pg 1 -lvl 3 -x 800 -y 220 -defaultsOSRD
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 220 400 320 690
-preplace netloc reset_rtl_1 1 0 1 N 300
-preplace netloc proc_sys_reset_0_peripheral_aresetn 1 1 2 410 330 700J
-preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 80 NJ 80 NJ
-preplace netloc processing_system7_0_DDR 1 1 3 NJ 60 NJ 60 900J
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 410 120n
-preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N 200
-levelinfo -pg 1 0 210 550 800 920
-pagesize -pg 1 -db -bbox -sgen -100 0 1030 420
+preplace port DDR -pg 1 -lvl 4 -x 960 -y 250 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 4 -x 960 -y 280 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 220 -y 310 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 580 -y 120 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -x 220 -y 120 -defaultsOSRD
+preplace inst axi_adder_0 -pg 1 -lvl 3 -x 840 -y 140 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 10 430 250 720J
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 20 410
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 2 420 240 730J
+preplace netloc processing_system7_0_DDR 1 1 3 NJ 260 730J 250 NJ
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 280 NJ 280 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 440 60n
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N 120
+levelinfo -pg 1 0 220 580 840 960
+pagesize -pg 1 -db -bbox -sgen 0 0 1070 420
 "
 }
 {
-   "da_axi4_cnt":"1",
+   "da_axi4_cnt":"2",
    "da_board_cnt":"2",
    "da_clkrst_cnt":"2",
-   "da_ps7_cnt":"3"
+   "da_ps7_cnt":"4"
 }

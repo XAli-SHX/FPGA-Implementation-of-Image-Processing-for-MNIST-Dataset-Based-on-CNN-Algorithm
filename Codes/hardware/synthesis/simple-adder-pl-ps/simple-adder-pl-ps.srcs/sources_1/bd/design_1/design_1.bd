@@ -1,7 +1,7 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0xD3B2AAD23BC7BA62",
+      "boundary_crc": "0xCC6CFA5306BD3ECB",
       "device": "xc7z020clg400-1",
       "name": "design_1",
       "synth_flow_mode": "Hierarchical",
@@ -10,13 +10,13 @@
     },
     "design_tree": {
       "processing_system7_0": "",
-      "proc_sys_reset_0": "",
       "ps7_0_axi_periph": {
         "s00_couplers": {
           "auto_pc": ""
         }
       },
-      "Adder_0": ""
+      "rst_ps7_0_100M": "",
+      "axi_adder_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -84,25 +84,10 @@
         }
       }
     },
-    "ports": {
-      "reset_rtl": {
-        "type": "rst",
-        "direction": "I",
-        "parameters": {
-          "INSERT_VIP": {
-            "value": "0",
-            "value_src": "default"
-          },
-          "POLARITY": {
-            "value": "ACTIVE_LOW"
-          }
-        }
-      }
-    },
     "components": {
       "processing_system7_0": {
         "vlnv": "xilinx.com:ip:processing_system7:5.5",
-        "xci_name": "design_1_processing_system7_0_1",
+        "xci_name": "design_1_processing_system7_0_2",
         "parameters": {
           "PCW_ACT_APU_PERIPHERAL_FREQMHZ": {
             "value": "650.000000"
@@ -543,7 +528,7 @@
             "value": "0"
           },
           "PCW_I2C_RESET_ENABLE": {
-            "value": "0"
+            "value": "1"
           },
           "PCW_I2C_RESET_POLARITY": {
             "value": "Active Low"
@@ -1681,13 +1666,9 @@
           }
         }
       },
-      "proc_sys_reset_0": {
-        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
-        "xci_name": "design_1_proc_sys_reset_0_1"
-      },
       "ps7_0_axi_periph": {
         "vlnv": "xilinx.com:ip:axi_interconnect:2.1",
-        "xci_name": "design_1_ps7_0_axi_periph_0",
+        "xci_name": "design_1_ps7_0_axi_periph_1",
         "parameters": {
           "NUM_MI": {
             "value": "1"
@@ -1841,16 +1822,16 @@
           }
         },
         "interface_nets": {
-          "s00_couplers_to_ps7_0_axi_periph": {
-            "interface_ports": [
-              "M00_AXI",
-              "s00_couplers/M_AXI"
-            ]
-          },
           "ps7_0_axi_periph_to_s00_couplers": {
             "interface_ports": [
               "S00_AXI",
               "s00_couplers/S_AXI"
+            ]
+          },
+          "s00_couplers_to_ps7_0_axi_periph": {
+            "interface_ports": [
+              "M00_AXI",
+              "s00_couplers/M_AXI"
             ]
           }
         },
@@ -1881,9 +1862,13 @@
           }
         }
       },
-      "Adder_0": {
-        "vlnv": "xilinx.com:user:Adder:1.0",
-        "xci_name": "design_1_Adder_0_0"
+      "rst_ps7_0_100M": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "xci_name": "design_1_rst_ps7_0_100M_0"
+      },
+      "axi_adder_0": {
+        "vlnv": "xilinx.com:user:axi_adder:1.0",
+        "xci_name": "design_1_axi_adder_0_0"
       }
     },
     "interface_nets": {
@@ -1893,22 +1878,22 @@
           "processing_system7_0/DDR"
         ]
       },
-      "processing_system7_0_M_AXI_GP0": {
-        "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "ps7_0_axi_periph/S00_AXI"
-        ]
-      },
       "processing_system7_0_FIXED_IO": {
         "interface_ports": [
           "FIXED_IO",
           "processing_system7_0/FIXED_IO"
         ]
       },
+      "processing_system7_0_M_AXI_GP0": {
+        "interface_ports": [
+          "processing_system7_0/M_AXI_GP0",
+          "ps7_0_axi_periph/S00_AXI"
+        ]
+      },
       "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
           "ps7_0_axi_periph/M00_AXI",
-          "Adder_0/S00_AXI"
+          "axi_adder_0/S_AXI_Data"
         ]
       }
     },
@@ -1916,27 +1901,27 @@
       "processing_system7_0_FCLK_CLK0": {
         "ports": [
           "processing_system7_0/FCLK_CLK0",
-          "proc_sys_reset_0/slowest_sync_clk",
           "processing_system7_0/M_AXI_GP0_ACLK",
           "ps7_0_axi_periph/S00_ACLK",
+          "rst_ps7_0_100M/slowest_sync_clk",
           "ps7_0_axi_periph/M00_ACLK",
           "ps7_0_axi_periph/ACLK",
-          "Adder_0/s00_axi_aclk"
+          "axi_adder_0/s_axi_data_aclk"
         ]
       },
-      "reset_rtl_1": {
+      "processing_system7_0_FCLK_RESET0_N": {
         "ports": [
-          "reset_rtl",
-          "proc_sys_reset_0/ext_reset_in"
+          "processing_system7_0/FCLK_RESET0_N",
+          "rst_ps7_0_100M/ext_reset_in"
         ]
       },
-      "proc_sys_reset_0_peripheral_aresetn": {
+      "rst_ps7_0_100M_peripheral_aresetn": {
         "ports": [
-          "proc_sys_reset_0/peripheral_aresetn",
+          "rst_ps7_0_100M/peripheral_aresetn",
           "ps7_0_axi_periph/S00_ARESETN",
           "ps7_0_axi_periph/M00_ARESETN",
           "ps7_0_axi_periph/ARESETN",
-          "Adder_0/s00_axi_aresetn"
+          "axi_adder_0/s_axi_data_aresetn"
         ]
       }
     },
@@ -1947,8 +1932,8 @@
             "range": "4G",
             "width": "32",
             "segments": {
-              "SEG_Adder_0_S00_AXI_reg": {
-                "address_block": "/Adder_0/S00_AXI/S00_AXI_reg",
+              "SEG_axi_adder_0_S_AXI_Data_reg": {
+                "address_block": "/axi_adder_0/S_AXI_Data/S_AXI_Data_reg",
                 "offset": "0x43C00000",
                 "range": "64K"
               }

@@ -28,14 +28,14 @@ def realtime_main():
 
 
 def main():
-    camera = Camera(on_image_saved)
-    camera.start_camera(has_windows=True)
-    camera.await_first_frame()
-    # predict.main(imgPath="picture.png")
+    # camera = Camera(on_image_saved)
+    # camera.start_camera(has_windows=True)
+    # camera.await_first_frame()
+    predict.main(imgPath="picture.png")
 
 
 if __name__ == "__main__":
-    REALTIME = True
+    REALTIME = 0
     if REALTIME:
         realtime_main()
     else:
