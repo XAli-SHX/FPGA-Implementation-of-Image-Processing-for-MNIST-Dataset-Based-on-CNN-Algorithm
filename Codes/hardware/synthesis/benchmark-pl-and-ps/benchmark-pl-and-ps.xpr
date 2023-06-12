@@ -4,7 +4,7 @@
 <!-- Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.   -->
 
 <Project Version="7" Minor="40" Path="V:/benchmark-pl-and-ps/benchmark-pl-and-ps.xpr">
-  <DefaultLaunch Dir="V:/benchmark-pl-and-ps/out_loop2"/>
+  <DefaultLaunch Dir="V:/benchmark-pl-and-ps/out_gpio"/>
   <Configuration>
     <Option Name="Id" Val="cdb6ac19e9b747e297ed5470ee39aaa5"/>
     <Option Name="Part" Val="xc7z020clg400-1"/>
@@ -64,23 +64,60 @@
   <FileSets Version="1" Minor="31">
     <FileSet Name="sources_1" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
       <Filter Type="Srcs"/>
-      <File Path="$PSRCDIR/sources_1/bd/loop_dma_system_design/loop_dma_system_design.bd">
+      <File Path="$PSRCDIR/sources_1/new/clock_divider.vhd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/new/johnson_counter.v">
         <FileInfo>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/design_gpio_control/design_gpio_control.bd">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+        <CompFileExtendedInfo CompFileName="design_gpio_control.bd" FileRelPathName="ip/design_gpio_control_Clock_Divider_0_0/design_gpio_control_Clock_Divider_0_0.xci">
+          <Proxy FileSetName="design_gpio_control_Clock_Divider_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_gpio_control.bd" FileRelPathName="ip/design_gpio_control_processing_system7_0_0/design_gpio_control_processing_system7_0_0.xci">
+          <Proxy FileSetName="design_gpio_control_processing_system7_0_0"/>
+        </CompFileExtendedInfo>
+        <CompFileExtendedInfo CompFileName="design_gpio_control.bd" FileRelPathName="ip/design_gpio_control_jc2_0_0/design_gpio_control_jc2_0_0.xci">
+          <Proxy FileSetName="design_gpio_control_jc2_0_0"/>
+        </CompFileExtendedInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/design_gpio_control/hdl/design_gpio_control_wrapper.v">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
+      <File Path="$PSRCDIR/sources_1/bd/loop_dma_system_design/loop_dma_system_design.bd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+        <CompFileExtendedInfo CompFileName="loop_dma_system_design.bd" FileRelPathName="ip/loop_dma_system_design_axis_data_fifo_0_1/loop_dma_system_design_axis_data_fifo_0_1.xci">
+          <Proxy FileSetName="loop_dma_system_design_axis_data_fifo_0_1"/>
+        </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="loop_dma_system_design.bd" FileRelPathName="ip/loop_dma_system_design_processing_system7_0_1/loop_dma_system_design_processing_system7_0_1.xci">
           <Proxy FileSetName="loop_dma_system_design_processing_system7_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="loop_dma_system_design.bd" FileRelPathName="ip/loop_dma_system_design_axi_dma_0_1/loop_dma_system_design_axi_dma_0_1.xci">
-          <Proxy FileSetName="loop_dma_system_design_axi_dma_0_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="loop_dma_system_design.bd" FileRelPathName="ip/loop_dma_system_design_axi_smc_2/loop_dma_system_design_axi_smc_2.xci">
           <Proxy FileSetName="loop_dma_system_design_axi_smc_2"/>
         </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="loop_dma_system_design.bd" FileRelPathName="ip/loop_dma_system_design_axis_data_fifo_0_1/loop_dma_system_design_axis_data_fifo_0_1.xci">
-          <Proxy FileSetName="loop_dma_system_design_axis_data_fifo_0_1"/>
+        <CompFileExtendedInfo CompFileName="loop_dma_system_design.bd" FileRelPathName="ip/loop_dma_system_design_axi_dma_0_1/loop_dma_system_design_axi_dma_0_1.xci">
+          <Proxy FileSetName="loop_dma_system_design_axi_dma_0_1"/>
         </CompFileExtendedInfo>
         <CompFileExtendedInfo CompFileName="loop_dma_system_design.bd" FileRelPathName="ip/loop_dma_system_design_axi_smc_1_0/loop_dma_system_design_axi_smc_1_0.xci">
           <Proxy FileSetName="loop_dma_system_design_axi_smc_1_0"/>
@@ -88,6 +125,7 @@
       </File>
       <File Path="$PSRCDIR/sources_1/bd/loop_dma_system_design/hdl/loop_dma_system_design_wrapper.v">
         <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
           <Attr Name="UsedIn" Val="synthesis"/>
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
@@ -100,18 +138,6 @@
           <Attr Name="UsedIn" Val="implementation"/>
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
-        <CompFileExtendedInfo CompFileName="dma_mac_calculate_design.bd" FileRelPathName="ip/dma_mac_calculate_design_processing_system7_0_0/dma_mac_calculate_design_processing_system7_0_0.xci">
-          <Proxy FileSetName="dma_mac_calculate_design_processing_system7_0_0"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="dma_mac_calculate_design.bd" FileRelPathName="ip/dma_mac_calculate_design_xbar_1/dma_mac_calculate_design_xbar_1.xci">
-          <Proxy FileSetName="dma_mac_calculate_design_xbar_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="dma_mac_calculate_design.bd" FileRelPathName="ip/dma_mac_calculate_design_axis_mac_0_1/dma_mac_calculate_design_axis_mac_0_1.xci">
-          <Proxy FileSetName="dma_mac_calculate_design_axis_mac_0_1"/>
-        </CompFileExtendedInfo>
-        <CompFileExtendedInfo CompFileName="dma_mac_calculate_design.bd" FileRelPathName="ip/dma_mac_calculate_design_axis_data_fifo_1_0/dma_mac_calculate_design_axis_data_fifo_1_0.xci">
-          <Proxy FileSetName="dma_mac_calculate_design_axis_data_fifo_1_0"/>
-        </CompFileExtendedInfo>
       </File>
       <File Path="$PSRCDIR/sources_1/bd/dma_mac_calculate_design/hdl/dma_mac_calculate_design_wrapper.v">
         <FileInfo>
@@ -121,9 +147,17 @@
           <Attr Name="UsedIn" Val="simulation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/sources_1/bd/design_interrupt/design_interrupt.bd">
+        <FileInfo>
+          <Attr Name="AutoDisabled" Val="1"/>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+          <Attr Name="UsedIn" Val="simulation"/>
+        </FileInfo>
+      </File>
       <Config>
         <Option Name="DesignMode" Val="RTL"/>
-        <Option Name="TopModule" Val="loop_dma_system_design_wrapper"/>
+        <Option Name="TopModule" Val="design_gpio_control_wrapper"/>
       </Config>
     </FileSet>
     <FileSet Name="constrs_1" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -134,7 +168,14 @@
           <Attr Name="UsedIn" Val="implementation"/>
         </FileInfo>
       </File>
+      <File Path="$PSRCDIR/constrs_1/new/gpio_control.xdc">
+        <FileInfo>
+          <Attr Name="UsedIn" Val="synthesis"/>
+          <Attr Name="UsedIn" Val="implementation"/>
+        </FileInfo>
+      </File>
       <Config>
+        <Option Name="TargetConstrsFile" Val="$PSRCDIR/constrs_1/new/gpio_control.xdc"/>
         <Option Name="ConstrsType" Val="XDC"/>
       </Config>
     </FileSet>
@@ -154,30 +195,6 @@
       <Filter Type="Utils"/>
       <Config>
         <Option Name="TopAutoSet" Val="TRUE"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="dma_mac_calculate_design_xbar_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/dma_mac_calculate_design_xbar_1">
-      <Config>
-        <Option Name="TopModule" Val="dma_mac_calculate_design_xbar_1"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="dma_mac_calculate_design_processing_system7_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/dma_mac_calculate_design_processing_system7_0_0">
-      <Config>
-        <Option Name="TopModule" Val="dma_mac_calculate_design_processing_system7_0_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="dma_mac_calculate_design_axis_mac_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/dma_mac_calculate_design_axis_mac_0_1">
-      <Config>
-        <Option Name="TopModule" Val="dma_mac_calculate_design_axis_mac_0_1"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
-      </Config>
-    </FileSet>
-    <FileSet Name="dma_mac_calculate_design_axis_data_fifo_1_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/dma_mac_calculate_design_axis_data_fifo_1_0">
-      <Config>
-        <Option Name="TopModule" Val="dma_mac_calculate_design_axis_data_fifo_1_0"/>
-        <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
     <FileSet Name="loop_dma_system_design_processing_system7_0_1" Type="BlockSrcs" RelSrcDir="$PSRCDIR/loop_dma_system_design_processing_system7_0_1">
@@ -210,6 +227,24 @@
         <Option Name="UseBlackboxStub" Val="1"/>
       </Config>
     </FileSet>
+    <FileSet Name="design_gpio_control_Clock_Divider_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_gpio_control_Clock_Divider_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_gpio_control_Clock_Divider_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_gpio_control_processing_system7_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_gpio_control_processing_system7_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_gpio_control_processing_system7_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
+    <FileSet Name="design_gpio_control_jc2_0_0" Type="BlockSrcs" RelSrcDir="$PSRCDIR/design_gpio_control_jc2_0_0">
+      <Config>
+        <Option Name="TopModule" Val="design_gpio_control_jc2_0_0"/>
+        <Option Name="UseBlackboxStub" Val="1"/>
+      </Config>
+    </FileSet>
   </FileSets>
   <Simulators>
     <Simulator Name="XSim">
@@ -230,140 +265,94 @@
     </Simulator>
   </Simulators>
   <Runs Version="1" Minor="10">
-    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PPRDIR/out_loop2/synth_1" IncludeInArchive="true">
+    <Run Id="synth_1" Type="Ft3:Synth" SrcSet="sources_1" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PPRDIR/out_gpio/synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="dma_mac_calculate_design_xbar_1_synth_1" Type="Ft3:Synth" SrcSet="dma_mac_calculate_design_xbar_1" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_xbar_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/dma_mac_calculate_design_xbar_1_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="dma_mac_calculate_design_processing_system7_0_0_synth_1" Type="Ft3:Synth" SrcSet="dma_mac_calculate_design_processing_system7_0_0" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_processing_system7_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_mac/synth/dma_mac_calculate_design_processing_system7_0_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="dma_mac_calculate_design_axis_mac_0_1_synth_1" Type="Ft3:Synth" SrcSet="dma_mac_calculate_design_axis_mac_0_1" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_axis_mac_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/dma_mac_calculate_design_axis_mac_0_1_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="dma_mac_calculate_design_axis_data_fifo_1_0_synth_1" Type="Ft3:Synth" SrcSet="dma_mac_calculate_design_axis_data_fifo_1_0" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_axis_data_fifo_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PRUNDIR/dma_mac_calculate_design_axis_data_fifo_1_0_synth_1" IncludeInArchive="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
-        <Step Id="synth_design"/>
-      </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="loop_dma_system_design_processing_system7_0_1_synth_1" Type="Ft3:Synth" SrcSet="loop_dma_system_design_processing_system7_0_1" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_processing_system7_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_loop2/loop_dma_system_design_processing_system7_0_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="loop_dma_system_design_axi_dma_0_1_synth_1" Type="Ft3:Synth" SrcSet="loop_dma_system_design_axi_dma_0_1" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axi_dma_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_loop2/loop_dma_system_design_axi_dma_0_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="loop_dma_system_design_axi_smc_2_synth_1" Type="Ft3:Synth" SrcSet="loop_dma_system_design_axi_smc_2" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axi_smc_2" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_loop2/loop_dma_system_design_axi_smc_2_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="loop_dma_system_design_axis_data_fifo_0_1_synth_1" Type="Ft3:Synth" SrcSet="loop_dma_system_design_axis_data_fifo_0_1" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axis_data_fifo_0_1" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_loop2/loop_dma_system_design_axis_data_fifo_0_1_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
-          <Desc>Vivado Synthesis Defaults</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="loop_dma_system_design_axi_smc_1_0_synth_1" Type="Ft3:Synth" SrcSet="loop_dma_system_design_axi_smc_1_0" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axi_smc_1_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_loop2/loop_dma_system_design_axi_smc_1_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019"/>
+        <Step Id="synth_design"/>
+      </Strategy>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="design_gpio_control_Clock_Divider_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_gpio_control_Clock_Divider_0_0" Part="xc7z020clg400-1" ConstrsSet="design_gpio_control_Clock_Divider_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_gpio/design_gpio_control_Clock_Divider_0_0_synth_1" IncludeInArchive="true">
+      <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
           <Desc>Vivado Synthesis Defaults</Desc>
         </StratHandle>
         <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PPRDIR/out_loop2/impl_1" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true">
+    <Run Id="design_gpio_control_processing_system7_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_gpio_control_processing_system7_0_0" Part="xc7z020clg400-1" ConstrsSet="design_gpio_control_processing_system7_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_gpio/design_gpio_control_processing_system7_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
       </Strategy>
-      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_loop2" File="gen_run.xml"/>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="dma_mac_calculate_design_xbar_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_xbar_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="dma_mac_calculate_design_xbar_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="design_gpio_control_jc2_0_0_synth_1" Type="Ft3:Synth" SrcSet="design_gpio_control_jc2_0_0" Part="xc7z020clg400-1" ConstrsSet="design_gpio_control_jc2_0_0" Description="Vivado Synthesis Defaults" AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" Dir="$PPRDIR/out_gpio/design_gpio_control_jc2_0_0_synth_1" IncludeInArchive="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
+        <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2019">
+          <Desc>Vivado Synthesis Defaults</Desc>
+        </StratHandle>
+        <Step Id="synth_design"/>
       </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
+      <ReportStrategy Name="Vivado Synthesis Default Reports" Flow="Vivado Synthesis 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="dma_mac_calculate_design_processing_system7_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_processing_system7_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="dma_mac_calculate_design_processing_system7_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="constrs_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" State="current" Dir="$PPRDIR/out_gpio/impl_1" SynthRun="synth_1" IncludeInArchive="true" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
@@ -376,46 +365,13 @@
         <Step Id="post_route_phys_opt_design"/>
         <Step Id="write_bitstream"/>
       </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="dma_mac_calculate_design_axis_mac_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_axis_mac_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="dma_mac_calculate_design_axis_mac_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
-      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
-      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
-    </Run>
-    <Run Id="dma_mac_calculate_design_axis_data_fifo_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="dma_mac_calculate_design_axis_data_fifo_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="dma_mac_calculate_design_axis_data_fifo_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
-      <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
-        <Step Id="init_design"/>
-        <Step Id="opt_design"/>
-        <Step Id="power_opt_design"/>
-        <Step Id="place_design"/>
-        <Step Id="post_place_power_opt_design"/>
-        <Step Id="phys_opt_design"/>
-        <Step Id="route_design"/>
-        <Step Id="post_route_phys_opt_design"/>
-        <Step Id="write_bitstream"/>
-      </Strategy>
+      <GeneratedRun Dir="V:/benchmark-pl-and-ps/out_gpio" File="gen_run.xml"/>
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="loop_dma_system_design_processing_system7_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_processing_system7_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="loop_dma_system_design_processing_system7_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -431,9 +387,7 @@
     </Run>
     <Run Id="loop_dma_system_design_axi_dma_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axi_dma_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="loop_dma_system_design_axi_dma_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -449,9 +403,7 @@
     </Run>
     <Run Id="loop_dma_system_design_axi_smc_2_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axi_smc_2" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="loop_dma_system_design_axi_smc_2_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
-        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
-          <Desc>Default settings for Implementation.</Desc>
-        </StratHandle>
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
         <Step Id="init_design"/>
         <Step Id="opt_design"/>
         <Step Id="power_opt_design"/>
@@ -466,6 +418,38 @@
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
     <Run Id="loop_dma_system_design_axis_data_fifo_0_1_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axis_data_fifo_0_1" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="loop_dma_system_design_axis_data_fifo_0_1_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="loop_dma_system_design_axi_smc_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axi_smc_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="loop_dma_system_design_axi_smc_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019"/>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="design_gpio_control_Clock_Divider_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="design_gpio_control_Clock_Divider_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_gpio_control_Clock_Divider_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
           <Desc>Default settings for Implementation.</Desc>
@@ -483,7 +467,25 @@
       <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
       <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
     </Run>
-    <Run Id="loop_dma_system_design_axi_smc_1_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="loop_dma_system_design_axi_smc_1_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="loop_dma_system_design_axi_smc_1_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+    <Run Id="design_gpio_control_processing_system7_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="design_gpio_control_processing_system7_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_gpio_control_processing_system7_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
+      <Strategy Version="1" Minor="2">
+        <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
+          <Desc>Default settings for Implementation.</Desc>
+        </StratHandle>
+        <Step Id="init_design"/>
+        <Step Id="opt_design"/>
+        <Step Id="power_opt_design"/>
+        <Step Id="place_design"/>
+        <Step Id="post_place_power_opt_design"/>
+        <Step Id="phys_opt_design"/>
+        <Step Id="route_design"/>
+        <Step Id="post_route_phys_opt_design"/>
+        <Step Id="write_bitstream"/>
+      </Strategy>
+      <ReportStrategy Name="Vivado Implementation Default Reports" Flow="Vivado Implementation 2019"/>
+      <Report Name="ROUTE_DESIGN.REPORT_METHODOLOGY" Enabled="1"/>
+    </Run>
+    <Run Id="design_gpio_control_jc2_0_0_impl_1" Type="Ft2:EntireDesign" Part="xc7z020clg400-1" ConstrsSet="design_gpio_control_jc2_0_0" Description="Default settings for Implementation." AutoIncrementalCheckpoint="false" WriteIncrSynthDcp="false" SynthRun="design_gpio_control_jc2_0_0_synth_1" IncludeInArchive="false" GenFullBitstream="true">
       <Strategy Version="1" Minor="2">
         <StratHandle Name="Vivado Implementation Defaults" Flow="Vivado Implementation 2019">
           <Desc>Default settings for Implementation.</Desc>
