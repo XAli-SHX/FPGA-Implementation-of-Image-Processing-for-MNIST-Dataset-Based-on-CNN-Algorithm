@@ -15,7 +15,8 @@
 	)
 	(
 		// Users to add ports here
-
+		output wire s_axi_ack,
+		output wire s_axi_start,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -398,7 +399,8 @@
 	end    
 
 	// Add user logic here
-
+	assign s_axi_ack = slv_reg0;
+	assign s_axi_start = slv_reg1;
 	// User logic ends
 
 	endmodule

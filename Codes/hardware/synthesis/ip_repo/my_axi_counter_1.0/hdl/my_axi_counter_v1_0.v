@@ -15,7 +15,7 @@
 	)
 	(
 		// Users to add ports here
-
+		output wire irqStart, irqDone,
 		// User ports ends
 		// Do not modify the ports beyond this line
 
@@ -43,11 +43,18 @@
 		output wire  s_axi_control_rvalid,
 		input wire  s_axi_control_rready
 	);
+
+	reg s_axi_ack, s_axi_start;
+
 // Instantiation of Axi Bus Interface S_AXI_Control
 	my_axi_counter_v1_0_S_AXI_Control # ( 
 		.C_S_AXI_DATA_WIDTH(C_S_AXI_Control_DATA_WIDTH),
 		.C_S_AXI_ADDR_WIDTH(C_S_AXI_Control_ADDR_WIDTH)
 	) my_axi_counter_v1_0_S_AXI_Control_inst (
+		.s_axi_ack(s_axi_ack),
+		.s_axi_start(s_axi_start),
+
+
 		.S_AXI_ACLK(s_axi_control_aclk),
 		.S_AXI_ARESETN(s_axi_control_aresetn),
 		.S_AXI_AWADDR(s_axi_control_awaddr),
@@ -72,7 +79,15 @@
 	);
 
 	// Add user logic here
-
+	localparam STOP = 10_000_000;
+	MyCounter #(STOP) myCounter (
+		.clk(s_axi_control_aclk),
+		.rst_n(s_axi_control_aresetn),
+		.start(s_axi_start),
+		.ack(s_axi_ack),
+		.irqStart(irqStart),
+		.irqDone(irqDone)
+	);
 	// User logic ends
 
 	endmodule
