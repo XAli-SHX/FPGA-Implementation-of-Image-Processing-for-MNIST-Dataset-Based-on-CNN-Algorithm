@@ -24,7 +24,7 @@ else
 fi
 export LD_LIBRARY_PATH
 
-HD_PWD='V:/benchmark-pl-and-ps/out_gpio/synth_1'
+HD_PWD='V:/benchmark-pl-and-ps/out_interrupt/impl_1'
 cd "$HD_PWD"
 
 HD_LOG=runme.log
@@ -40,4 +40,8 @@ EAStep()
      fi
 }
 
-EAStep vivado -log design_gpio_control_wrapper.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source design_gpio_control_wrapper.tcl
+# pre-commands:
+/bin/touch .write_bitstream.begin.rst
+EAStep vivado -log design_interrupt_wrapper.vdi -applog -m64 -product Vivado -messageDb vivado.pb -mode batch -source design_interrupt_wrapper.tcl -notrace
+
+

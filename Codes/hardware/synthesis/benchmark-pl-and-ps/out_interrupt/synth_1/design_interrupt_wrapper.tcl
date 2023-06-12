@@ -27,11 +27,12 @@ set_param synth.vivado.isSynthRun true
 set_msg_config -source 4 -id {IP_Flow 19-2162} -severity warning -new_severity info
 set_property webtalk.parent_dir V:/benchmark-pl-and-ps/benchmark-pl-and-ps.cache/wt [current_project]
 set_property parent.project_path V:/benchmark-pl-and-ps/benchmark-pl-and-ps.xpr [current_project]
-set_property XPM_LIBRARIES {XPM_FIFO XPM_MEMORY} [current_project]
+set_property XPM_LIBRARIES {XPM_CDC XPM_FIFO XPM_MEMORY} [current_project]
 set_property default_lib xil_defaultlib [current_project]
 set_property target_language Verilog [current_project]
 set_property board_part tul.com.tw:pynq-z2:part0:1.0 [current_project]
 set_property ip_repo_paths {
+  v:/ip_repo/my_axi_counter_1.0
   v:/ip_repo/axis_mac_1.0
   v:/ip_repo/axis_mac_1.0
   v:/ip_repo/axis_mac_1.0
@@ -39,10 +40,14 @@ set_property ip_repo_paths {
 update_ip_catalog
 set_property ip_output_repo v:/benchmark-pl-and-ps/benchmark-pl-and-ps.cache/ip [current_project]
 set_property ip_cache_permissions {read write} [current_project]
-read_verilog -library xil_defaultlib V:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_gpio_control/hdl/design_gpio_control_wrapper.v
-add_files V:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_gpio_control/design_gpio_control.bd
-set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_gpio_control/ip/design_gpio_control_processing_system7_0_0/design_gpio_control_processing_system7_0_0.xdc]
-set_property used_in_implementation false [get_files -all V:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_gpio_control/design_gpio_control_ooc.xdc]
+read_verilog -library xil_defaultlib V:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/hdl/design_interrupt_wrapper.v
+add_files V:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/design_interrupt.bd
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_processing_system7_0_0/design_interrupt_processing_system7_0_0.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_rst_ps7_0_100M_0/design_interrupt_rst_ps7_0_100M_0_board.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_rst_ps7_0_100M_0/design_interrupt_rst_ps7_0_100M_0.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_rst_ps7_0_100M_0/design_interrupt_rst_ps7_0_100M_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_auto_pc_0/design_interrupt_auto_pc_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all V:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/design_interrupt_ooc.xdc]
 
 # Mark all dcp files as not used in implementation to prevent them from being
 # stitched into the results of this synthesis run. Any black boxes in the
@@ -63,12 +68,12 @@ set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 close [open __synthesis_is_running__ w]
 
-synth_design -top design_gpio_control_wrapper -part xc7z020clg400-1
+synth_design -top design_interrupt_wrapper -part xc7z020clg400-1
 
 
 # disable binary constraint mode for synth run checkpoints
 set_param constraints.enableBinaryConstraints false
-write_checkpoint -force -noxdef design_gpio_control_wrapper.dcp
-create_report "synth_1_synth_report_utilization_0" "report_utilization -file design_gpio_control_wrapper_utilization_synth.rpt -pb design_gpio_control_wrapper_utilization_synth.pb"
+write_checkpoint -force -noxdef design_interrupt_wrapper.dcp
+create_report "synth_1_synth_report_utilization_0" "report_utilization -file design_interrupt_wrapper_utilization_synth.rpt -pb design_interrupt_wrapper_utilization_synth.pb"
 file delete __synthesis_is_running__
 close [open __synthesis_is_complete__ w]

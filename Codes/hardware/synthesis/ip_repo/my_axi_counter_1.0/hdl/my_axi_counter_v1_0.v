@@ -44,7 +44,7 @@
 		input wire  s_axi_control_rready
 	);
 
-	reg s_axi_ack, s_axi_start;
+	wire s_axi_ack, s_axi_start;
 
 // Instantiation of Axi Bus Interface S_AXI_Control
 	my_axi_counter_v1_0_S_AXI_Control # ( 

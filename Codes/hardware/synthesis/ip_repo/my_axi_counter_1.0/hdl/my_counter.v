@@ -1,4 +1,4 @@
-module MyCounter #(parameter STOP) ( 
+module MyCounter #(parameter STOP = 10) ( 
     clk,
     rst_n,
     // input
@@ -33,7 +33,7 @@ module MyCounter #(parameter STOP) (
         .ack(ack),
         .en(en),
         .clear(clear),
-        .done(done),
+        .done(done)
     );
 
 endmodule

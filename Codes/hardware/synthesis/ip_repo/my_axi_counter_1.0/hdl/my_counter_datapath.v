@@ -1,4 +1,4 @@
-module MyCounterDatapath #(parameter STOP) (
+module MyCounterDatapath #(parameter STOP = 10) (
     clk,
     rst_n,
     // input
@@ -8,7 +8,7 @@ module MyCounterDatapath #(parameter STOP) (
     en,
     clear,
     // state
-    done,
+    done
 );
 
     input clk, rst_n, start, ack;

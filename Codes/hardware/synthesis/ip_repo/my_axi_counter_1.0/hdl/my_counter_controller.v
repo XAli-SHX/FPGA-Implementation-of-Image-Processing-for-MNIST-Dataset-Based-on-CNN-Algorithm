@@ -49,7 +49,7 @@ module MyCounterController (
             STATE_Idle: clear = 1;
             STATE_IrqStart: irqStart = 1;
             STATE_Calc: en = 1;
-            STATE_IrqDone: irqDone;
+            STATE_IrqDone: irqDone = 1;
         endcase
     end
     

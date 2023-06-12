@@ -1,24 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1686555189">
-  <File Type="PA-TCL" Name="design_gpio_control_wrapper.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="design_gpio_control_wrapper_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="design_gpio_control_wrapper_reports.tcl"/>
-  <File Type="RDS-RDS" Name="design_gpio_control_wrapper.vds"/>
-  <File Type="RDS-UTIL" Name="design_gpio_control_wrapper_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="design_gpio_control_wrapper_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="design_gpio_control_wrapper.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="design_gpio_control_wrapper_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="design_gpio_control_wrapper_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7z020clg400-1" LaunchTime="1686570015">
+  <File Type="PA-TCL" Name="design_interrupt_wrapper.tcl"/>
+  <File Type="RDS-PROPCONSTRS" Name="design_interrupt_wrapper_drc_synth.rpt"/>
+  <File Type="REPORTS-TCL" Name="design_interrupt_wrapper_reports.tcl"/>
+  <File Type="RDS-RDS" Name="design_interrupt_wrapper.vds"/>
+  <File Type="RDS-UTIL" Name="design_interrupt_wrapper_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="design_interrupt_wrapper_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="design_interrupt_wrapper.dcp"/>
+  <File Type="VDS-TIMINGSUMMARY" Name="design_interrupt_wrapper_timing_summary_synth.rpt"/>
+  <File Type="VDS-TIMING-PB" Name="design_interrupt_wrapper_timing_summary_synth.pb"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1">
     <Filter Type="Srcs"/>
+    <File Path="$PSRCDIR/sources_1/bd/design_interrupt/design_interrupt.bd">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/bd/design_interrupt/hdl/design_interrupt_wrapper.v">
+      <FileInfo>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="implementation"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
     <File Path="$PSRCDIR/sources_1/new/clock_divider.vhd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
     <File Path="$PSRCDIR/sources_1/new/johnson_counter.v">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -26,6 +42,7 @@
     </File>
     <File Path="$PSRCDIR/sources_1/bd/design_gpio_control/design_gpio_control.bd">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -33,6 +50,7 @@
     </File>
     <File Path="$PSRCDIR/sources_1/bd/design_gpio_control/hdl/design_gpio_control_wrapper.v">
       <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="implementation"/>
         <Attr Name="UsedIn" Val="simulation"/>
@@ -70,17 +88,9 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/bd/design_interrupt/design_interrupt.bd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="implementation"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="design_gpio_control_wrapper"/>
+      <Option Name="TopModule" Val="design_interrupt_wrapper"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1">
@@ -114,6 +124,8 @@
   </Strategy>
   <BlockFileSet Type="BlockSrcs" Name="design_gpio_control_jc2_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="loop_dma_system_design_processing_system7_0_1"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_interrupt_processing_system7_0_0"/>
+  <BlockFileSet Type="BlockSrcs" Name="design_interrupt_my_axi_counter_0_0"/>
   <BlockFileSet Type="BlockSrcs" Name="loop_dma_system_design_axi_dma_0_1"/>
   <BlockFileSet Type="BlockSrcs" Name="loop_dma_system_design_axi_smc_1_0"/>
   <BlockFileSet Type="BlockSrcs" Name="loop_dma_system_design_axi_smc_2"/>
