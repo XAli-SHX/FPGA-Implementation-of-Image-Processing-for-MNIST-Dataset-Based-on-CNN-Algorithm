@@ -2,28 +2,31 @@
    "ExpandedHierarchyInLayout":"",
    "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS-threadsafe
 #  -string -flagsOSRD
-preplace port DDR -pg 1 -lvl 5 -x 1230 -y 260 -defaultsOSRD
-preplace port FIXED_IO -pg 1 -lvl 5 -x 1230 -y 290 -defaultsOSRD
-preplace inst processing_system7_0 -pg 1 -lvl 2 -x 410 -y 320 -defaultsOSRD
-preplace inst ps7_0_axi_periph -pg 1 -lvl 3 -x 780 -y 120 -defaultsOSRD
-preplace inst rst_ps7_0_100M -pg 1 -lvl 2 -x 410 -y 560 -defaultsOSRD
-preplace inst xlconcat_0 -pg 1 -lvl 1 -x 110 -y 330 -defaultsOSRD
-preplace inst my_axi_counter_0 -pg 1 -lvl 4 -x 1070 -y 140 -defaultsOSRD
-preplace netloc processing_system7_0_FCLK_CLK0 1 1 3 200 200 620 280 930J
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 1 2 210 430 610
-preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 2 2 640 260 920J
-preplace netloc my_axi_counter_0_irqStart 1 0 5 10 190 NJ 190 630J 240 NJ 240 1210
-preplace netloc my_axi_counter_0_irqDone 1 0 5 20 210 NJ 210 610J 250 NJ 250 1200
-preplace netloc xlconcat_0_dout 1 1 1 N 330
-preplace netloc processing_system7_0_DDR 1 2 3 NJ 270 940J 260 NJ
-preplace netloc processing_system7_0_FIXED_IO 1 2 3 NJ 290 NJ 290 NJ
-preplace netloc processing_system7_0_M_AXI_GP0 1 2 1 600 60n
-preplace netloc ps7_0_axi_periph_M00_AXI 1 3 1 N 120
-levelinfo -pg 1 -10 110 410 780 1070 1230
-pagesize -pg 1 -db -bbox -sgen -10 0 1340 660
+preplace port DDR -pg 1 -lvl 4 -x 1040 -y 50 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 4 -x 1040 -y 80 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 1 -x 220 -y 110 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 2 -x 580 -y 220 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -x 220 -y 480 -defaultsOSRD
+preplace inst xlconcat_0 -pg 1 -lvl 2 -x 580 -y 460 -defaultsOSRD
+preplace inst my_axi_counter_0 -pg 1 -lvl 3 -x 890 -y 470 -defaultsOSRD
+preplace inst axi_intc_0 -pg 1 -lvl 3 -x 890 -y 260 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 3 20 220 420 360 740
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 2 30 380 410
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 2 430 380 750
+preplace netloc my_axi_counter_0_irqStart 1 1 3 440 390 NJ 390 1020
+preplace netloc my_axi_counter_0_irqDone 1 1 3 440 550 NJ 550 1020
+preplace netloc xlconcat_0_dout 1 2 1 760 290n
+preplace netloc axi_intc_0_irq 1 0 4 30 370 NJ 370 720J 170 1020
+preplace netloc processing_system7_0_DDR 1 1 3 NJ 60 NJ 60 1020J
+preplace netloc processing_system7_0_FIXED_IO 1 1 3 NJ 80 NJ 80 NJ
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 1 430 120n
+preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 730 210n
+preplace netloc ps7_0_axi_periph_M01_AXI 1 2 1 N 230
+levelinfo -pg 1 0 220 580 890 1040
+pagesize -pg 1 -db -bbox -sgen 0 0 1150 580
 "
 }
 {
-   "da_axi4_cnt":"1",
+   "da_axi4_cnt":"2",
    "da_ps7_cnt":"1"
 }

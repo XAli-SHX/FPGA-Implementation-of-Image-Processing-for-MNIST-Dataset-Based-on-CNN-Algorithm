@@ -23,6 +23,12 @@ set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_interrup
 # IP: bd/design_interrupt/ip/design_interrupt_xlconcat_0_0/design_interrupt_xlconcat_0_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_interrupt_xlconcat_0_0 || ORIG_REF_NAME==design_interrupt_xlconcat_0_0} -quiet] -quiet
 
+# IP: bd/design_interrupt/ip/design_interrupt_xbar_0/design_interrupt_xbar_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_interrupt_xbar_0 || ORIG_REF_NAME==design_interrupt_xbar_0} -quiet] -quiet
+
+# IP: bd/design_interrupt/ip/design_interrupt_axi_intc_0_0/design_interrupt_axi_intc_0_0.xci
+set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_interrupt_axi_intc_0_0 || ORIG_REF_NAME==design_interrupt_axi_intc_0_0} -quiet] -quiet
+
 # IP: bd/design_interrupt/ip/design_interrupt_auto_pc_0/design_interrupt_auto_pc_0.xci
 set_property DONT_TOUCH TRUE [get_cells -hier -filter {REF_NAME==design_interrupt_auto_pc_0 || ORIG_REF_NAME==design_interrupt_auto_pc_0} -quiet] -quiet
 

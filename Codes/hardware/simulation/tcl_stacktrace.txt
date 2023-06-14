@@ -1,0 +1,30 @@
+Tue Jun 13 11:18:17 AM Iran Standard Time 2023
+Trace back: ** Error: (vlib-35) Failed to create directory "D:/Educations/University/term8/DLD_TA/CA6/4012810189401-CA#6, Due DateTuesday 1402323, 735am(sobh)-373160/ãåÏíÇÑ ÈíÇä_460557_assignsubmission_file_/MBayan-00101-CA06-ECE894/sim/work".
+
+No such file or directory. (errno = ENOENT)
+child process exited abnormally
+    while executing
+"exec $vlib $worklib"
+    (procedure "Project::create" line 45)
+    invoked from within
+"Project::create $Project(dlg_proj_location) $Project(CurProj_NewName) $Project(dlg_proj_libname) $Project(dlg_initial_ini) $Project(dlg_ini_copy)"
+    (procedure "Project::applyCreate" line 3)
+    invoked from within
+"Project::applyCreate .pcd"
+    invoked from within
+".pcd.bb.button0 invoke"
+    ("uplevel" body line 1)
+    invoked from within
+"uplevel #0 [list $w invoke]"
+    (procedure "tk::ButtonUp" line 24)
+    invoked from within
+"tk::ButtonUp .pcd.bb.button0"
+    (command bound to event)
+  <2: ::tkerror {** Error: (vlib-35) Failed to create directory "D:/Educations/University/term8/DLD_TA/CA6/4012810189401-CA#6, Due DateTuesday 1402323, 735am(sobh)-373160/ãåÏíÇÑ ÈíÇä_460557_assignsubmission_file_/MBayan-00101-CA06-ECE894/sim/work".
+
+No such file or directory. (errno = ENOENT)
+child process exited abnormally}
+  <1: ::bgerror {** Error: (vlib-35) Failed to create directory "D:/Educations/University/term8/DLD_TA/CA6/4012810189401-CA#6, Due DateTuesday 1402323, 735am(sobh)-373160/ãåÏíÇÑ ÈíÇä_460557_assignsubmission_file_/MBayan-00101-CA06-ECE894/sim/work".
+
+No such file or directory. (errno = ENOENT)
+child process exited abnormally}

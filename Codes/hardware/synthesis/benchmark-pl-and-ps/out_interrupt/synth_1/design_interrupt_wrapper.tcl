@@ -46,6 +46,10 @@ set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps
 set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_rst_ps7_0_100M_0/design_interrupt_rst_ps7_0_100M_0_board.xdc]
 set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_rst_ps7_0_100M_0/design_interrupt_rst_ps7_0_100M_0.xdc]
 set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_rst_ps7_0_100M_0/design_interrupt_rst_ps7_0_100M_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_xbar_0/design_interrupt_xbar_0_ooc.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_axi_intc_0_0/design_interrupt_axi_intc_0_0.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_axi_intc_0_0/design_interrupt_axi_intc_0_0_clocks.xdc]
+set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_axi_intc_0_0/design_interrupt_axi_intc_0_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all v:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/ip/design_interrupt_auto_pc_0/design_interrupt_auto_pc_0_ooc.xdc]
 set_property used_in_implementation false [get_files -all V:/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/design_interrupt/design_interrupt_ooc.xdc]
 
