@@ -1,0 +1,11 @@
+# compile verilog/system verilog design source files
+verilog   \
+"../../../../axis_wait_1.0/hdl/axis_wait_v1_0_M_AXIS_DataOut.v" \
+"../../../../axis_wait_1.0/hdl/axis_wait_v1_0_S_AXIS_DataIn.v" \
+"../../../../axis_wait_1.0/hdl/axis_wait_v1_0.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

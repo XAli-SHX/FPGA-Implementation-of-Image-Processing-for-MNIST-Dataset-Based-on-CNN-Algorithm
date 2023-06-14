@@ -1,0 +1,14 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  \
+"../../../../axis_wait_1.0/src/loop_counter.v" \
+"../../../../axis_wait_1.0/src/ram.v" \
+"../../../../axis_wait_1.0/src/wait_controller.v" \
+"../../../../axis_wait_1.0/src/wait_datapath.v" \
+"../../../../axis_wait_1.0/src/wait_top.v" \
+"../../../../axis_wait_1.0/src/wait_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort
