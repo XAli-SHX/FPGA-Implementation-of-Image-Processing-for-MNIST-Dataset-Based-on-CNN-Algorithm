@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-//Date        : Wed Jun 14 10:39:48 2023
+//Date        : Wed Jun 14 12:14:12 2023
 //Host        : DESKTOP-18V1G5L running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_clkrst_cnt=4,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_clkrst_cnt=5,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (DDR_addr,
     DDR_ba,
@@ -54,8 +54,8 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
 
-  wire [31:0]axi_dma_0_M_AXIS_MM2S_TDATA;
-  wire [3:0]axi_dma_0_M_AXIS_MM2S_TKEEP;
+  wire [63:0]axi_dma_0_M_AXIS_MM2S_TDATA;
+  wire [7:0]axi_dma_0_M_AXIS_MM2S_TKEEP;
   wire axi_dma_0_M_AXIS_MM2S_TLAST;
   wire axi_dma_0_M_AXIS_MM2S_TREADY;
   wire axi_dma_0_M_AXIS_MM2S_TVALID;
@@ -67,7 +67,7 @@ module design_1
   wire axi_dma_0_M_AXI_MM2S_ARREADY;
   wire [2:0]axi_dma_0_M_AXI_MM2S_ARSIZE;
   wire axi_dma_0_M_AXI_MM2S_ARVALID;
-  wire [31:0]axi_dma_0_M_AXI_MM2S_RDATA;
+  wire [63:0]axi_dma_0_M_AXI_MM2S_RDATA;
   wire axi_dma_0_M_AXI_MM2S_RLAST;
   wire axi_dma_0_M_AXI_MM2S_RREADY;
   wire [1:0]axi_dma_0_M_AXI_MM2S_RRESP;
@@ -83,24 +83,20 @@ module design_1
   wire axi_dma_0_M_AXI_S2MM_BREADY;
   wire [1:0]axi_dma_0_M_AXI_S2MM_BRESP;
   wire axi_dma_0_M_AXI_S2MM_BVALID;
-  wire [31:0]axi_dma_0_M_AXI_S2MM_WDATA;
+  wire [63:0]axi_dma_0_M_AXI_S2MM_WDATA;
   wire axi_dma_0_M_AXI_S2MM_WLAST;
   wire axi_dma_0_M_AXI_S2MM_WREADY;
-  wire [3:0]axi_dma_0_M_AXI_S2MM_WSTRB;
+  wire [7:0]axi_dma_0_M_AXI_S2MM_WSTRB;
   wire axi_dma_0_M_AXI_S2MM_WVALID;
-  wire [31:0]axis_data_fifo_0_M_AXIS_TDATA;
-  wire axis_data_fifo_0_M_AXIS_TLAST;
+  wire [63:0]axis_data_fifo_0_M_AXIS_TDATA;
   wire axis_data_fifo_0_M_AXIS_TREADY;
   wire axis_data_fifo_0_M_AXIS_TVALID;
-  wire [31:0]axis_data_fifo_1_M_AXIS_TDATA;
-  wire axis_data_fifo_1_M_AXIS_TLAST;
+  wire [63:0]axis_data_fifo_1_M_AXIS_TDATA;
   wire axis_data_fifo_1_M_AXIS_TREADY;
   wire axis_data_fifo_1_M_AXIS_TVALID;
-  wire [31:0]axis_inverter_0_M00_AXIS_TDATA;
-  wire axis_inverter_0_M00_AXIS_TLAST;
-  wire axis_inverter_0_M00_AXIS_TREADY;
-  wire [3:0]axis_inverter_0_M00_AXIS_TSTRB;
-  wire axis_inverter_0_M00_AXIS_TVALID;
+  wire [63:0]axis_inverter_0_M_AXIS_DataOut_TDATA;
+  wire axis_inverter_0_M_AXIS_DataOut_TREADY;
+  wire axis_inverter_0_M_AXIS_DataOut_TVALID;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -269,13 +265,12 @@ module design_1
         .s_axi_lite_wready(ps7_0_axi_periph_M00_AXI_WREADY),
         .s_axi_lite_wvalid(ps7_0_axi_periph_M00_AXI_WVALID),
         .s_axis_s2mm_tdata(axis_data_fifo_1_M_AXIS_TDATA),
-        .s_axis_s2mm_tkeep({1'b1,1'b1,1'b1,1'b1}),
-        .s_axis_s2mm_tlast(axis_data_fifo_1_M_AXIS_TLAST),
+        .s_axis_s2mm_tkeep({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
+        .s_axis_s2mm_tlast(1'b0),
         .s_axis_s2mm_tready(axis_data_fifo_1_M_AXIS_TREADY),
         .s_axis_s2mm_tvalid(axis_data_fifo_1_M_AXIS_TVALID));
   design_1_axis_data_fifo_0_0 axis_data_fifo_0
        (.m_axis_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .m_axis_tlast(axis_data_fifo_0_M_AXIS_TLAST),
         .m_axis_tready(axis_data_fifo_0_M_AXIS_TREADY),
         .m_axis_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
         .s_axis_aclk(processing_system7_0_FCLK_CLK0),
@@ -287,31 +282,22 @@ module design_1
         .s_axis_tvalid(axi_dma_0_M_AXIS_MM2S_TVALID));
   design_1_axis_data_fifo_0_1 axis_data_fifo_1
        (.m_axis_tdata(axis_data_fifo_1_M_AXIS_TDATA),
-        .m_axis_tlast(axis_data_fifo_1_M_AXIS_TLAST),
         .m_axis_tready(axis_data_fifo_1_M_AXIS_TREADY),
         .m_axis_tvalid(axis_data_fifo_1_M_AXIS_TVALID),
         .s_axis_aclk(processing_system7_0_FCLK_CLK0),
         .s_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
-        .s_axis_tdata(axis_inverter_0_M00_AXIS_TDATA),
-        .s_axis_tlast(axis_inverter_0_M00_AXIS_TLAST),
-        .s_axis_tready(axis_inverter_0_M00_AXIS_TREADY),
-        .s_axis_tstrb(axis_inverter_0_M00_AXIS_TSTRB),
-        .s_axis_tvalid(axis_inverter_0_M00_AXIS_TVALID));
-  design_1_axis_inverter_0_1 axis_inverter_0
-       (.m00_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .m00_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
-        .m00_axis_tdata(axis_inverter_0_M00_AXIS_TDATA),
-        .m00_axis_tlast(axis_inverter_0_M00_AXIS_TLAST),
-        .m00_axis_tready(axis_inverter_0_M00_AXIS_TREADY),
-        .m00_axis_tstrb(axis_inverter_0_M00_AXIS_TSTRB),
-        .m00_axis_tvalid(axis_inverter_0_M00_AXIS_TVALID),
-        .s00_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .s00_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
-        .s00_axis_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .s00_axis_tlast(axis_data_fifo_0_M_AXIS_TLAST),
-        .s00_axis_tready(axis_data_fifo_0_M_AXIS_TREADY),
-        .s00_axis_tstrb({1'b1,1'b1,1'b1,1'b1}),
-        .s00_axis_tvalid(axis_data_fifo_0_M_AXIS_TVALID));
+        .s_axis_tdata(axis_inverter_0_M_AXIS_DataOut_TDATA),
+        .s_axis_tready(axis_inverter_0_M_AXIS_DataOut_TREADY),
+        .s_axis_tvalid(axis_inverter_0_M_AXIS_DataOut_TVALID));
+  design_1_axis_inverter_0_2 axis_inverter_0
+       (.axi_clk(processing_system7_0_FCLK_CLK0),
+        .axi_resetn(rst_ps7_0_100M_peripheral_aresetn),
+        .m_axis_data(axis_inverter_0_M_AXIS_DataOut_TDATA),
+        .m_axis_ready(axis_inverter_0_M_AXIS_DataOut_TREADY),
+        .m_axis_valid(axis_inverter_0_M_AXIS_DataOut_TVALID),
+        .s_axis_data(axis_data_fifo_0_M_AXIS_TDATA),
+        .s_axis_ready(axis_data_fifo_0_M_AXIS_TREADY),
+        .s_axis_valid(axis_data_fifo_0_M_AXIS_TVALID));
   design_1_processing_system7_0_0 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),

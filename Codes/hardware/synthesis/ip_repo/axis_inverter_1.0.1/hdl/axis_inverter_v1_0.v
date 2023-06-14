@@ -69,7 +69,9 @@
 	);
 
 	// Add user logic here
-
+	assign m00_axis_tdata = s00_axis_tdata;
+	assign s00_axis_tready = m00_axis_tready;
+	assign m00_axis_tvalid = s00_axis_tvalid;
 	// User logic ends
 
 	endmodule

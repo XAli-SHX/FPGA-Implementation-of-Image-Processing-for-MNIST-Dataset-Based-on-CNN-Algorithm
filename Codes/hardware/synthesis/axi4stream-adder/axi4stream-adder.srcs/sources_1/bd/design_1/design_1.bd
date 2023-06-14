@@ -1699,11 +1699,20 @@
           "c_include_sg": {
             "value": "0"
           },
+          "c_m_axi_mm2s_data_width": {
+            "value": "64"
+          },
+          "c_m_axis_mm2s_tdata_width": {
+            "value": "64"
+          },
           "c_mm2s_burst_size": {
-            "value": "32"
+            "value": "8"
           },
           "c_s2mm_burst_size": {
             "value": "32"
+          },
+          "c_sg_length_width": {
+            "value": "26"
           }
         }
       },
@@ -1833,16 +1842,16 @@
               }
             },
             "interface_nets": {
-              "auto_pc_to_s00_couplers": {
-                "interface_ports": [
-                  "M_AXI",
-                  "auto_pc/M_AXI"
-                ]
-              },
               "s00_couplers_to_auto_pc": {
                 "interface_ports": [
                   "S_AXI",
                   "auto_pc/S_AXI"
+                ]
+              },
+              "auto_pc_to_s00_couplers": {
+                "interface_ports": [
+                  "M_AXI",
+                  "auto_pc/M_AXI"
                 ]
               }
             },
@@ -1961,7 +1970,12 @@
       },
       "axis_inverter_0": {
         "vlnv": "xilinx.com:user:axis_inverter:1.0",
-        "xci_name": "design_1_axis_inverter_0_1"
+        "xci_name": "design_1_axis_inverter_0_2",
+        "parameters": {
+          "DATA_WIDTH": {
+            "value": "64"
+          }
+        }
       }
     },
     "interface_nets": {
@@ -2025,16 +2039,16 @@
           "axi_dma_0/M_AXI_S2MM"
         ]
       },
-      "axis_inverter_0_M00_AXIS": {
-        "interface_ports": [
-          "axis_inverter_0/M00_AXIS",
-          "axis_data_fifo_1/S_AXIS"
-        ]
-      },
       "axis_data_fifo_0_M_AXIS": {
         "interface_ports": [
-          "axis_inverter_0/S00_AXIS",
-          "axis_data_fifo_0/M_AXIS"
+          "axis_data_fifo_0/M_AXIS",
+          "axis_inverter_0/S_AXIS_DataIn"
+        ]
+      },
+      "axis_inverter_0_M_AXIS_DataOut": {
+        "interface_ports": [
+          "axis_inverter_0/M_AXIS_DataOut",
+          "axis_data_fifo_1/S_AXIS"
         ]
       }
     },
@@ -2056,8 +2070,7 @@
           "smartconnect_1/aclk",
           "processing_system7_0/S_AXI_HP1_ACLK",
           "axis_data_fifo_0/s_axis_aclk",
-          "axis_inverter_0/m00_axis_aclk",
-          "axis_inverter_0/s00_axis_aclk"
+          "axis_inverter_0/axi_clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -2077,8 +2090,7 @@
           "ps7_0_axi_periph/ARESETN",
           "axis_data_fifo_1/s_axis_aresetn",
           "axis_data_fifo_0/s_axis_aresetn",
-          "axis_inverter_0/m00_axis_aresetn",
-          "axis_inverter_0/s00_axis_aresetn"
+          "axis_inverter_0/axi_resetn"
         ]
       }
     },

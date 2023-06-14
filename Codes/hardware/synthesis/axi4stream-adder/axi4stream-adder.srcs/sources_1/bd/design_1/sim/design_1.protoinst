@@ -123,9 +123,7 @@
 						"ACLK": { "actual": "s_axis_aclk"},
 						"ARESETN": { "actual": "s_axis_aresetn"},
 						"TDATA": { "actual": "m_axis_tdata"},
-						"TLAST": { "actual": "m_axis_tlast"},
 						"TREADY": { "actual": "m_axis_tready"},
-						"TSTRB": { "actual": "m_axis_tstrb"},
 						"TVALID": { "actual": "m_axis_tvalid"}
 					}
 				},
@@ -135,34 +133,28 @@
 						"ACLK": { "actual": "s_axis_aclk"},
 						"ARESETN": { "actual": "s_axis_aresetn"},
 						"TDATA": { "actual": "s_axis_tdata"},
-						"TLAST": { "actual": "s_axis_tlast"},
 						"TREADY": { "actual": "s_axis_tready"},
-						"TSTRB": { "actual": "s_axis_tstrb"},
 						"TVALID": { "actual": "s_axis_tvalid"}
 					}
 				},
-				"/axis_inverter_0/M00_AXIS": {
+				"/axis_inverter_0/M_AXIS_DataOut": {
 					"interface": "xilinx.com:interface:axis:1.0",
 					"ports": {
-						"ACLK": { "actual": "m00_axis_aclk"},
-						"ARESETN": { "actual": "m00_axis_aresetn"},
-						"TDATA": { "actual": "m00_axis_tdata"},
-						"TLAST": { "actual": "m00_axis_tlast"},
-						"TREADY": { "actual": "m00_axis_tready"},
-						"TSTRB": { "actual": "m00_axis_tstrb"},
-						"TVALID": { "actual": "m00_axis_tvalid"}
+						"ACLK": { "actual": "axi_clk"},
+						"ARESETN": { "actual": "axi_resetn"},
+						"TDATA": { "actual": "m_axis_data"},
+						"TREADY": { "actual": "m_axis_ready"},
+						"TVALID": { "actual": "m_axis_valid"}
 					}
 				},
-				"/axis_inverter_0/S00_AXIS": {
+				"/axis_inverter_0/S_AXIS_DataIn": {
 					"interface": "xilinx.com:interface:axis:1.0",
 					"ports": {
-						"ACLK": { "actual": "s00_axis_aclk"},
-						"ARESETN": { "actual": "s00_axis_aresetn"},
-						"TDATA": { "actual": "s00_axis_tdata"},
-						"TLAST": { "actual": "s00_axis_tlast"},
-						"TREADY": { "actual": "s00_axis_tready"},
-						"TSTRB": { "actual": "s00_axis_tstrb"},
-						"TVALID": { "actual": "s00_axis_tvalid"}
+						"ACLK": { "actual": "axi_clk"},
+						"ARESETN": { "actual": "axi_resetn"},
+						"TDATA": { "actual": "s_axis_data"},
+						"TREADY": { "actual": "s_axis_ready"},
+						"TVALID": { "actual": "s_axis_valid"}
 					}
 				},
 				"/processing_system7_0/M_AXI_GP0": {
