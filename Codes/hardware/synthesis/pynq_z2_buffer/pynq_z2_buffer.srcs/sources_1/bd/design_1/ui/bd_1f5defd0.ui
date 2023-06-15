@@ -1,0 +1,39 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 8 -x 2310 -y 140 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 8 -x 2310 -y 170 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 7 -x 2050 -y 200 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 5 -x 1360 -y 380 -defaultsOSRD
+preplace inst axis_data_fifo_0 -pg 1 -lvl 2 -x 500 -y 330 -defaultsOSRD
+preplace inst axis_data_fifo_1 -pg 1 -lvl 4 -x 1050 -y 350 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 4 -x 1050 -y 130 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -x 200 -y 630 -defaultsOSRD
+preplace inst axi_mem_intercon -pg 1 -lvl 6 -x 1690 -y 180 -defaultsOSRD
+preplace inst axi_mem_intercon_1 -pg 1 -lvl 6 -x 1690 -y 400 -defaultsOSRD
+preplace inst axis_buffer_0 -pg 1 -lvl 3 -x 760 -y 370 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 8 30 350 370 230 620 230 900 430 1190 500 1530 60 1830 320 2260
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 8 20 240 NJ 240 NJ 240 890J 260 1190J 50 NJ 50 NJ 50 2270
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 5 380 410 630 470 910 440 1200 510 1550
+preplace netloc processing_system7_0_DDR 1 7 1 2290J 140n
+preplace netloc processing_system7_0_FIXED_IO 1 7 1 NJ 170
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 5 380 250 NJ 250 NJ 250 NJ 250 1520
+preplace netloc axis_data_fifo_0_M_AXIS 1 2 1 N 330
+preplace netloc axis_buffer_0_M00_AXIS 1 3 1 890 330n
+preplace netloc axis_data_fifo_1_M_AXIS 1 4 1 N 350
+preplace netloc processing_system7_0_M_AXI_GP0 1 3 5 910 10 NJ 10 NJ 10 NJ 10 2280
+preplace netloc ps7_0_axi_periph_M00_AXI 1 4 1 1200 130n
+preplace netloc axi_dma_0_M_AXI_MM2S 1 5 1 1540 120n
+preplace netloc axi_mem_intercon_M00_AXI 1 6 1 N 180
+preplace netloc axi_dma_0_M_AXI_S2MM 1 5 1 N 340
+preplace netloc axi_mem_intercon_1_M00_AXI 1 6 1 1840 200n
+levelinfo -pg 1 0 200 500 760 1050 1360 1690 2050 2310
+pagesize -pg 1 -db -bbox -sgen 0 0 2420 730
+"
+}
+{
+   "da_axi4_cnt":"3",
+   "da_clkrst_cnt":"2",
+   "da_ps7_cnt":"1"
+}
