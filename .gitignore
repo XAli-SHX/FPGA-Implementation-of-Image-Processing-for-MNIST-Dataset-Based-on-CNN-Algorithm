@@ -7,3 +7,4 @@ venv
 Resources/pynq
 Resources/PYNQ_presentation.pptx
 Codes/hardware/synthesis/benchmark-pl-and-ps/benchmark-pl-and-ps.srcs/sources_1/bd/dma_mac_calculate_design/ip/dma_mac_calculate_design_processing_system7_0_0/dma_mac_calculate_design_processing_system7_0_0_sim_netlist.vhdl
+Codes/hardware/synthesis/axi4stream-adder/copy_hw_to_impl.bat
