@@ -51,7 +51,7 @@ module DenseController (
     always @(*) begin
         ns = STATE_Idle;
         case (ps)
-            STATE_Idle: ns = start ? STATE_Init : STATE_Idle;
+            STATE_Idle: ns = start ? STATE_GetData : STATE_Idle;
             STATE_Init: ns = ~start ? STATE_GetData : STATE_Init;
             STATE_GetData: ns = gotData ? STATE_ReInitInputCounter : STATE_GetData;
             STATE_ReInitInputCounter: ns = STATE_CalcWeights;
@@ -66,7 +66,7 @@ module DenseController (
     always @(*) begin
         {clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn, valid} = 12'b0;
         case (ps)
-            STATE_Idle: ;
+            STATE_Idle: clear = 1'b1;
             STATE_Init: clear = 1'b1;
             STATE_GetData: begin
                 busy = 1;

@@ -26,7 +26,14 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     // output
     weightAdr,
     biasAdr,
-    dataOut
+    dataOut,
+
+    // External outputs RAM
+    outputsRam_rd,
+    outputsRam_wr,
+    outputsRam_adr,
+    outputsRam_dataIn,
+    outputsRam_dataOut
 );
 
     input clk, rst, start;
@@ -36,6 +43,12 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     output [$clog2(IN_COUNT*OUT_COUNT)-1:0] weightAdr;
     output [$clog2(OUT_COUNT)-1:0] biasAdr;
     output [DATA_SIZE-1:0] dataOut;
+    // External outputs RAM
+    output outputsRam_rd;
+    output outputsRam_wr;
+    output [$clog2(DATA_SIZE)-1:0] outputsRam_adr;
+    output [DATA_SIZE-1:0] outputsRam_dataIn;
+    input [DATA_SIZE-1:0] outputsRam_dataOut;
 
 
     wire inputIndexGenerator_co;
@@ -79,7 +92,9 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     assign inputsRam_adr = inputIndexGenerator_cnt;
 
 
-    wire [$clog2(OUT_COUNT)-1:0] outputsRam_adr;
+    // Make Outputs RAM external
+
+    /* wire [$clog2(OUT_COUNT)-1:0] outputsRam_adr;
     wire [DATA_SIZE-1:0] outputsRam_dataIn, outputsRam_dataOut;
     Ram #(DATA_SIZE, OUT_COUNT) outputsRam (
         .clk(clk), 
@@ -88,7 +103,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
         .adr(outputsRam_adr), 
         .dataIn(outputsRam_dataIn), 
         .dataOut(outputsRam_dataOut)
-    );
+    ); */
     assign outputsRam_adr = outputIndexGenerator_cnt;
     assign dataOut = outputsRam_dataOut;
 
