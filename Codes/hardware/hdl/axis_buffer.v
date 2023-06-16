@@ -121,7 +121,7 @@ always @(posedge clk, negedge rst_n) begin
 		end
 	end
 end
-assign act_o_fin = (act_r_value == NUMOFDATA - 1);
+assign act_o_fin = (act_r_value == NUMOFDATA-1);
 
 // Wait Counter logic
 always @(posedge clk, negedge rst_n) begin
@@ -137,7 +137,7 @@ always @(posedge clk, negedge rst_n) begin
 		end
 	end
 end
-assign wct_o_fin = (wct_r_value == WAITCYCLES - 1);
+assign wct_o_fin = (wct_r_value == WAITCYCLES-1);
 
 
 
