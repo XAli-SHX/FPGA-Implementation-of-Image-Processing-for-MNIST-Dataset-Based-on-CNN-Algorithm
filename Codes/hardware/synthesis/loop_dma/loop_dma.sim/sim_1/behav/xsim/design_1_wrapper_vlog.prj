@@ -1,0 +1,45 @@
+# compile verilog/system verilog design source files
+verilog xil_defaultlib  --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8c62/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8713/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/1ddd/hdl/verilog" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/b2d0/hdl/verilog" --include "D:/Programs/Xilinx/Vivado/Vivado/2019.1/data/xilinx_vip/include" \
+"../../../../loop_dma.ip_user_files/bd/design_1/sim/design_1.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_processing_system7_0_1/sim/design_1_processing_system7_0_1.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axis_data_fifo_0_1/sim/design_1_axis_data_fifo_0_1.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/sim/bd_6e42.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_0/sim/bd_6e42_one_0.v" \
+
+sv xil_defaultlib  --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8c62/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8713/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/1ddd/hdl/verilog" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/b2d0/hdl/verilog" --include "D:/Programs/Xilinx/Vivado/Vivado/2019.1/data/xilinx_vip/include" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_2/sim/bd_6e42_s00mmu_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_3/sim/bd_6e42_s00tr_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_4/sim/bd_6e42_s00sic_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_5/sim/bd_6e42_s00a2s_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_6/sim/bd_6e42_sarn_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_7/sim/bd_6e42_srn_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_8/sim/bd_6e42_m00s2a_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/bd_0/ip/ip_9/sim/bd_6e42_m00e_0.sv" \
+
+verilog xil_defaultlib  --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8c62/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8713/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/1ddd/hdl/verilog" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/b2d0/hdl/verilog" --include "D:/Programs/Xilinx/Vivado/Vivado/2019.1/data/xilinx_vip/include" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_2/sim/design_1_axi_smc_2.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/sim/bd_68b9.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_0/sim/bd_68b9_one_0.v" \
+
+sv xil_defaultlib  --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8c62/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8713/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/1ddd/hdl/verilog" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/b2d0/hdl/verilog" --include "D:/Programs/Xilinx/Vivado/Vivado/2019.1/data/xilinx_vip/include" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_2/sim/bd_68b9_s00mmu_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_3/sim/bd_68b9_s00tr_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_4/sim/bd_68b9_s00sic_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_5/sim/bd_68b9_s00a2s_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_6/sim/bd_68b9_sawn_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_7/sim/bd_68b9_swn_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_8/sim/bd_68b9_sbn_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_9/sim/bd_68b9_m00s2a_0.sv" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/bd_0/ip/ip_10/sim/bd_68b9_m00e_0.sv" \
+
+verilog xil_defaultlib  --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/ec67/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8c62/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/8713/hdl" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/1ddd/hdl/verilog" --include "../../../../loop_dma.srcs/sources_1/bd/design_1/ipshared/b2d0/hdl/verilog" --include "D:/Programs/Xilinx/Vivado/Vivado/2019.1/data/xilinx_vip/include" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_axi_smc_1_1/sim/design_1_axi_smc_1_1.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_ila_0_0/sim/design_1_ila_0_0.v" \
+"../../../../loop_dma.ip_user_files/bd/design_1/ip/design_1_auto_pc_0/sim/design_1_auto_pc_0.v" \
+"../../../../loop_dma.srcs/sources_1/bd/design_1/hdl/design_1_wrapper.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

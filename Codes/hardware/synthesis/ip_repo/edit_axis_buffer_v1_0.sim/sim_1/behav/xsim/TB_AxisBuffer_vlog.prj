@@ -1,0 +1,12 @@
+# compile verilog/system verilog design source files
+verilog   \
+"../../../../axis_buffer_1.0/hdl/axis_buffer_v1_0.v" \
+
+verilog xil_defaultlib  \
+"../../../../axis_buffer_1.0/src/axis_buffer_tb.v" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

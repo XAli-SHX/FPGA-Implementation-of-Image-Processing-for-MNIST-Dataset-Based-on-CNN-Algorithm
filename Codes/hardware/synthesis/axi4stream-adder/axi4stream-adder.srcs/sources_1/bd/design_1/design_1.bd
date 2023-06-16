@@ -21,7 +21,8 @@
           "auto_pc": ""
         }
       },
-      "axis_buffer_0": ""
+      "axis_buffer_0": "",
+      "ila_tdata_tready": ""
     },
     "interface_ports": {
       "DDR": {
@@ -1889,16 +1890,16 @@
               }
             },
             "interface_nets": {
-              "auto_pc_to_s00_couplers": {
-                "interface_ports": [
-                  "M_AXI",
-                  "auto_pc/M_AXI"
-                ]
-              },
               "s00_couplers_to_auto_pc": {
                 "interface_ports": [
                   "S_AXI",
                   "auto_pc/S_AXI"
+                ]
+              },
+              "auto_pc_to_s00_couplers": {
+                "interface_ports": [
+                  "M_AXI",
+                  "auto_pc/M_AXI"
                 ]
               }
             },
@@ -1967,49 +1968,37 @@
             "value": "32"
           }
         }
+      },
+      "ila_tdata_tready": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "xci_name": "design_1_system_ila_0_0",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "NATIVE"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "5"
+          },
+          "C_PROBE0_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE1_TYPE": {
+            "value": "0"
+          }
+        }
       }
     },
     "interface_nets": {
-      "axi_dma_0_M_AXI_S2MM": {
+      "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
-          "axi_dma_0/M_AXI_S2MM",
-          "axi_smc_1/S00_AXI"
-        ]
-      },
-      "axi_smc_1_M00_AXI": {
-        "interface_ports": [
-          "axi_smc_1/M00_AXI",
-          "processing_system7_0/S_AXI_HP1"
+          "ps7_0_axi_periph/M00_AXI",
+          "axi_dma_0/S_AXI_LITE"
         ]
       },
       "axis_data_fifo_0_M_AXIS": {
         "interface_ports": [
           "axis_buffer_0/S00_AXIS",
           "axis_data_fifo_0/M_AXIS"
-        ]
-      },
-      "axi_dma_0_M_AXIS_MM2S": {
-        "interface_ports": [
-          "axis_data_fifo_0/S_AXIS",
-          "axi_dma_0/M_AXIS_MM2S"
-        ]
-      },
-      "axis_buffer_0_M00_AXIS": {
-        "interface_ports": [
-          "axis_buffer_0/M00_AXIS",
-          "axis_data_fifo_1/S_AXIS"
-        ]
-      },
-      "processing_system7_0_M_AXI_GP0": {
-        "interface_ports": [
-          "processing_system7_0/M_AXI_GP0",
-          "ps7_0_axi_periph/S00_AXI"
-        ]
-      },
-      "ps7_0_axi_periph_M00_AXI": {
-        "interface_ports": [
-          "ps7_0_axi_periph/M00_AXI",
-          "axi_dma_0/S_AXI_LITE"
         ]
       },
       "axis_data_fifo_1_M_AXIS": {
@@ -2024,22 +2013,52 @@
           "processing_system7_0/DDR"
         ]
       },
+      "axi_dma_0_M_AXI_S2MM": {
+        "interface_ports": [
+          "axi_dma_0/M_AXI_S2MM",
+          "axi_smc_1/S00_AXI"
+        ]
+      },
+      "axi_dma_0_M_AXIS_MM2S": {
+        "interface_ports": [
+          "axis_data_fifo_0/S_AXIS",
+          "axi_dma_0/M_AXIS_MM2S"
+        ]
+      },
+      "axis_buffer_0_M00_AXIS": {
+        "interface_ports": [
+          "axis_buffer_0/M00_AXIS",
+          "axis_data_fifo_1/S_AXIS"
+        ]
+      },
+      "axi_smc_1_M00_AXI": {
+        "interface_ports": [
+          "axi_smc_1/M00_AXI",
+          "processing_system7_0/S_AXI_HP1"
+        ]
+      },
+      "processing_system7_0_M_AXI_GP0": {
+        "interface_ports": [
+          "processing_system7_0/M_AXI_GP0",
+          "ps7_0_axi_periph/S00_AXI"
+        ]
+      },
       "processing_system7_0_FIXED_IO": {
         "interface_ports": [
           "FIXED_IO",
           "processing_system7_0/FIXED_IO"
         ]
       },
-      "axi_smc_M00_AXI": {
-        "interface_ports": [
-          "axi_smc/M00_AXI",
-          "processing_system7_0/S_AXI_HP0"
-        ]
-      },
       "axi_dma_0_M_AXI_MM2S": {
         "interface_ports": [
           "axi_dma_0/M_AXI_MM2S",
           "axi_smc/S00_AXI"
+        ]
+      },
+      "axi_smc_M00_AXI": {
+        "interface_ports": [
+          "axi_smc/M00_AXI",
+          "processing_system7_0/S_AXI_HP0"
         ]
       }
     },
@@ -2062,7 +2081,8 @@
           "ps7_0_axi_periph/M00_ACLK",
           "ps7_0_axi_periph/ACLK",
           "axis_buffer_0/s00_axis_aclk",
-          "axis_buffer_0/m00_axis_aclk"
+          "axis_buffer_0/m00_axis_aclk",
+          "ila_tdata_tready/clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -2085,6 +2105,76 @@
           "axis_buffer_0/s00_axis_aresetn",
           "axis_buffer_0/m00_axis_aresetn"
         ]
+      },
+      "m_axis_mm2s_tdata": {
+        "ports": [
+          "axi_dma_0/m_axis_mm2s_tdata",
+          "ila_tdata_tready/probe0"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "s_axis_tready": {
+        "ports": [
+          "axis_data_fifo_0/s_axis_tready",
+          "ila_tdata_tready/probe1"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "m_axis_mm2s_tkeep": {
+        "ports": [
+          "axi_dma_0/m_axis_mm2s_tkeep",
+          "ila_tdata_tready/probe2"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "m_axis_mm2s_tlast": {
+        "ports": [
+          "axi_dma_0/m_axis_mm2s_tlast",
+          "ila_tdata_tready/probe3"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
+      },
+      "m_axis_mm2s_tvalid": {
+        "ports": [
+          "axi_dma_0/m_axis_mm2s_tvalid",
+          "ila_tdata_tready/probe4"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       }
     },
     "addressing": {
