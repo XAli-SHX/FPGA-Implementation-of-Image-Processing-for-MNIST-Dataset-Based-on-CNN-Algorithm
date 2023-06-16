@@ -95,7 +95,6 @@ module DenseController (
             STATE_ReInitOutputCounter: begin
                 busy = 1;
                 clear = 1;
-                valid = 1;
             end
             STATE_PutData: begin
                 busy = 1;
