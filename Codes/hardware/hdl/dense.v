@@ -25,7 +25,7 @@ module Dense #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     // AXIS Interface
     input                                   axisif_start;
     output                                  axisif_done;
-    output      [$clog2(OUT_COUNT)-1:0]     axisif_bufferIn_adr;
+    output      [$clog2(IN_COUNT)-1:0]      axisif_bufferIn_adr;
     input       [DATA_SIZE-1:0]             axisif_bufferIn_data;
     output      [$clog2(OUT_COUNT)-1:0]     axisif_bufferOut_adr;
     output      [DATA_SIZE-1:0]             axisif_bufferOut_data;
