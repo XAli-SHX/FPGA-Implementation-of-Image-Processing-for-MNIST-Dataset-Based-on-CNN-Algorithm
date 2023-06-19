@@ -46,7 +46,6 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     output   [$clog2(IN_COUNT)-1:0]      axisif_bufferIn_adr;
     output   [DATA_SIZE-1:0]             axisif_bufferOut_data;
     output   [$clog2(OUT_COUNT)-1:0]     axisif_bufferOut_adr;
-    output                               axisif_bufferOut_wr;
 
 
     // Generate index of all inputs in range 0..IN_COUNT

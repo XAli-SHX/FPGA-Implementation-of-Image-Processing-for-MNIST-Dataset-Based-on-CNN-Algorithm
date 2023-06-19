@@ -107,7 +107,7 @@ wire						cntOutAdr_in_en;
 wire	[OUT_ADR_WIDTH-1:0]	cntOutAdr_out_val;
 wire						cntOutAdr_out_fin;
 
-Counter #(DATA_WIDTH, OUT_DATA_NUM - 1) cntInAdr
+Counter #(DATA_WIDTH, OUT_DATA_NUM - 1) cntOutAdr
 (
 	.clk(clk),
 	.rst_n(rst_n),
