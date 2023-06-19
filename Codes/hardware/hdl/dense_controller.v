@@ -1,32 +1,41 @@
 module DenseController (
-    // input
     clk, 
     rst,
-    valid,
-    // state signals
-    gotData,
+    // State signals
     mulDone,
     calcDone,
     putData,
-    // controll signals
+    // Controll signals
     clear,
-    rdi,
-    wri,
-    rdo,
-    wro,
-    inCntEn,
-    clearReg,
     WorB,
     load,
+    inCntEn,
     outCntEn,
-    // output
-    busy,
-    valid
+    clearReg,
+    // AXIS interface
+    axisif_start,
+    axisif_bufferOut_wr,
+    axisif_done
 );
 
-    input clk, rst, valid, gotData, mulDone, calcDone, putData;
-    output reg clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn, valid;
+    input clk, rst;
+    // State signals
+    input axisif_start;
+    input mulDone;
+    input calcDone;
+    input putData;
+    // Controll signals
+    output reg clear;
+    output reg WorB;
+    output reg load;
+    output reg inCntEn;
+    output reg outCntEn;
+    output reg clearReg;
+    // AXIS interface
+    output reg axisif_bufferOut_wr;
+    output reg axisif_done;
 
+    // States enum
     localparam STATE_Idle = 0, 
                STATE_Init = 1, 
                STATE_GetData = 2, 
@@ -38,7 +47,7 @@ module DenseController (
 
     reg [2:0] ps, ns;
 
-    // present state register
+    // Present state register
     always @(posedge clk or posedge rst) begin
         if (rst) begin
             ps <= STATE_Idle;
@@ -47,14 +56,11 @@ module DenseController (
         end
     end
 
-    // next state logic
+    // Next state logic
     always @(*) begin
         ns = STATE_Idle;
         case (ps)
-            STATE_Idle: ns = valid ? STATE_GetData : STATE_Idle;
-            STATE_Init: ns = ~valid ? STATE_GetData : STATE_Init;
-            STATE_GetData: ns = gotData ? STATE_ReInitInputCounter : STATE_GetData;
-            STATE_ReInitInputCounter: ns = STATE_CalcWeights;
+            STATE_Idle: ns = axisif_start ? STATE_CalcWeights : STATE_Idle;
             STATE_CalcWeights: ns = mulDone ? STATE_CalcBias : STATE_CalcWeights;
             STATE_CalcBias: ns = calcDone ? STATE_ReInitOutputCounter : STATE_CalcWeights;
             STATE_ReInitOutputCounter: ns = STATE_PutData;
@@ -62,45 +68,30 @@ module DenseController (
         endcase
     end
 
-    // issue output logic
+    // Issue output logic
     always @(*) begin
-        {clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn, valid} = 12'b0;
+        {clear, axisif_done, WorB, load, inCntEn, axisif_bufferOut_wr, outCntEn, clearReg} = 8'b0;
         case (ps)
-            STATE_Idle: clear = 1'b1;
-            STATE_Init: clear = 1'b1;
-            STATE_GetData: begin
-                busy = 1;
-                wri = 1;
-                inCntEn = 1;
-            end
-            STATE_ReInitInputCounter: begin
-                busy = 1;
+            STATE_Idle: begin 
                 clear = 1;
-                clearReg = 1;
+                axisif_done = 1;
             end
             STATE_CalcWeights: begin
-                busy = 1;
                 WorB = 0;
-                rdi = 1;
                 load = 1;
                 inCntEn = 1;
             end
             STATE_CalcBias: begin
-                busy = 1;
                 WorB = 1;
-                wro = 1;
+                axisif_bufferOut_wr = 1;
                 outCntEn = 1;
                 clearReg = 1;
             end
             STATE_ReInitOutputCounter: begin
-                busy = 1;
                 clear = 1;
             end
             STATE_PutData: begin
-                busy = 1;
                 outCntEn = 1;
-                rdo = 1;
-                valid = 1;
             end
         endcase
     end

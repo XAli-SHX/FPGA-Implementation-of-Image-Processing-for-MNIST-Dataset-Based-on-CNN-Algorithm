@@ -1,91 +1,83 @@
 module Dense #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     clk, 
-    rst, 
-    valid,
-    dataIn,
-    weightData,
-    biasData,
-
-    busy,
-    valid,
-    dataOut,
+    rst,
+    // External weights and biases
     weightAdr,
+    weightData,
     biasAdr,
-    // External outputs RAM
-    outputsRam_rd,
-    outputsRam_wr,
-    outputsRam_adr,
-    outputsRam_dataIn,
-    outputsRam_dataOut
+    biasData,
+    // AXIS Interface
+    axisif_start,
+    axisif_done,
+    axisif_bufferIn_adr,
+    axisif_bufferIn_data,
+    axisif_bufferOut_adr,
+    axisif_bufferOut_data,
+    axisif_bufferOut_wr
 );
 
-    input clk, rst, valid;
-    input [DATA_SIZE-1:0] dataIn, weightData, biasData;
-    output busy, valid;
-    output [DATA_SIZE-1:0] dataOut;
-    output [$clog2(IN_COUNT*OUT_COUNT)-1:0] weightAdr;
-    output [$clog2(OUT_COUNT)-1:0] biasAdr;
-    // External outputs RAM
-    output outputsRam_rd;
-    output outputsRam_wr;
-    output [$clog2(DATA_SIZE)-1:0] outputsRam_adr;
-    output [DATA_SIZE-1:0] outputsRam_dataIn;
-    input [DATA_SIZE-1:0] outputsRam_dataOut;
+    input clk, rst;
+    // External weights and biases
+    output  [$clog2(IN_COUNT*OUT_COUNT)-1:0]    weightAdr;
+    input   [DATA_SIZE-1:0]                     weightData;
+    output  [$clog2(OUT_COUNT)-1:0]             biasAdr;
+    input   [DATA_SIZE-1:0]                     biasData;
+    // AXIS Interface
+    input                                   axisif_start;
+    output                                  axisif_done;
+    output      [$clog2(OUT_COUNT)-1:0]     axisif_bufferIn_adr;
+    input       [DATA_SIZE-1:0]             axisif_bufferIn_data;
+    output      [$clog2(OUT_COUNT)-1:0]     axisif_bufferOut_adr;
+    output      [DATA_SIZE-1:0]             axisif_bufferOut_data;
+    output                                  axisif_bufferOut_wr;
     
-    wire clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn, gotData, mulDone, calcDone, putData;
+    wire clear, inCntEn, clearReg, WorB, load, outCntEn;
+    wire mulDone, calcDone, putData;
 
     DenseDatapath #(IN_COUNT, OUT_COUNT, DATA_SIZE) denseDP (
         .clk(clk),
         .rst(rst),
-        .valid(valid),
-        .dataIn(dataIn),
-        .weightData(weightData),
-        .biasData(biasData),
+        // Controll signals
         .clear(clear),
-        .busy(busy),
-        .rdi(rdi),
-        .wri(wri),
-        .rdo(rdo),
-        .wro(wro),
         .inCntEn(inCntEn),
         .clearReg(clearReg),
         .WorB(WorB),
         .load(load),
         .outCntEn(outCntEn),
-        .gotData(gotData),
+        // State signals
         .mulDone(mulDone),
         .calcDone(calcDone),
         .putData(putData),
+        // Weights and biases external LUT
         .weightAdr(weightAdr),
+        .weightData(weightData),
         .biasAdr(biasAdr),
-        .dataOut(dataOut),
-        .outputsRam_rd(outputsRam_rd),
-        .outputsRam_wr(outputsRam_wr),
-        .outputsRam_adr(outputsRam_adr),
-        .outputsRam_dataIn(outputsRam_dataIn),
-        .outputsRam_dataOut(outputsRam_dataOut)
+        .biasData(biasData),
+        // AXIS interface
+        .axisif_bufferIn_data(axisif_bufferIn_data),
+        .axisif_bufferIn_adr(axisif_bufferIn_adr),
+        .axisif_bufferOut_data(axisif_bufferOut_data),
+        .axisif_bufferOut_adr(axisif_bufferOut_adr)
     );
 
     DenseController denseCU (
         .clk(clk), 
         .rst(rst),
-        .valid(valid),
-        .gotData(gotData),
+        // State signals
         .mulDone(mulDone),
         .calcDone(calcDone),
         .putData(putData),
+        // Controll signals
         .clear(clear),
-        .rdi(rdi),
-        .wri(wri),
-        .rdo(rdo),
-        .wro(wro),
-        .inCntEn(inCntEn),
-        .clearReg(clearReg),
         .WorB(WorB),
         .load(load),
+        .inCntEn(inCntEn),
         .outCntEn(outCntEn),
-        .busy(busy),
-        .valid(valid)
+        .clearReg(clearReg),
+        // AXIS interface
+        .axisif_start(axisif_start),
+        .axisif_bufferOut_wr(axisif_bufferOut_wr),
+        .axisif_done(axisif_done)
     );
     
 endmodule
