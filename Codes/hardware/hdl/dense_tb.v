@@ -2,7 +2,7 @@ module TB_Dense ();
     
     localparam IN_COUNT = 10, OUT_COUNT = 3, DATA_SIZE = 16;
 
-    reg clk = 0, rst = 0, start = 0;
+    reg clk = 0, rst = 0, valid = 0;
     reg [DATA_SIZE-1:0] dataIn = {DATA_SIZE{1'b0}};
     wire busy, valid;
     wire [DATA_SIZE-1:0] weightData, biasData;
@@ -13,7 +13,7 @@ module TB_Dense ();
     Dense #(IN_COUNT, OUT_COUNT, DATA_SIZE) DenseUnit (
         .clk(clk), 
         .rst(rst), 
-        .start(start),
+        .valid(valid),
         .dataIn(dataIn),
         .weightData(weightData),
         .biasData(biasData),
@@ -52,9 +52,9 @@ module TB_Dense ();
         #10;
         rst = 0;
         #10;
-        start = 1;
+        valid = 1;
         #10;
-        start = 0;
+        valid = 0;
         repeat (IN_COUNT) begin
             @(posedge clk);
             dataIn = $random;

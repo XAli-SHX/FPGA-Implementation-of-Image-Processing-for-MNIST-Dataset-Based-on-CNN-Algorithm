@@ -1,7 +1,7 @@
 module Dense #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     clk, 
     rst, 
-    start,
+    valid,
     dataIn,
     weightData,
     biasData,
@@ -19,7 +19,7 @@ module Dense #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     outputsRam_dataOut
 );
 
-    input clk, rst, start;
+    input clk, rst, valid;
     input [DATA_SIZE-1:0] dataIn, weightData, biasData;
     output busy, valid;
     output [DATA_SIZE-1:0] dataOut;
@@ -37,7 +37,7 @@ module Dense #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     DenseDatapath #(IN_COUNT, OUT_COUNT, DATA_SIZE) denseDP (
         .clk(clk),
         .rst(rst),
-        .start(start),
+        .valid(valid),
         .dataIn(dataIn),
         .weightData(weightData),
         .biasData(biasData),
@@ -69,7 +69,7 @@ module Dense #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     DenseController denseCU (
         .clk(clk), 
         .rst(rst),
-        .start(start),
+        .valid(valid),
         .gotData(gotData),
         .mulDone(mulDone),
         .calcDone(calcDone),

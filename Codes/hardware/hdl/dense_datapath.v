@@ -2,7 +2,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     // input
     clk,
     rst,
-    start,
+    valid,
     dataIn,
     weightData,
     biasData,
@@ -36,7 +36,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     outputsRam_dataOut
 );
 
-    input clk, rst, start;
+    input clk, rst, valid;
     input clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn;
     input [DATA_SIZE-1:0] dataIn, weightData, biasData;
     output gotData, mulDone, calcDone, putData;

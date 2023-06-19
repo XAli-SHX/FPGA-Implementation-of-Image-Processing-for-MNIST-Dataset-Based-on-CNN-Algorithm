@@ -2,7 +2,7 @@ module DenseController (
     // input
     clk, 
     rst,
-    start,
+    valid,
     // state signals
     gotData,
     mulDone,
@@ -24,7 +24,7 @@ module DenseController (
     valid
 );
 
-    input clk, rst, start, gotData, mulDone, calcDone, putData;
+    input clk, rst, valid, gotData, mulDone, calcDone, putData;
     output reg clear, busy, rdi, wri, rdo, wro, inCntEn, clearReg, WorB, load, outCntEn, valid;
 
     localparam STATE_Idle = 0, 
@@ -51,8 +51,8 @@ module DenseController (
     always @(*) begin
         ns = STATE_Idle;
         case (ps)
-            STATE_Idle: ns = start ? STATE_GetData : STATE_Idle;
-            STATE_Init: ns = ~start ? STATE_GetData : STATE_Init;
+            STATE_Idle: ns = valid ? STATE_GetData : STATE_Idle;
+            STATE_Init: ns = ~valid ? STATE_GetData : STATE_Init;
             STATE_GetData: ns = gotData ? STATE_ReInitInputCounter : STATE_GetData;
             STATE_ReInitInputCounter: ns = STATE_CalcWeights;
             STATE_CalcWeights: ns = mulDone ? STATE_CalcBias : STATE_CalcWeights;
