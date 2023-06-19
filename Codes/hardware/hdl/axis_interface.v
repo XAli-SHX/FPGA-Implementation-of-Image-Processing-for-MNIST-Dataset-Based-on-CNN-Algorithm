@@ -92,7 +92,7 @@ wire						cntInAdr_in_en;
 wire	[IN_ADR_WIDTH-1:0]	cntInAdr_out_val;
 wire						cntInAdr_out_fin;
 
-Counter #(DATA_WIDTH, IN_DATA_NUM - 1) cntInAdr
+Counter #(IN_ADR_WIDTH, IN_DATA_NUM - 1) cntInAdr
 (
 	.clk(clk),
 	.rst_n(rst_n),
@@ -107,7 +107,7 @@ wire						cntOutAdr_in_en;
 wire	[OUT_ADR_WIDTH-1:0]	cntOutAdr_out_val;
 wire						cntOutAdr_out_fin;
 
-Counter #(DATA_WIDTH, OUT_DATA_NUM - 1) cntOutAdr
+Counter #(OUT_ADR_WIDTH, OUT_DATA_NUM - 1) cntOutAdr
 (
 	.clk(clk),
 	.rst_n(rst_n),
@@ -239,5 +239,13 @@ assign cu_in_cntInAdrFin	=	cntInAdr_out_fin;
 assign cu_in_cntOutAdrFin	=	cntOutAdr_out_fin;
 assign cu_in_axisifDone		=	axisif_done;
 assign cu_in_mReady			=	m_ready;
+
+// Module outputs
+assign s_ready				=	cu_out_sReady;
+assign m_data				=	bufferOut_out_data;
+assign m_valid				=	cu_out_mValid;
+assign m_last				=	cu_out_mLast;
+assign axisif_start			=	cu_out_axisifStart;
+assign axisif_bufferIn_data	=	bufferIn_out_data;
 
 endmodule

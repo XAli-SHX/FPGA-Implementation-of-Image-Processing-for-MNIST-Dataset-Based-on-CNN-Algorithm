@@ -18,8 +18,10 @@ always @(posedge clk, negedge rst_n) begin
 		val <= 0;
 	end
 	else begin
-		if (fin) val <= 0;
-		else val <= val + 1;
+		if (en) begin
+			if (fin) val <= 0;
+			else val <= val + 1;
+		end
 	end
 end
 assign fin = (val == VALMAX);

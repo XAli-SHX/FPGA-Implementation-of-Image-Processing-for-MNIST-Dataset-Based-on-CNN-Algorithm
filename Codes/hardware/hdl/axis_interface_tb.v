@@ -1,107 +1,97 @@
 module TB_AxisInterface();
-// Base signals
-reg				clk = 0;
-reg				rst_n = 1;
-// Starting signals
-reg				ex_start = 0;
-wire			ex_startAck;
-// Slave side
-reg		[31:0]	s_data = 0;
-reg				s_valid = 0;
-reg				s_last = 0;
-wire			s_ready;
-// Master side
-wire	[31:0]	m_data;
-wire			m_valid;
-wire			m_last;
-reg				m_ready = 0;
-// AIU side
-wire			waitSt;
-reg				waitFin = 0;
-reg		[2:0]	inp_adr = 0;
-wire	[31:0]	inp_data;
-wire	[1:0]	out_adr;
-reg		[31:0]	out_data = 0;
-
-AxisInterface UUT(
 	// Base signals
-	.clk(clk),
-	.rst_n(rst_n),
-	// Starting signals
-	.ex_start(ex_start),
-	.ex_startAck(ex_startAck),
+	reg				clk = 0;
+	reg				rst_n = 1;
 	// Slave side
-	.s_data(s_data),
-	.s_valid(s_valid),
-	.s_last(s_last),
-	.s_ready(s_ready),
+	reg		[31:0]	s_data = 0;
+	reg				s_valid = 0;
+	reg				s_last = 0;
+	wire			s_ready;
 	// Master side
-	.m_data(m_data),
-	.m_valid(m_valid),
-	.m_last(m_last),
-	.m_ready(m_ready),
-	// AIU side
-	.waitSt(waitSt),
-	.waitFin(waitFin),
-	.inp_adr(inp_adr),
-	.inp_data(inp_data),
-	.out_adr(out_adr),
-	.out_data(out_data)
-);
-always begin
-	#3 clk = ~clk;
-end
+	wire	[31:0]	m_data;
+	wire			m_valid;
+	wire			m_last;
+	reg				m_ready = 0;
+	// Interface side
+	wire 			axisif_start;
+	reg 			axisif_done = 1;
+	reg		[2:0]	axisif_bufferIn_adr;
+	wire 	[31:0] 	axisif_bufferIn_data;
+	reg 	[1:0] 	axisif_bufferOut_adr;
+	reg 	[31:0] 	axisif_bufferOut_data;
+	reg 			axisif_bufferOut_wr;
 
-// Testbench behaves as Output Buffer
-always @(out_adr) begin
-	out_data = out_adr + 13;
-end
+	AxisInterface #(.DATA_WIDTH(32), .IN_DATA_NUM(8), .OUT_DATA_NUM(4)) UUT (
+		// Base signals
+		.clk(clk),
+		.rst_n(rst_n),
+		// Slave side
+		.s_data(s_data),
+		.s_valid(s_valid),
+		.s_last(s_last),
+		.s_ready(s_ready),
+		// Master side
+		.m_data(m_data),
+		.m_valid(m_valid),
+		.m_last(m_last),
+		.m_ready(m_ready),
+		// Wrapper side
+		.axisif_start(axisif_start),
+		.axisif_done(axisif_done),
+		.axisif_bufferIn_adr(axisif_bufferIn_adr),
+		.axisif_bufferIn_data(axisif_bufferIn_data),
+		.axisif_bufferOut_adr(axisif_bufferOut_adr),
+		.axisif_bufferOut_data(axisif_bufferOut_data),
+		.axisif_bufferOut_wr(axisif_bufferOut_wr)
+	);
 
-integer i;
-initial begin
-	// Testbench behaves as Master
-	#7
-	rst_n = 0;
-	#7
-	rst_n = 1;
-	#13
-	ex_start = 1;
-	@(posedge ex_startAck)
-	#13
-	ex_start = 0;
-	#5
-	for (i = 0; i < 8; i = i + 1) begin
-		@(posedge clk)
-		s_valid = 1;
-		s_data = i + 1;
-		s_last = (i == 7);
-		@(posedge clk)
-		s_valid = 0;
+	// Generate clock
+	always #3 clk = ~clk;
+
+	// Testbench behaves as wrapper interface
+	integer j;
+	always @(posedge axisif_start) begin
+		axisif_done = 0;
+		for (j = 0; j < 4; j = j + 1) begin
+			axisif_bufferOut_adr = j;
+			axisif_bufferOut_data = j + 2;
+			axisif_bufferOut_wr = 1;
+			@(posedge clk);
+		end
+		repeat(3) begin
+			@(posedge clk);
+		end
+		#10
+		axisif_done = 1;
 	end
-	@(posedge clk)
-	s_last = 0;
-	$display("Meow");
-	// Testbench behaves as AIU
-	// @(waitSt)
-	#19
-	for (i = 0; i < 8; i = i + 1) begin
+
+	integer i;
+	initial begin
+		// Testbench behaves as master
+		#10
+		rst_n = 0;
+		#10
+		rst_n = 1;
+		#10
+		for (i = 0; i < 8; i = i + 1) begin
+			@(posedge clk)
+			s_valid = 1;
+			s_data = i + 1;
+			s_last = (i == 7);
+			@(posedge clk)
+			s_valid = 0;
+		end
 		@(posedge clk)
-		#1
-		inp_adr = i;
-		$display("hi");
+		s_last = 0;
+		// Testbench behaves as slave
+		@(posedge m_valid)
+		for (i = 0; i < 4; i = i + 1) begin
+			@(posedge clk)
+			m_ready = 1;
+			@(posedge clk)
+			m_ready = 0;
+		end
+		#100
+		$stop;
 	end
-	#19
-	waitFin = 1;
-	// Testbench behaves as Slave
-	@(posedge m_valid)
-	waitFin = 0;
-	for (i = 0; i < 4; i = i + 1) begin
-		@(posedge clk)
-		m_ready = 1;
-		@(posedge clk)
-		m_ready = 0;
-	end
-	#79
-	$stop;
-end
 endmodule
