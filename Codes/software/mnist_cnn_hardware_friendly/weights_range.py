@@ -1,17 +1,33 @@
 from predict_raw import loadWeightsFromJson
 import numpy as np
 
-dense_weights = loadWeightsFromJson('./weights/flat/layer6_dense_weights_flatten.json')
-dense_biases = loadWeightsFromJson('./weights/flat/layer6_dense_biases_flatten.json')
+layer0_conv2d_weights = loadWeightsFromJson(
+    "./weights/flat/layer0_conv2d_weights_flatten.json"
+)
+layer0_conv2d_biases = loadWeightsFromJson(
+    "./weights/flat/layer0_conv2d_biases_flatten.json"
+)
 
-print(f'weights:')
-print(f'    max = {max(dense_weights)}')
-print(f'    min = {min(dense_weights)}')
-print(f'    mean = {np.mean(dense_weights)}')
-print(f'    var = {np.var(dense_weights)}')
+layer2_conv2d_weights = loadWeightsFromJson(
+    "./weights/flat/layer2_conv2d_weights_flatten.json"
+)
+layer2_conv2d_biases = loadWeightsFromJson(
+    "./weights/flat/layer2_conv2d_biases_flatten.json"
+)
+layer6_dense_weights = loadWeightsFromJson("./weights/flat/layer6_dense_weights_flatten.json")
+layer6_dense_biases = loadWeightsFromJson("./weights/flat/layer6_dense_biases_flatten.json")
 
-print(f'biases:')
-print(f'    max = {max(dense_biases)}')
-print(f'    min = {min(dense_biases)}')
-print(f'    mean = {np.mean(dense_biases)}')
-print(f'    var = {np.var(dense_biases)}')
+
+def print_info(name: str, l: list):
+    print(f"{name}:")
+    print(f"    max = {max(l)}")
+    print(f"    min = {min(l)}")
+    print(f"    mean = {np.mean(l)}")
+    print(f"    var = {np.var(l)}")
+
+print_info('layer0_conv2d_weights', layer0_conv2d_weights)
+print_info('layer0_conv2d_biases', layer0_conv2d_biases)
+print_info('layer2_conv2d_weights', layer2_conv2d_weights)
+print_info('layer2_conv2d_biases', layer2_conv2d_biases)
+print_info('layer6_dense_weights', layer6_dense_weights)
+print_info('layer6_dense_biases', layer6_dense_biases)
