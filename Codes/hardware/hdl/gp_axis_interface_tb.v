@@ -1,4 +1,4 @@
-module TB_AxisInterface();
+module TB_GpAxisInterface();
 	// Base signals
 	reg				clk = 0;
 	reg				rst_n = 1;
@@ -21,7 +21,7 @@ module TB_AxisInterface();
 	reg 	[31:0] 	axisif_bufferOut_data;
 	reg 			axisif_bufferOut_wr;
 
-	AxisInterface #(.DATA_WIDTH(32), .IN_DATA_NUM(8), .OUT_DATA_NUM(4)) UUT (
+	GpAxisInterface #(.DATA_WIDTH(32), .IN_DATA_NUM(8), .OUT_DATA_NUM(4)) UUT (
 		// Base signals
 		.clk(clk),
 		.rst_n(rst_n),

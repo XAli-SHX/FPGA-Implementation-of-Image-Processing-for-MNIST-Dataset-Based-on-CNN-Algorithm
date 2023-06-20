@@ -62,7 +62,7 @@ module TB_Dense ();
         .dataOut(biasData)
     );
 
-    AxisInterface #(DATA_SIZE, IN_COUNT, OUT_COUNT) axisIf (
+    GpAxisInterface #(DATA_SIZE, IN_COUNT, OUT_COUNT) axisIf (
         // Base signals
         .clk(clk),
         .rst_n(~rst),

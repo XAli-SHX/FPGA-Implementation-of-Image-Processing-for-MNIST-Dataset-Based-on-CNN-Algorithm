@@ -1,4 +1,4 @@
-module AxisInterface #(parameter DATA_WIDTH=32, IN_DATA_NUM=8, OUT_DATA_NUM=4) (
+module GpAxisInterface #(parameter DATA_WIDTH=32, IN_DATA_NUM=8, OUT_DATA_NUM=4) (
 	// Base signals
 	clk,
 	rst_n,
