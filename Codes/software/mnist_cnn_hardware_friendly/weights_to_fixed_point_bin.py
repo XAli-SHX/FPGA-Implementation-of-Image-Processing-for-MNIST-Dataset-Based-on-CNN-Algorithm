@@ -25,7 +25,7 @@ def convert(name: str, dir: str, n_word: int = 32, n_frac: int = 30):
     with open(f"./weights/bin-{n_word}bit-{n_frac}frac/{name}.mif", "w") as fp:
         for w in weights:
             x = Fxp(w, signed=True, n_word=n_word, n_frac=n_frac)
-            fp.write(f"{x.bin(frac_dot=True)}\n")
+            fp.write(f"{x.bin(frac_dot=False)}\n")
         fp.close()
     print(f"{name} done!")
 
