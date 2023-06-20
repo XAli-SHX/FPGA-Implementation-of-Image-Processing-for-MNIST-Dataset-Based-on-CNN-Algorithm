@@ -7,7 +7,14 @@ module LoopCounter #(parameter STOP) (
     cnt
 );
 
-    localparam WIDTH = $clog2(STOP);
+    function integer clogb2 (input integer bit_depth);                                   
+	  begin                                                                              
+	    for(clogb2=0; bit_depth>0; clogb2=clogb2+1)                                      
+	      bit_depth = bit_depth >> 1;                                                    
+	  end                                                                                
+	endfunction
+
+    localparam WIDTH = clogb2(STOP);
     input clk, rst, en, clr;
     output co;
     output reg [WIDTH-1:0] cnt;

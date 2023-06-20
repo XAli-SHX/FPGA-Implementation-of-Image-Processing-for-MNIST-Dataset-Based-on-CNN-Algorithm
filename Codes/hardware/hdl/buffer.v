@@ -1,4 +1,4 @@
-module Buffer #(parameter WORD_SIZE, LENGTH_SIZE) (
+module Buffer #(parameter WORD_SIZE = 32, LENGTH_SIZE = 10) (
     clk,
     wr,
     adr,
@@ -6,7 +6,14 @@ module Buffer #(parameter WORD_SIZE, LENGTH_SIZE) (
     dataOut
 );
 
-    localparam ADR_SIZE = $clog2(LENGTH_SIZE);
+    function integer clogb2 (input integer bit_depth);                                   
+	  begin                                                                              
+	    for(clogb2=0; bit_depth>0; clogb2=clogb2+1)                                      
+	      bit_depth = bit_depth >> 1;                                                    
+	  end                                                                                
+	endfunction
+
+    localparam ADR_SIZE = clogb2(LENGTH_SIZE);
     input clk, wr;
     input [ADR_SIZE-1:0] adr;
     input [WORD_SIZE-1:0] dataIn;

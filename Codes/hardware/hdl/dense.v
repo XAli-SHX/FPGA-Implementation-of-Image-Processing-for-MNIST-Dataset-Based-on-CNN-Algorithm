@@ -16,18 +16,25 @@ module Dense #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     axisif_bufferOut_wr
 );
 
+    function integer clogb2 (input integer bit_depth);                                   
+	  begin                                                                              
+	    for(clogb2=0; bit_depth>0; clogb2=clogb2+1)                                      
+	      bit_depth = bit_depth >> 1;                                                    
+	  end                                                                                
+	endfunction
+
     input clk, rst;
     // External weights and biases
-    output  [$clog2(IN_COUNT*OUT_COUNT)-1:0]    weightAdr;
+    output  [clogb2(IN_COUNT*OUT_COUNT)-1:0]    weightAdr;
     input   [DATA_SIZE-1:0]                     weightData;
-    output  [$clog2(OUT_COUNT)-1:0]             biasAdr;
+    output  [clogb2(OUT_COUNT)-1:0]             biasAdr;
     input   [DATA_SIZE-1:0]                     biasData;
     // AXIS Interface
     input                                   axisif_start;
     output                                  axisif_done;
-    output      [$clog2(IN_COUNT)-1:0]      axisif_bufferIn_adr;
+    output      [clogb2(IN_COUNT)-1:0]      axisif_bufferIn_adr;
     input       [DATA_SIZE-1:0]             axisif_bufferIn_data;
-    output      [$clog2(OUT_COUNT)-1:0]     axisif_bufferOut_adr;
+    output      [clogb2(OUT_COUNT)-1:0]     axisif_bufferOut_adr;
     output      [DATA_SIZE-1:0]             axisif_bufferOut_data;
     output                                  axisif_bufferOut_wr;
     

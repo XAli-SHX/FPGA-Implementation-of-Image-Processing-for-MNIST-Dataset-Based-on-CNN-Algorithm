@@ -24,6 +24,13 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     axisif_bufferOut_adr
 );
 
+    function integer clogb2 (input integer bit_depth);                                   
+	  begin                                                                              
+	    for(clogb2=0; bit_depth>0; clogb2=clogb2+1)                                      
+	      bit_depth = bit_depth >> 1;                                                    
+	  end                                                                                
+	endfunction
+
     input clk, rst;
     // Controll signals
     input clear;
@@ -37,20 +44,20 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     output calcDone;
     output putData;
     // Weights and biases external LUT
-    output  [$clog2(IN_COUNT*OUT_COUNT)-1:0]    weightAdr;
+    output  [clogb2(IN_COUNT*OUT_COUNT)-1:0]    weightAdr;
     input   [DATA_SIZE-1:0]                     weightData;
-    input   [$clog2(OUT_COUNT)-1:0]             biasAdr;
+    input   [clogb2(OUT_COUNT)-1:0]             biasAdr;
     input   [DATA_SIZE-1:0]                     biasData;
     // AXIS interface
     input    [DATA_SIZE-1:0]             axisif_bufferIn_data;
-    output   [$clog2(IN_COUNT)-1:0]      axisif_bufferIn_adr;
+    output   [clogb2(IN_COUNT)-1:0]      axisif_bufferIn_adr;
     output   [DATA_SIZE-1:0]             axisif_bufferOut_data;
-    output   [$clog2(OUT_COUNT)-1:0]     axisif_bufferOut_adr;
+    output   [clogb2(OUT_COUNT)-1:0]     axisif_bufferOut_adr;
 
 
     // Generate index of all inputs in range 0..IN_COUNT
     wire inputIndexGenerator_co;
-    wire [$clog2(IN_COUNT)-1:0] inputIndexGenerator_cnt;
+    wire [clogb2(IN_COUNT)-1:0] inputIndexGenerator_cnt;
     LoopCounter #(IN_COUNT) inputIndexGenerator (
         .clk(clk), 
         .rst(rst),
@@ -66,7 +73,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
 
     // Generate index of all outputs in range 0..OUT_COUNT
     wire outputIndexGenerator_co;
-    wire [$clog2(OUT_COUNT)-1:0] outputIndexGenerator_cnt;
+    wire [clogb2(OUT_COUNT)-1:0] outputIndexGenerator_cnt;
     LoopCounter #(OUT_COUNT) outputIndexGenerator (
         .clk(clk), 
         .rst(rst),
