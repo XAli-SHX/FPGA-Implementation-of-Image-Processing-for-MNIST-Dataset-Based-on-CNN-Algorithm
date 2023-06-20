@@ -106,7 +106,7 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     wire [CALC_DATA_SIZE-1:0] mul_prod;
     FixedPointMultiplier #(.WIDTH(CALC_DATA_SIZE), .FRAC_SIZE(30)) mul (
         .data0(signExtened_axisif_bufferIn_data),
-        .data1(weightData),
+        .data1(signExtened_weightData),
         .prod(mul_prod)
     );
 
