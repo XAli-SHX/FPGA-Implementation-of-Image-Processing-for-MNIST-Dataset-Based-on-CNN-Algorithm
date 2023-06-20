@@ -8,7 +8,7 @@ module <<module_name>> (
     localparam WORD_SIZE = <<word_size>>, LENGTH_SIZE = <<length_size>>;
 
     localparam ADR_SIZE = $clog2(LENGTH_SIZE);
-    input                   clk, wr;
+    input                   clk;
     input   [ADR_SIZE-1:0]  adr;
     input   [WORD_SIZE-1:0] dataIn;
     output  [WORD_SIZE-1:0] dataOut;

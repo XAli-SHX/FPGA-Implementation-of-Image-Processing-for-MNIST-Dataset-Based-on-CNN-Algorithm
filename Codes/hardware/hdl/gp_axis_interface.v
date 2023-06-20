@@ -1,4 +1,10 @@
-module GpAxisInterface #(parameter DATA_WIDTH=32, IN_DATA_NUM=8, OUT_DATA_NUM=4) (
+module GpAxisInterface #(parameter 
+	DATA_WIDTH=32, 
+	IN_DATA_NUM=8, 
+	OUT_DATA_NUM=4, 
+	IN_ADR_WIDTH = 8, 
+	OUT_ADR_WIDTH = 8
+) (
 	// Base signals
 	clk,
 	rst_n,
@@ -21,19 +27,6 @@ module GpAxisInterface #(parameter DATA_WIDTH=32, IN_DATA_NUM=8, OUT_DATA_NUM=4)
 	axisif_bufferOut_data,
 	axisif_bufferOut_wr
 );
-
-	function integer clogb2 (input integer bit_depth);                                   
-		begin                                                                              
-			for(clogb2=0; bit_depth>0; clogb2=clogb2+1)                                      
-			bit_depth = bit_depth >> 1;                                                    
-		end                                                                                
-	endfunction
-
-	////// PARAMS
-	localparam					IN_ADR_WIDTH		= clogb2(IN_DATA_NUM);
-	localparam					OUT_ADR_WIDTH		= clogb2(OUT_DATA_NUM);
-
-
 
 	////// IO SIGNALS
 
@@ -136,7 +129,7 @@ module GpAxisInterface #(parameter DATA_WIDTH=32, IN_DATA_NUM=8, OUT_DATA_NUM=4)
 				WAIT		= 3,
 				MASTER		= 4,
 				STATES		= 5;
-	localparam	STATE_WIDTH	= clogb2(STATES);
+	localparam	STATE_WIDTH	= 3;
 
 	// State variables
 	reg	[STATE_WIDTH-1:0]	ps;

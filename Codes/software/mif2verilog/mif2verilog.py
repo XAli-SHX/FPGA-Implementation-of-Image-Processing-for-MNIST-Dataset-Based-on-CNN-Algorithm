@@ -20,7 +20,7 @@ def convert(module_name, word_size: int, length_size: int, name, dir):
 
     mem_code = ""
     for index, mem in enumerate(mem_values):
-        mem_code += f"   assign mem[{word_size * (index + 1) - 1}:{word_size * (index)}] = {word_size}'b{mem};\n"
+        mem_code += f"   assign mem[{index}] = {word_size}'b{mem};\n"
     raw_verilog = raw_verilog.replace("<<mem_values>>", mem_code)
 
     with open(f"out/{pascal2snake(module_name)}.v", "w") as fp:

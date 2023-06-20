@@ -1,4 +1,4 @@
-module Multiplier #(parameter IN, OUT) (
+module Multiplier #(parameter IN = 32, OUT = 32) (
     data0,
     data1,
     prod

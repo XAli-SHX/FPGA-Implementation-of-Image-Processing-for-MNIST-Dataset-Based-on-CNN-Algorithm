@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-//Date        : Thu Jun 15 15:56:17 2023
+//Date        : Tue Jun 20 23:14:38 2023
 //Host        : DESKTOP-18V1G5L running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=11,numReposBlks=9,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=0,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=3,da_clkrst_cnt=2,da_ps7_cnt=1,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=15,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=9,da_board_cnt=1,da_clkrst_cnt=8,da_ps7_cnt=3,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (DDR_addr,
     DDR_ba,
@@ -54,6 +54,21 @@ module design_1
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_PORB" *) inout FIXED_IO_ps_porb;
   (* X_INTERFACE_INFO = "xilinx.com:display_processing_system7:fixedio:1.0 FIXED_IO PS_SRSTB" *) inout FIXED_IO_ps_srstb;
 
+  wire [31:0]DenseBiasLut_0_dataOut;
+  wire [31:0]DenseWeightLut_0_dataOut;
+  wire [3:0]Dense_0_axisif_bufferIn_adr;
+  wire [10:0]Dense_0_axisif_bufferOut_adr;
+  wire [31:0]Dense_0_axisif_bufferOut_data;
+  wire Dense_0_axisif_bufferOut_wr;
+  wire Dense_0_axisif_done;
+  wire [3:0]Dense_0_biasAdr;
+  wire [13:0]Dense_0_weightAdr;
+  wire [31:0]GpAxisInterface_0_M_AXIS_TDATA;
+  wire GpAxisInterface_0_M_AXIS_TLAST;
+  wire GpAxisInterface_0_M_AXIS_TREADY;
+  wire GpAxisInterface_0_M_AXIS_TVALID;
+  wire [31:0]GpAxisInterface_0_axisif_bufferIn_data;
+  wire GpAxisInterface_0_axisif_start;
   wire [31:0]axi_dma_0_M_AXIS_MM2S_TDATA;
   wire [3:0]axi_dma_0_M_AXIS_MM2S_TKEEP;
   wire axi_dma_0_M_AXIS_MM2S_TLAST;
@@ -101,10 +116,10 @@ module design_1
   wire axi_smc_1_M00_AXI_BREADY;
   wire [1:0]axi_smc_1_M00_AXI_BRESP;
   wire axi_smc_1_M00_AXI_BVALID;
-  wire [31:0]axi_smc_1_M00_AXI_WDATA;
+  wire [63:0]axi_smc_1_M00_AXI_WDATA;
   wire axi_smc_1_M00_AXI_WLAST;
   wire axi_smc_1_M00_AXI_WREADY;
-  wire [3:0]axi_smc_1_M00_AXI_WSTRB;
+  wire [7:0]axi_smc_1_M00_AXI_WSTRB;
   wire axi_smc_1_M00_AXI_WVALID;
   wire [31:0]axi_smc_M00_AXI_ARADDR;
   wire [1:0]axi_smc_M00_AXI_ARBURST;
@@ -116,16 +131,11 @@ module design_1
   wire axi_smc_M00_AXI_ARREADY;
   wire [2:0]axi_smc_M00_AXI_ARSIZE;
   wire axi_smc_M00_AXI_ARVALID;
-  wire [31:0]axi_smc_M00_AXI_RDATA;
+  wire [63:0]axi_smc_M00_AXI_RDATA;
   wire axi_smc_M00_AXI_RLAST;
   wire axi_smc_M00_AXI_RREADY;
   wire [1:0]axi_smc_M00_AXI_RRESP;
   wire axi_smc_M00_AXI_RVALID;
-  wire [31:0]axis_buffer_0_M00_AXIS_TDATA;
-  wire axis_buffer_0_M00_AXIS_TLAST;
-  wire axis_buffer_0_M00_AXIS_TREADY;
-  wire [3:0]axis_buffer_0_M00_AXIS_TSTRB;
-  wire axis_buffer_0_M00_AXIS_TVALID;
   wire [31:0]axis_data_fifo_0_M_AXIS_TDATA;
   wire axis_data_fifo_0_M_AXIS_TLAST;
   wire axis_data_fifo_0_M_AXIS_TREADY;
@@ -134,6 +144,7 @@ module design_1
   wire axis_data_fifo_1_M_AXIS_TLAST;
   wire axis_data_fifo_1_M_AXIS_TREADY;
   wire axis_data_fifo_1_M_AXIS_TVALID;
+  wire inverter_0_out;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -213,6 +224,46 @@ module design_1
   wire ps7_0_axi_periph_M00_AXI_WVALID;
   wire [0:0]rst_ps7_0_100M_peripheral_aresetn;
 
+  design_1_DenseBiasLut_0_0 DenseBiasLut_0
+       (.adr(Dense_0_biasAdr),
+        .clk(processing_system7_0_FCLK_CLK0),
+        .dataOut(DenseBiasLut_0_dataOut));
+  design_1_DenseWeightLut_0_0 DenseWeightLut_0
+       (.adr(Dense_0_weightAdr),
+        .clk(processing_system7_0_FCLK_CLK0),
+        .dataOut(DenseWeightLut_0_dataOut));
+  design_1_Dense_0_0 Dense_0
+       (.axisif_bufferIn_adr(Dense_0_axisif_bufferIn_adr),
+        .axisif_bufferIn_data(GpAxisInterface_0_axisif_bufferIn_data),
+        .axisif_bufferOut_adr(Dense_0_axisif_bufferOut_adr),
+        .axisif_bufferOut_data(Dense_0_axisif_bufferOut_data),
+        .axisif_bufferOut_wr(Dense_0_axisif_bufferOut_wr),
+        .axisif_done(Dense_0_axisif_done),
+        .axisif_start(GpAxisInterface_0_axisif_start),
+        .biasAdr(Dense_0_biasAdr),
+        .biasData(DenseBiasLut_0_dataOut),
+        .clk(processing_system7_0_FCLK_CLK0),
+        .rst(inverter_0_out),
+        .weightAdr(Dense_0_weightAdr),
+        .weightData(DenseWeightLut_0_dataOut));
+  design_1_GpAxisInterface_0_0 GpAxisInterface_0
+       (.axisif_bufferIn_adr(Dense_0_axisif_bufferIn_adr),
+        .axisif_bufferIn_data(GpAxisInterface_0_axisif_bufferIn_data),
+        .axisif_bufferOut_adr(Dense_0_axisif_bufferOut_adr),
+        .axisif_bufferOut_data(Dense_0_axisif_bufferOut_data),
+        .axisif_bufferOut_wr(Dense_0_axisif_bufferOut_wr),
+        .axisif_done(Dense_0_axisif_done),
+        .axisif_start(GpAxisInterface_0_axisif_start),
+        .clk(processing_system7_0_FCLK_CLK0),
+        .m_data(GpAxisInterface_0_M_AXIS_TDATA),
+        .m_last(GpAxisInterface_0_M_AXIS_TLAST),
+        .m_ready(GpAxisInterface_0_M_AXIS_TREADY),
+        .m_valid(GpAxisInterface_0_M_AXIS_TVALID),
+        .rst_n(rst_ps7_0_100M_peripheral_aresetn),
+        .s_data(axis_data_fifo_0_M_AXIS_TDATA),
+        .s_last(axis_data_fifo_0_M_AXIS_TLAST),
+        .s_ready(axis_data_fifo_0_M_AXIS_TREADY),
+        .s_valid(axis_data_fifo_0_M_AXIS_TVALID));
   design_1_axi_dma_0_0 axi_dma_0
        (.axi_resetn(rst_ps7_0_100M_peripheral_aresetn),
         .m_axi_mm2s_aclk(processing_system7_0_FCLK_CLK0),
@@ -345,28 +396,13 @@ module design_1
         .S00_AXI_wvalid(axi_dma_0_M_AXI_S2MM_WVALID),
         .aclk(processing_system7_0_FCLK_CLK0),
         .aresetn(rst_ps7_0_100M_peripheral_aresetn));
-  design_1_axis_buffer_0_0 axis_buffer_0
-       (.m00_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .m00_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
-        .m00_axis_tdata(axis_buffer_0_M00_AXIS_TDATA),
-        .m00_axis_tlast(axis_buffer_0_M00_AXIS_TLAST),
-        .m00_axis_tready(axis_buffer_0_M00_AXIS_TREADY),
-        .m00_axis_tstrb(axis_buffer_0_M00_AXIS_TSTRB),
-        .m00_axis_tvalid(axis_buffer_0_M00_AXIS_TVALID),
-        .s00_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .s00_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
-        .s00_axis_tdata(axis_data_fifo_0_M_AXIS_TDATA),
-        .s00_axis_tlast(axis_data_fifo_0_M_AXIS_TLAST),
-        .s00_axis_tready(axis_data_fifo_0_M_AXIS_TREADY),
-        .s00_axis_tstrb({1'b1,1'b1,1'b1,1'b1}),
-        .s00_axis_tvalid(axis_data_fifo_0_M_AXIS_TVALID));
   design_1_axis_data_fifo_0_0 axis_data_fifo_0
        (.m_axis_tdata(axis_data_fifo_0_M_AXIS_TDATA),
         .m_axis_tlast(axis_data_fifo_0_M_AXIS_TLAST),
         .m_axis_tready(axis_data_fifo_0_M_AXIS_TREADY),
         .m_axis_tvalid(axis_data_fifo_0_M_AXIS_TVALID),
         .s_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .s_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
+        .s_axis_aresetn(1'b0),
         .s_axis_tdata(axi_dma_0_M_AXIS_MM2S_TDATA),
         .s_axis_tkeep(axi_dma_0_M_AXIS_MM2S_TKEEP),
         .s_axis_tlast(axi_dma_0_M_AXIS_MM2S_TLAST),
@@ -378,13 +414,15 @@ module design_1
         .m_axis_tready(axis_data_fifo_1_M_AXIS_TREADY),
         .m_axis_tvalid(axis_data_fifo_1_M_AXIS_TVALID),
         .s_axis_aclk(processing_system7_0_FCLK_CLK0),
-        .s_axis_aresetn(rst_ps7_0_100M_peripheral_aresetn),
-        .s_axis_tdata(axis_buffer_0_M00_AXIS_TDATA),
-        .s_axis_tlast(axis_buffer_0_M00_AXIS_TLAST),
-        .s_axis_tready(axis_buffer_0_M00_AXIS_TREADY),
-        .s_axis_tstrb(axis_buffer_0_M00_AXIS_TSTRB),
-        .s_axis_tvalid(axis_buffer_0_M00_AXIS_TVALID));
-  design_1_processing_system7_0_0 processing_system7_0
+        .s_axis_aresetn(1'b0),
+        .s_axis_tdata(GpAxisInterface_0_M_AXIS_TDATA),
+        .s_axis_tlast(GpAxisInterface_0_M_AXIS_TLAST),
+        .s_axis_tready(GpAxisInterface_0_M_AXIS_TREADY),
+        .s_axis_tvalid(GpAxisInterface_0_M_AXIS_TVALID));
+  design_1_inverter_0_0 inverter_0
+       (.din(rst_ps7_0_100M_peripheral_aresetn),
+        .dout(inverter_0_out));
+  design_1_processing_system7_0_2 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),
         .DDR_CAS_n(DDR_cas_n),
@@ -467,7 +505,7 @@ module design_1
         .S_AXI_HP0_AWLOCK({1'b0,1'b0}),
         .S_AXI_HP0_AWPROT({1'b0,1'b0,1'b0}),
         .S_AXI_HP0_AWQOS({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_HP0_AWSIZE({1'b0,1'b1,1'b0}),
+        .S_AXI_HP0_AWSIZE({1'b0,1'b1,1'b1}),
         .S_AXI_HP0_AWVALID(1'b0),
         .S_AXI_HP0_BREADY(1'b0),
         .S_AXI_HP0_RDATA(axi_smc_M00_AXI_RDATA),
@@ -476,46 +514,46 @@ module design_1
         .S_AXI_HP0_RREADY(axi_smc_M00_AXI_RREADY),
         .S_AXI_HP0_RRESP(axi_smc_M00_AXI_RRESP),
         .S_AXI_HP0_RVALID(axi_smc_M00_AXI_RVALID),
-        .S_AXI_HP0_WDATA({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .S_AXI_HP0_WDATA({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .S_AXI_HP0_WID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
         .S_AXI_HP0_WLAST(1'b0),
         .S_AXI_HP0_WRISSUECAP1_EN(1'b0),
-        .S_AXI_HP0_WSTRB({1'b1,1'b1,1'b1,1'b1}),
+        .S_AXI_HP0_WSTRB({1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1,1'b1}),
         .S_AXI_HP0_WVALID(1'b0),
-        .S_AXI_HP1_ACLK(processing_system7_0_FCLK_CLK0),
-        .S_AXI_HP1_ARADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_HP1_ARBURST({1'b0,1'b1}),
-        .S_AXI_HP1_ARCACHE({1'b0,1'b0,1'b1,1'b1}),
-        .S_AXI_HP1_ARID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_HP1_ARLEN({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_HP1_ARLOCK({1'b0,1'b0}),
-        .S_AXI_HP1_ARPROT({1'b0,1'b0,1'b0}),
-        .S_AXI_HP1_ARQOS({1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_HP1_ARSIZE({1'b0,1'b1,1'b0}),
-        .S_AXI_HP1_ARVALID(1'b0),
-        .S_AXI_HP1_AWADDR(axi_smc_1_M00_AXI_AWADDR),
-        .S_AXI_HP1_AWBURST(axi_smc_1_M00_AXI_AWBURST),
-        .S_AXI_HP1_AWCACHE(axi_smc_1_M00_AXI_AWCACHE),
-        .S_AXI_HP1_AWID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_HP1_AWLEN(axi_smc_1_M00_AXI_AWLEN),
-        .S_AXI_HP1_AWLOCK(axi_smc_1_M00_AXI_AWLOCK),
-        .S_AXI_HP1_AWPROT(axi_smc_1_M00_AXI_AWPROT),
-        .S_AXI_HP1_AWQOS(axi_smc_1_M00_AXI_AWQOS),
-        .S_AXI_HP1_AWREADY(axi_smc_1_M00_AXI_AWREADY),
-        .S_AXI_HP1_AWSIZE(axi_smc_1_M00_AXI_AWSIZE),
-        .S_AXI_HP1_AWVALID(axi_smc_1_M00_AXI_AWVALID),
-        .S_AXI_HP1_BREADY(axi_smc_1_M00_AXI_BREADY),
-        .S_AXI_HP1_BRESP(axi_smc_1_M00_AXI_BRESP),
-        .S_AXI_HP1_BVALID(axi_smc_1_M00_AXI_BVALID),
-        .S_AXI_HP1_RDISSUECAP1_EN(1'b0),
-        .S_AXI_HP1_RREADY(1'b0),
-        .S_AXI_HP1_WDATA(axi_smc_1_M00_AXI_WDATA),
-        .S_AXI_HP1_WID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
-        .S_AXI_HP1_WLAST(axi_smc_1_M00_AXI_WLAST),
-        .S_AXI_HP1_WREADY(axi_smc_1_M00_AXI_WREADY),
-        .S_AXI_HP1_WRISSUECAP1_EN(1'b0),
-        .S_AXI_HP1_WSTRB(axi_smc_1_M00_AXI_WSTRB),
-        .S_AXI_HP1_WVALID(axi_smc_1_M00_AXI_WVALID),
+        .S_AXI_HP2_ACLK(processing_system7_0_FCLK_CLK0),
+        .S_AXI_HP2_ARADDR({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .S_AXI_HP2_ARBURST({1'b0,1'b1}),
+        .S_AXI_HP2_ARCACHE({1'b0,1'b0,1'b1,1'b1}),
+        .S_AXI_HP2_ARID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .S_AXI_HP2_ARLEN({1'b0,1'b0,1'b0,1'b0}),
+        .S_AXI_HP2_ARLOCK({1'b0,1'b0}),
+        .S_AXI_HP2_ARPROT({1'b0,1'b0,1'b0}),
+        .S_AXI_HP2_ARQOS({1'b0,1'b0,1'b0,1'b0}),
+        .S_AXI_HP2_ARSIZE({1'b0,1'b1,1'b1}),
+        .S_AXI_HP2_ARVALID(1'b0),
+        .S_AXI_HP2_AWADDR(axi_smc_1_M00_AXI_AWADDR),
+        .S_AXI_HP2_AWBURST(axi_smc_1_M00_AXI_AWBURST),
+        .S_AXI_HP2_AWCACHE(axi_smc_1_M00_AXI_AWCACHE),
+        .S_AXI_HP2_AWID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .S_AXI_HP2_AWLEN(axi_smc_1_M00_AXI_AWLEN),
+        .S_AXI_HP2_AWLOCK(axi_smc_1_M00_AXI_AWLOCK),
+        .S_AXI_HP2_AWPROT(axi_smc_1_M00_AXI_AWPROT),
+        .S_AXI_HP2_AWQOS(axi_smc_1_M00_AXI_AWQOS),
+        .S_AXI_HP2_AWREADY(axi_smc_1_M00_AXI_AWREADY),
+        .S_AXI_HP2_AWSIZE(axi_smc_1_M00_AXI_AWSIZE),
+        .S_AXI_HP2_AWVALID(axi_smc_1_M00_AXI_AWVALID),
+        .S_AXI_HP2_BREADY(axi_smc_1_M00_AXI_BREADY),
+        .S_AXI_HP2_BRESP(axi_smc_1_M00_AXI_BRESP),
+        .S_AXI_HP2_BVALID(axi_smc_1_M00_AXI_BVALID),
+        .S_AXI_HP2_RDISSUECAP1_EN(1'b0),
+        .S_AXI_HP2_RREADY(1'b0),
+        .S_AXI_HP2_WDATA(axi_smc_1_M00_AXI_WDATA),
+        .S_AXI_HP2_WID({1'b0,1'b0,1'b0,1'b0,1'b0,1'b0}),
+        .S_AXI_HP2_WLAST(axi_smc_1_M00_AXI_WLAST),
+        .S_AXI_HP2_WREADY(axi_smc_1_M00_AXI_WREADY),
+        .S_AXI_HP2_WRISSUECAP1_EN(1'b0),
+        .S_AXI_HP2_WSTRB(axi_smc_1_M00_AXI_WSTRB),
+        .S_AXI_HP2_WVALID(axi_smc_1_M00_AXI_WVALID),
         .USB0_VBUS_PWRFAULT(1'b0));
   design_1_ps7_0_axi_periph_0 ps7_0_axi_periph
        (.ACLK(processing_system7_0_FCLK_CLK0),
@@ -578,7 +616,7 @@ module design_1
         .S00_AXI_wready(processing_system7_0_M_AXI_GP0_WREADY),
         .S00_AXI_wstrb(processing_system7_0_M_AXI_GP0_WSTRB),
         .S00_AXI_wvalid(processing_system7_0_M_AXI_GP0_WVALID));
-  design_1_rst_ps7_0_100M_0 rst_ps7_0_100M
+  design_1_rst_ps7_0_100M_1 rst_ps7_0_100M
        (.aux_reset_in(1'b1),
         .dcm_locked(1'b1),
         .ext_reset_in(processing_system7_0_FCLK_RESET0_N),
