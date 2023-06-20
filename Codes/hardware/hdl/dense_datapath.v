@@ -93,9 +93,19 @@ module DenseDatapath #(parameter IN_COUNT, OUT_COUNT, DATA_SIZE) (
     localparam CALC_DATA_SIZE = DATA_SIZE * IN_COUNT + OUT_COUNT; // TODO: check if this is correct
 
     // Multiply inputs by weights
+    wire [CALC_DATA_SIZE-1:0] signExtened_axisif_bufferIn_data;
+    wire [CALC_DATA_SIZE-1:0] signExtened_weightData;
+    assign signExtened_axisif_bufferIn_data = {
+        {(CALC_DATA_SIZE-DATA_SIZE){axisif_bufferIn_data[DATA_SIZE-1]}}, 
+        axisif_bufferIn_data
+    };
+    assign signExtened_weightData = {
+        {(CALC_DATA_SIZE-DATA_SIZE){weightData[DATA_SIZE-1]}},
+        weightData
+    };
     wire [CALC_DATA_SIZE-1:0] mul_prod;
-    Multiplier #(DATA_SIZE, CALC_DATA_SIZE) mul (
-        .data0(axisif_bufferIn_data),
+    FixedPointMultiplier #(.WIDTH(CALC_DATA_SIZE), .FRAC_SIZE(30)) mul (
+        .data0(signExtened_axisif_bufferIn_data),
         .data1(weightData),
         .prod(mul_prod)
     );
