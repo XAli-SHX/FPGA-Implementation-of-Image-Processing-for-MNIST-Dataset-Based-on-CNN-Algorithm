@@ -222,7 +222,7 @@ assign bufferIn_in_data		=	s_data;
 
 // Output Buffer inputs
 assign bufferOut_in_adr		=	cu_out_workingWithBuffers ? cntOutAdr_out_val : axisif_bufferOut_adr;
-assign bufferOut_in_wr		=	cu_out_workingWithBuffers ? cu_out_wr : axisif_bufferOut_wr;
+assign bufferOut_in_wr		=	axisif_bufferOut_wr;
 assign bufferOut_in_data	=	axisif_bufferOut_data;
 
 // Input Address Counter input
