@@ -108,4 +108,4 @@ def train(hidden_units):
 
 
 if __name__ == "__main__":
-    train(hidden_units=1000)
+    train(hidden_units=100)

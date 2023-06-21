@@ -28,7 +28,7 @@ def loadImage(path) -> list:
     return pixels
 
 
-def predict(model, img: list, printOutputs: bool = False) -> int:
+def predict(model, img: list, printOutputs: bool = False):
     print(model)
     num = model.predict(img)[0]
     if printOutputs:
@@ -42,12 +42,18 @@ def predict(model, img: list, printOutputs: bool = False) -> int:
         if num[i] > maxVal:
             maxVal = num[i]
             maxIndex = i
-    return maxIndex
+    return maxIndex, maxVal
 
 
 def main():
     model = loadModel(path="mnist_model")
-    img = loadImage(path="tests/handwrite_black_pixel28x28/img5.png")
+    model.summary()
+    for i in range(10):
+        print(f'number {i}:')
+        img = loadImage(path=f"tests/handwrite_blue_thicker/img{i}.png")
+        num, acc = predict(model, img, True)
+        print(f"    num = {num}")
+        print(f"    acc = {acc}")
 
     # from keras.datasets import mnist
     # (x_train, y_train), (x_test, y_test) = mnist.load_data()
@@ -57,8 +63,7 @@ def main():
     # norm_test = flat_test.astype('float32') / 255
     # sample = norm_test[0].reshape([1, -1])
 
-    num = predict(model, img, True)
-    print(f"predicted number = {num}")
+    
     # img = loadImage(path="tests/handwrite_blue/img9.png")
     # num = predict(model, img)
     # print(f"predicted number = {num}")
