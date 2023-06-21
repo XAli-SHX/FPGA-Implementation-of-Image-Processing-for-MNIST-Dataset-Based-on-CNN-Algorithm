@@ -20,10 +20,10 @@
       "axi_smc": "",
       "axi_smc_1": "",
       "xlslice_start": "",
-      "axis_buffer_0": "",
       "my_zero_0": "",
       "xlconcat_0": "",
-      "my_zero_1": ""
+      "my_zero_1": "",
+      "axis_buffer_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -1886,16 +1886,16 @@
           }
         },
         "interface_nets": {
-          "ps7_0_axi_periph_to_s00_couplers": {
-            "interface_ports": [
-              "S00_AXI",
-              "s00_couplers/S_AXI"
-            ]
-          },
           "s00_couplers_to_ps7_0_axi_periph": {
             "interface_ports": [
               "M00_AXI",
               "s00_couplers/M_AXI"
+            ]
+          },
+          "ps7_0_axi_periph_to_s00_couplers": {
+            "interface_ports": [
+              "S00_AXI",
+              "s00_couplers/S_AXI"
             ]
           }
         },
@@ -1989,10 +1989,6 @@
           }
         }
       },
-      "axis_buffer_0": {
-        "vlnv": "xilinx.com:user:axis_buffer:1.0",
-        "xci_name": "design_1_axis_buffer_0_0"
-      },
       "my_zero_0": {
         "vlnv": "xilinx.com:module_ref:my_zero:1.0",
         "xci_name": "design_1_my_zero_0_0",
@@ -2043,6 +2039,10 @@
             "right": "0"
           }
         }
+      },
+      "axis_buffer_0": {
+        "vlnv": "xilinx.com:user:axis_buffer:1.0",
+        "xci_name": "design_1_axis_buffer_0_0"
       }
     },
     "interface_nets": {
@@ -2082,16 +2082,16 @@
           "processing_system7_0/S_AXI_HP0"
         ]
       },
-      "ps7_0_axi_periph_M00_AXI": {
-        "interface_ports": [
-          "ps7_0_axi_periph/M00_AXI",
-          "axi_dma_0/S_AXI_LITE"
-        ]
-      },
       "axi_dma_0_M_AXI_MM2S": {
         "interface_ports": [
           "axi_dma_0/M_AXI_MM2S",
           "axi_smc/S00_AXI"
+        ]
+      },
+      "axis_buffer_0_M00_AXIS": {
+        "interface_ports": [
+          "axi_dma_0/S_AXIS_S2MM",
+          "axis_buffer_0/M00_AXIS"
         ]
       },
       "axi_dma_0_M_AXIS_MM2S": {
@@ -2100,10 +2100,10 @@
           "axi_dma_0/M_AXIS_MM2S"
         ]
       },
-      "axis_buffer_0_M00_AXIS": {
+      "ps7_0_axi_periph_M00_AXI": {
         "interface_ports": [
-          "axi_dma_0/S_AXIS_S2MM",
-          "axis_buffer_0/M00_AXIS"
+          "ps7_0_axi_periph/M00_AXI",
+          "axi_dma_0/S_AXI_LITE"
         ]
       }
     },

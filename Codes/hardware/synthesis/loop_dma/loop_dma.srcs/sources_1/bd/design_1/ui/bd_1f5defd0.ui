@@ -11,12 +11,12 @@ preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -x 200 -y 420 -defaultsOSRD
 preplace inst axi_smc -pg 1 -lvl 4 -x 1180 -y 330 -defaultsOSRD
 preplace inst axi_smc_1 -pg 1 -lvl 4 -x 1180 -y 160 -defaultsOSRD
 preplace inst xlslice_start -pg 1 -lvl 1 -x 200 -y 560 -defaultsOSRD
-preplace inst axis_buffer_0 -pg 1 -lvl 2 -x 530 -y 410 -defaultsOSRD
 preplace inst my_zero_0 -pg 1 -lvl 2 -x 530 -y 540 -defaultsOSRD
 preplace inst xlconcat_0 -pg 1 -lvl 3 -x 850 -y 560 -defaultsOSRD
 preplace inst my_zero_1 -pg 1 -lvl 2 -x 530 -y 640 -defaultsOSRD
-preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 20 620 380 250 670 60 1030 240 1330 310 1760
-preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 6 10 320 NJ 320 NJ 320 1050J 250 1310J 320 1750
+preplace inst axis_buffer_0 -pg 1 -lvl 2 -x 530 -y 410 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 6 20 620 380 250 670 60 1030 240 1330 300 1760
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 6 10 320 NJ 320 NJ 320 1050J 250 1310J 310 1750
 preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 3 370 260 690 300 1040
 preplace netloc processing_system7_0_GPIO_O 1 0 6 30 700 NJ 700 NJ 700 NJ 700 NJ 700 1770
 preplace netloc xlslice_start_Dout 1 1 1 390J 440n
@@ -24,14 +24,14 @@ preplace netloc xlconcat_0_dout 1 3 3 NJ 560 NJ 560 1780
 preplace netloc axis_buffer_0_ex_startAck 1 2 1 680 420n
 preplace netloc my_zero_1_zero_out 1 2 1 680J 580n
 preplace netloc my_zero_0_zero_out 1 2 1 NJ 540
-preplace netloc processing_system7_0_DDR 1 5 1 1790J 140n
+preplace netloc processing_system7_0_DDR 1 5 1 NJ 140
 preplace netloc axi_smc_1_M00_AXI 1 4 1 N 160
-preplace netloc processing_system7_0_M_AXI_GP0 1 1 5 370 10 NJ 10 NJ 10 NJ 10 1750
-preplace netloc processing_system7_0_FIXED_IO 1 5 1 NJ 170
-preplace netloc axi_smc_M00_AXI 1 4 1 1320 140n
 preplace netloc axi_dma_0_M_AXI_S2MM 1 3 1 N 140
-preplace netloc axi_dma_0_M_AXI_MM2S 1 3 1 1020 120n
+preplace netloc processing_system7_0_M_AXI_GP0 1 1 5 370 10 NJ 10 NJ 10 NJ 10 1750
+preplace netloc processing_system7_0_FIXED_IO 1 5 1 1790J 160n
+preplace netloc axi_smc_M00_AXI 1 4 1 1320 140n
 preplace netloc ps7_0_axi_periph_M00_AXI 1 2 1 N 130
+preplace netloc axi_dma_0_M_AXI_MM2S 1 3 1 1020 120n
 preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 3 390 310 NJ 310 1010
 preplace netloc axis_buffer_0_M00_AXIS 1 2 1 680 150n
 levelinfo -pg 1 -10 200 530 850 1180 1540 1810

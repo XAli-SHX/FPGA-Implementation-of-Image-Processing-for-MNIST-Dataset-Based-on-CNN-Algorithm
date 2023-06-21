@@ -1,4 +1,4 @@
-module AxisBuffer #(parameter DATAWIDTH=32, NUMOFDATA=8, WAITCYCLES=5) (
+module AxisBuffer #(parameter DATAWIDTH=32, NUMOFDATA=784, WAITCYCLES=5) (
 	// Base signals
 	clk,
 	rst_n,

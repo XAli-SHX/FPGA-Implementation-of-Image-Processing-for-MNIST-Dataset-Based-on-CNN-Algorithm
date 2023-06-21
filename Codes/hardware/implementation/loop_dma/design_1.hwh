@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Fri Jun 16 21:00:11 2023" VIVADOVERSION="2019.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 21 23:08:49 2023" VIVADOVERSION="2019.1">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -2117,7 +2117,7 @@
         </BUSINTERFACE>
       </BUSINTERFACES>
     </MODULE>
-    <MODULE COREREVISION="3" FULLNAME="/axis_buffer_0" HWVERSION="1.0" INSTANCE="axis_buffer_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axis_buffer" VLNV="xilinx.com:user:axis_buffer:1.0">
+    <MODULE COREREVISION="4" FULLNAME="/axis_buffer_0" HWVERSION="1.0" INSTANCE="axis_buffer_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="axis_buffer" VLNV="xilinx.com:user:axis_buffer:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
         <PARAMETER NAME="DATAWIDTH" VALUE="32"/>

@@ -151,7 +151,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>faa17685</spirit:value>
+            <spirit:value>8ebe1069</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -167,7 +167,7 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>viewChecksum</spirit:name>
-            <spirit:value>faa17685</spirit:value>
+            <spirit:value>8ebe1069</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -397,29 +397,13 @@
       <spirit:file>
         <spirit:name>hdl/axis_buffer_v1_0.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/axis_buffer_v1_0_M00_AXIS.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/axis_buffer_v1_0_S00_AXIS.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-        <spirit:userFileType>CHECKSUM_15071b7c</spirit:userFileType>
+        <spirit:userFileType>CHECKSUM_8ebe1069</spirit:userFileType>
       </spirit:file>
     </spirit:fileSet>
     <spirit:fileSet>
       <spirit:name>xilinx_verilogbehavioralsimulation_view_fileset</spirit:name>
       <spirit:file>
         <spirit:name>hdl/axis_buffer_v1_0.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/axis_buffer_v1_0_M00_AXIS.v</spirit:name>
-        <spirit:fileType>verilogSource</spirit:fileType>
-      </spirit:file>
-      <spirit:file>
-        <spirit:name>hdl/axis_buffer_v1_0_S00_AXIS.v</spirit:name>
         <spirit:fileType>verilogSource</spirit:fileType>
       </spirit:file>
     </spirit:fileSet>
@@ -471,8 +455,8 @@
         <xilinx:taxonomy>AXI_Peripheral</xilinx:taxonomy>
       </xilinx:taxonomies>
       <xilinx:displayName>axis_buffer</xilinx:displayName>
-      <xilinx:coreRevision>3</xilinx:coreRevision>
-      <xilinx:coreCreationDateTime>2023-06-16T16:53:52Z</xilinx:coreCreationDateTime>
+      <xilinx:coreRevision>4</xilinx:coreRevision>
+      <xilinx:coreCreationDateTime>2023-06-21T19:38:23Z</xilinx:coreCreationDateTime>
       <xilinx:tags>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@318ea8b1_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@677b9dfc_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
@@ -505,12 +489,23 @@
         <xilinx:tag xilinx:name="ui.data.coregen.dd@73be15f_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@789813e9_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
         <xilinx:tag xilinx:name="ui.data.coregen.dd@1dc488ef_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@73bfcd05_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@55262a34_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3e295761_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@730071a8_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@7bb6566e_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4972a29a_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@2b5f4731_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@4d9fc0ee_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@71b1eb9d_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@457eaaa8_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
+        <xilinx:tag xilinx:name="ui.data.coregen.dd@3ca7d972_ARCHIVE_LOCATION">v:/ip_repo/axis_buffer_1.0</xilinx:tag>
       </xilinx:tags>
     </xilinx:coreExtensions>
     <xilinx:packagingInfo>
       <xilinx:xilinxVersion>2019.1</xilinx:xilinxVersion>
       <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="d74dbaa2"/>
-      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="5ce72b42"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="41bf1ba2"/>
       <xilinx:checksum xilinx:scope="ports" xilinx:value="c434e669"/>
       <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="70c129ba"/>
       <xilinx:checksum xilinx:scope="parameters" xilinx:value="3b6c6ab5"/>
