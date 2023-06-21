@@ -1,18 +1,22 @@
 module TB_Dense ();
     
-    localparam IN_COUNT = 10, OUT_COUNT = 3, DATA_SIZE = 16;
+    localparam IN_COUNT = 5, OUT_COUNT = 2, DATA_SIZE = 32;
+    localparam IN_ADR_WIDTH = $clog2(IN_COUNT);
+    localparam OUT_ADR_WIDTH = $clog2(OUT_COUNT);
+    localparam WEIGHT_COUNT = IN_COUNT*OUT_COUNT;
+    localparam WEIGHT_ADR_WIDTH = $clog2(WEIGHT_COUNT);
 
     reg clk = 0, rst = 0;
     // Weights and biases
     wire [DATA_SIZE-1:0] weightData, biasData;
-    wire [$clog2(IN_COUNT*OUT_COUNT)-1:0] weightAdr;
-    wire [$clog2(OUT_COUNT)-1:0] biasAdr;
+    wire [WEIGHT_ADR_WIDTH-1:0] weightAdr;
+    wire [OUT_ADR_WIDTH-1:0] biasAdr;
     // AXIS interface
     wire                                axisif_start; 
     wire                                axisif_done; 
-    wire    [$clog2(IN_COUNT)-1:0]      axisif_bufferIn_adr; 
+    wire    [IN_ADR_WIDTH-1:0]          axisif_bufferIn_adr; 
     wire    [DATA_SIZE-1:0]             axisif_bufferIn_data; 
-    wire    [$clog2(OUT_COUNT)-1:0]     axisif_bufferOut_adr; 
+    wire    [OUT_ADR_WIDTH-1:0]     axisif_bufferOut_adr; 
     wire    [DATA_SIZE-1:0]             axisif_bufferOut_data; 
     wire                                axisif_bufferOut_wr;
     // Slave ports
@@ -26,7 +30,15 @@ module TB_Dense ();
     wire                        m_axis_last;
     reg                         m_axis_ready;
 
-    Dense #(IN_COUNT, OUT_COUNT, DATA_SIZE) denseUnit (
+    Dense #(
+        .IN_COUNT(IN_COUNT),
+        .OUT_COUNT(OUT_COUNT),
+        .DATA_SIZE(DATA_SIZE),
+        .WEIGHT_ADR_WIDTH(WEIGHT_ADR_WIDTH),
+        .BIAS_ADR_WIDTH(OUT_ADR_WIDTH),
+        .IN_ADR_WIDTH(IN_ADR_WIDTH),
+        .OUT_ADR_WIDTH(OUT_ADR_WIDTH)
+    ) denseUnit (
         .clk(clk), 
         .rst(rst),
         // External weights and biases
@@ -44,25 +56,33 @@ module TB_Dense ();
         .axisif_bufferOut_wr(axisif_bufferOut_wr)
     );
 
-    Ram #(DATA_SIZE, IN_COUNT * OUT_COUNT) weightsRam (
-        .clk(clk), 
-        .rd(1'b1), 
-        .wr(1'b0),
-        .adr(weightAdr), 
-        .dataIn({DATA_SIZE{1'b0}}), 
+    DenseWeightLutFAKE #(
+        .WORD_SIZE(DATA_SIZE),
+        .LENGTH_SIZE(IN_COUNT*OUT_COUNT),
+        .ADR_SIZE(WEIGHT_ADR_WIDTH)
+    ) denseWeightLUT (
+        .clk(clk),
+        .adr(weightAdr),
         .dataOut(weightData)
     );
 
-    Ram #(DATA_SIZE, OUT_COUNT) biasesRam (
-        .clk(clk), 
-        .rd(1'b1), 
-        .wr(1'b0),
-        .adr(biasAdr), 
-        .dataIn({DATA_SIZE{1'b0}}), 
+    DenseBiasLut #(
+        .WORD_SIZE(DATA_SIZE),
+        .LENGTH_SIZE(OUT_COUNT),
+        .ADR_SIZE(OUT_ADR_WIDTH)
+    ) denseBiasLUT (
+        .clk(clk),
+        .adr(biasAdr),
         .dataOut(biasData)
     );
 
-    GpAxisInterface #(DATA_SIZE, IN_COUNT, OUT_COUNT) axisIf (
+    GpAxisInterface #(
+        .DATA_WIDTH(DATA_SIZE),
+        .IN_DATA_NUM(IN_COUNT),
+        .OUT_DATA_NUM(OUT_COUNT),
+        .IN_ADR_WIDTH(IN_ADR_WIDTH),
+        .OUT_ADR_WIDTH(OUT_ADR_WIDTH)
+    ) gpaxisIf (
         // Base signals
         .clk(clk),
         .rst_n(~rst),
@@ -90,8 +110,8 @@ module TB_Dense ();
 
     integer i;
     initial begin
-        $readmemh("dense_weight_flat_hex.mem", weightsRam.mem);
-        $readmemh("dense_bias_flat_hex.mem", biasesRam.mem);
+        // $readmemh("dense_weight_flat_hex.mem", weightsRam.mem);
+        // $readmemh("dense_bias_flat_hex.mem", biasesRam.mem);
         #10;
         rst = 1;
         #10;
@@ -101,6 +121,7 @@ module TB_Dense ();
         s_axis_valid = 1;
         for (i = 0; i < IN_COUNT; i = i + 1) begin
             s_axis_data = i + 1;
+            s_axis_data = s_axis_data << 20;
             if (i == IN_COUNT-1)
                 s_axis_last = 1;
             @(posedge clk);

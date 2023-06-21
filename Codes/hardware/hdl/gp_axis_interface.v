@@ -62,7 +62,11 @@ module GpAxisInterface #(parameter
 	wire	[DATA_WIDTH-1:0]	bufferIn_in_data;
 	wire	[DATA_WIDTH-1:0]	bufferIn_out_data;
 
-	Buffer #(DATA_WIDTH, IN_DATA_NUM) BufferIn
+	Buffer #(
+		.WORD_SIZE(DATA_WIDTH),
+		.LENGTH_SIZE(IN_DATA_NUM),
+		.ADR_SIZE(IN_ADR_WIDTH)
+	) BufferIn
 	(
 		.clk(clk),
 		.wr(bufferIn_in_wr),
@@ -77,7 +81,11 @@ module GpAxisInterface #(parameter
 	wire	[DATA_WIDTH-1:0]	bufferOut_in_data;
 	wire	[DATA_WIDTH-1:0]	bufferOut_out_data;
 
-	Buffer #(DATA_WIDTH, OUT_DATA_NUM) BufferOut
+	Buffer #(
+		.WORD_SIZE(DATA_WIDTH),
+		.LENGTH_SIZE(OUT_DATA_NUM),
+		.ADR_SIZE(OUT_ADR_WIDTH)
+	) BufferOut
 	(
 		.clk(clk),
 		.wr(bufferOut_in_wr),

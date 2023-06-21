@@ -74,7 +74,7 @@ module DenseDatapath #(parameter
     // Generate index of all outputs in range 0..OUT_COUNT
     wire outputIndexGenerator_co;
     wire [OUT_ADR_WIDTH-1:0] outputIndexGenerator_cnt;
-    LoopCounter #(OUT_COUNT) outputIndexGenerator (
+    LoopCounter #(OUT_COUNT, OUT_ADR_WIDTH) outputIndexGenerator (
         .clk(clk), 
         .rst(rst),
         .en(outCntEn), 

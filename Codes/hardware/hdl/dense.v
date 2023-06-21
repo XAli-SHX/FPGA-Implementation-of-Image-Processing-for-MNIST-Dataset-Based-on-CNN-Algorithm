@@ -42,7 +42,15 @@ module Dense #(parameter
     wire clear, inCntEn, clearReg, WorB, load, outCntEn;
     wire mulDone, calcDone, putData;
 
-    DenseDatapath #(IN_COUNT, OUT_COUNT, DATA_SIZE) denseDP (
+    DenseDatapath #(
+        .IN_COUNT(IN_COUNT),
+        .OUT_COUNT(OUT_COUNT),
+        .DATA_SIZE(DATA_SIZE),
+        .WEIGHT_ADR_WIDTH(WEIGHT_ADR_WIDTH),
+        .BIAS_ADR_WIDTH(BIAS_ADR_WIDTH),
+        .IN_ADR_WIDTH(IN_ADR_WIDTH),
+        .OUT_ADR_WIDTH(OUT_ADR_WIDTH)
+    ) denseDP (
         .clk(clk),
         .rst(rst),
         // Controll signals
