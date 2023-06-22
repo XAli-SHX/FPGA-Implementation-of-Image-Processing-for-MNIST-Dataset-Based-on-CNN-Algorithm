@@ -21,7 +21,13 @@ module TB_GpAxisInterface();
 	reg 	[31:0] 	axisif_bufferOut_data;
 	reg 			axisif_bufferOut_wr;
 
-	GpAxisInterface #(.DATA_WIDTH(32), .IN_DATA_NUM(8), .OUT_DATA_NUM(4)) UUT (
+	GpAxisInterface #(
+		.DATA_WIDTH(32),
+		.IN_DATA_NUM(8),
+		.OUT_DATA_NUM(4),
+		.IN_ADR_WIDTH(3),
+		.OUT_ADR_WIDTH(2)
+	) UUT (
 		// Base signals
 		.clk(clk),
 		.rst_n(rst_n),
