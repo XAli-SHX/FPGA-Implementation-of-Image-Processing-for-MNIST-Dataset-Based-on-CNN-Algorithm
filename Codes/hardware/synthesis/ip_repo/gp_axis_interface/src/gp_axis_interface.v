@@ -28,19 +28,6 @@ module GpAxisInterface #(parameter
 	axisif_bufferOut_wr
 );
 
-	function integer clogb2 (input integer bit_depth);                                   
-		begin                                                                              
-			for(clogb2=0; bit_depth>0; clogb2=clogb2+1)                                      
-			bit_depth = bit_depth >> 1;                                                    
-		end                                                                                
-	endfunction
-
-	////// PARAMS
-	// localparam     integer			IN_ADR_WIDTH		= clogb2(IN_DATA_NUM);
-	// localparam     integer          OUT_ADR_WIDTH		= clogb2(OUT_DATA_NUM);
-
-
-
 	////// IO SIGNALS
 
 	// Base signals
@@ -70,12 +57,16 @@ module GpAxisInterface #(parameter
 	////// LOGIC
 
 	// Input Buffer
-	wire	[clogb2(IN_DATA_NUM)-1:0]	bufferIn_in_adr;
+	wire	[IN_ADR_WIDTH-1:0]	bufferIn_in_adr;
 	wire						bufferIn_in_wr;
 	wire	[DATA_WIDTH-1:0]	bufferIn_in_data;
 	wire	[DATA_WIDTH-1:0]	bufferIn_out_data;
 
-	Buffer #(DATA_WIDTH, IN_DATA_NUM) BufferIn
+	Buffer #(
+		.WORD_SIZE(DATA_WIDTH),
+		.LENGTH_SIZE(IN_DATA_NUM),
+		.ADR_SIZE(IN_ADR_WIDTH)
+	) BufferIn
 	(
 		.clk(clk),
 		.wr(bufferIn_in_wr),
@@ -85,12 +76,16 @@ module GpAxisInterface #(parameter
 	);
 
 	// Output Buffer
-	wire	[clogb2(OUT_DATA_NUM)-1:0]	bufferOut_in_adr;
+	wire	[OUT_ADR_WIDTH-1:0]	bufferOut_in_adr;
 	wire						bufferOut_in_wr;
 	wire	[DATA_WIDTH-1:0]	bufferOut_in_data;
 	wire	[DATA_WIDTH-1:0]	bufferOut_out_data;
 
-	Buffer #(DATA_WIDTH, OUT_DATA_NUM) BufferOut
+	Buffer #(
+		.WORD_SIZE(DATA_WIDTH),
+		.LENGTH_SIZE(OUT_DATA_NUM),
+		.ADR_SIZE(OUT_ADR_WIDTH)
+	) BufferOut
 	(
 		.clk(clk),
 		.wr(bufferOut_in_wr),
@@ -102,10 +97,10 @@ module GpAxisInterface #(parameter
 	// Input Address Counter
 	wire						cntInAdr_in_clear;
 	wire						cntInAdr_in_en;
-	wire	[clogb2(IN_DATA_NUM)-1:0]	cntInAdr_out_val;
+	wire	[IN_ADR_WIDTH-1:0]	cntInAdr_out_val;
 	wire						cntInAdr_out_fin;
 
-	Counter #(clogb2(IN_DATA_NUM), IN_DATA_NUM - 1) cntInAdr
+	Counter #(IN_ADR_WIDTH, IN_DATA_NUM - 1) cntInAdr
 	(
 		.clk(clk),
 		.rst_n(rst_n),
@@ -118,10 +113,10 @@ module GpAxisInterface #(parameter
 	// Output Address Counter
 	wire						cntOutAdr_in_clear;
 	wire						cntOutAdr_in_en;
-	wire	[clogb2(OUT_DATA_NUM)-1:0]	cntOutAdr_out_val;
+	wire	[OUT_ADR_WIDTH-1:0]	cntOutAdr_out_val;
 	wire						cntOutAdr_out_fin;
 
-	Counter #(clogb2(OUT_DATA_NUM), OUT_DATA_NUM - 1) cntOutAdr
+	Counter #(OUT_ADR_WIDTH, OUT_DATA_NUM - 1) cntOutAdr
 	(
 		.clk(clk),
 		.rst_n(rst_n),
@@ -142,7 +137,7 @@ module GpAxisInterface #(parameter
 				WAIT		= 3,
 				MASTER		= 4,
 				STATES		= 5;
-	localparam	STATE_WIDTH	= clogb2(STATES);
+	localparam	STATE_WIDTH	= 3;
 
 	// State variables
 	reg	[STATE_WIDTH-1:0]	ps;

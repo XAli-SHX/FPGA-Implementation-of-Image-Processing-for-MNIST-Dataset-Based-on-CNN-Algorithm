@@ -1,10 +1,10 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Tue Jun 20 23:14:21 2023
+// Date        : Fri Jun 23 11:01:51 2023
 // Host        : DESKTOP-18V1G5L running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
-//               v:/mnist-cnn/mnist-cnn.srcs/sources_1/bd/design_1/ip/design_1_DenseBiasLut_0_0/design_1_DenseBiasLut_0_0_sim_netlist.v
+//               V:/mnist-cnn/mnist-cnn.srcs/sources_1/bd/design_1/ip/design_1_DenseBiasLut_0_0/design_1_DenseBiasLut_0_0_sim_netlist.v
 // Design      : design_1_DenseBiasLut_0_0
 // Purpose     : This verilog netlist is a functional simulation representation of the design and should not be modified
 //               or synthesized. This netlist cannot be used for SDF annotated simulation.

@@ -47,7 +47,7 @@ module DenseDatapath #(parameter
     // Weights and biases external LUT
     output  [WEIGHT_ADR_WIDTH-1:0]              weightAdr;
     input   [DATA_SIZE-1:0]                     weightData;
-    input   [BIAS_ADR_WIDTH-1:0]                biasAdr;
+    output  [BIAS_ADR_WIDTH-1:0]                biasAdr;
     input   [DATA_SIZE-1:0]                     biasData;
     // AXIS interface
     input    [DATA_SIZE-1:0]             axisif_bufferIn_data;

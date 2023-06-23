@@ -1,7 +1,7 @@
 //Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 //--------------------------------------------------------------------------------
 //Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-//Date        : Tue Jun 20 23:14:38 2023
+//Date        : Fri Jun 23 11:33:52 2023
 //Host        : DESKTOP-18V1G5L running 64-bit major release  (build 9200)
 //Command     : generate_target design_1.bd
 //Design      : design_1
@@ -9,7 +9,7 @@
 //--------------------------------------------------------------------------------
 `timescale 1 ps / 1 ps
 
-(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=15,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=3,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=9,da_board_cnt=1,da_clkrst_cnt=8,da_ps7_cnt=3,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
+(* CORE_GENERATION_INFO = "design_1,IP_Integrator,{x_ipVendor=xilinx.com,x_ipLibrary=BlockDiagram,x_ipName=design_1,x_ipVersion=1.00.a,x_ipLanguage=VERILOG,numBlks=15,numReposBlks=13,numNonXlnxBlks=0,numHierBlks=2,maxHierDepth=0,numSysgenBlks=0,numHlsBlks=0,numHdlrefBlks=4,numPkgbdBlks=0,bdsource=USER,da_axi4_cnt=9,da_board_cnt=1,da_clkrst_cnt=9,da_ps7_cnt=3,synth_mode=OOC_per_IP}" *) (* HW_HANDOFF = "design_1.hwdef" *) 
 module design_1
    (DDR_addr,
     DDR_ba,
@@ -56,8 +56,8 @@ module design_1
 
   wire [31:0]DenseBiasLut_0_dataOut;
   wire [31:0]DenseWeightLut_0_dataOut;
-  wire [3:0]Dense_0_axisif_bufferIn_adr;
-  wire [10:0]Dense_0_axisif_bufferOut_adr;
+  wire [10:0]Dense_0_axisif_bufferIn_adr;
+  wire [3:0]Dense_0_axisif_bufferOut_adr;
   wire [31:0]Dense_0_axisif_bufferOut_data;
   wire Dense_0_axisif_bufferOut_wr;
   wire Dense_0_axisif_done;
@@ -144,7 +144,7 @@ module design_1
   wire axis_data_fifo_1_M_AXIS_TLAST;
   wire axis_data_fifo_1_M_AXIS_TREADY;
   wire axis_data_fifo_1_M_AXIS_TVALID;
-  wire inverter_0_out;
+  wire inverter_0_dout;
   wire [14:0]processing_system7_0_DDR_ADDR;
   wire [2:0]processing_system7_0_DDR_BA;
   wire processing_system7_0_DDR_CAS_N;
@@ -243,7 +243,7 @@ module design_1
         .biasAdr(Dense_0_biasAdr),
         .biasData(DenseBiasLut_0_dataOut),
         .clk(processing_system7_0_FCLK_CLK0),
-        .rst(inverter_0_out),
+        .rst(inverter_0_dout),
         .weightAdr(Dense_0_weightAdr),
         .weightData(DenseWeightLut_0_dataOut));
   design_1_GpAxisInterface_0_0 GpAxisInterface_0
@@ -421,7 +421,7 @@ module design_1
         .s_axis_tvalid(GpAxisInterface_0_M_AXIS_TVALID));
   design_1_inverter_0_0 inverter_0
        (.din(rst_ps7_0_100M_peripheral_aresetn),
-        .dout(inverter_0_out));
+        .dout(inverter_0_dout));
   design_1_processing_system7_0_2 processing_system7_0
        (.DDR_Addr(DDR_addr[14:0]),
         .DDR_BankAddr(DDR_ba[2:0]),

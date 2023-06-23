@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# DenseBiasLut, DenseWeightLut, inverter
+# DenseBiasLut, DenseWeightLut, Dense, inverter
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -197,18 +197,22 @@ proc create_root_design { parentCell } {
  ] $DenseWeightLut_0
 
   # Create instance: Dense_0, and set properties
-  set Dense_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:Dense:1.0 Dense_0 ]
-  set_property -dict [ list \
-   CONFIG.IN_ADR_WIDTH {4} \
-   CONFIG.OUT_ADR_WIDTH {11} \
- ] $Dense_0
-
+  set block_name Dense
+  set block_cell_name Dense_0
+  if { [catch {set Dense_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Dense_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: GpAxisInterface_0, and set properties
   set GpAxisInterface_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:GpAxisInterface:1.0 GpAxisInterface_0 ]
   set_property -dict [ list \
-   CONFIG.IN_ADR_WIDTH {4} \
+   CONFIG.IN_ADR_WIDTH {11} \
    CONFIG.IN_DATA_NUM {10} \
-   CONFIG.OUT_ADR_WIDTH {11} \
+   CONFIG.OUT_ADR_WIDTH {4} \
    CONFIG.OUT_DATA_NUM {1600} \
  ] $GpAxisInterface_0
 
@@ -1059,7 +1063,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net Dense_0_weightAdr [get_bd_pins DenseWeightLut_0/adr] [get_bd_pins Dense_0/weightAdr]
   connect_bd_net -net GpAxisInterface_0_axisif_bufferIn_data [get_bd_pins Dense_0/axisif_bufferIn_data] [get_bd_pins GpAxisInterface_0/axisif_bufferIn_data]
   connect_bd_net -net GpAxisInterface_0_axisif_start [get_bd_pins Dense_0/axisif_start] [get_bd_pins GpAxisInterface_0/axisif_start]
-  connect_bd_net -net inverter_0_out [get_bd_pins Dense_0/rst] [get_bd_pins inverter_0/dout]
+  connect_bd_net -net inverter_0_dout [get_bd_pins Dense_0/rst] [get_bd_pins inverter_0/dout]
   connect_bd_net -net processing_system7_0_FCLK_CLK0 [get_bd_pins DenseBiasLut_0/clk] [get_bd_pins DenseWeightLut_0/clk] [get_bd_pins Dense_0/clk] [get_bd_pins GpAxisInterface_0/clk] [get_bd_pins axi_dma_0/m_axi_mm2s_aclk] [get_bd_pins axi_dma_0/m_axi_s2mm_aclk] [get_bd_pins axi_dma_0/s_axi_lite_aclk] [get_bd_pins axi_smc/aclk] [get_bd_pins axi_smc_1/aclk] [get_bd_pins axis_data_fifo_0/s_axis_aclk] [get_bd_pins axis_data_fifo_1/s_axis_aclk] [get_bd_pins processing_system7_0/FCLK_CLK0] [get_bd_pins processing_system7_0/M_AXI_GP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP0_ACLK] [get_bd_pins processing_system7_0/S_AXI_HP2_ACLK] [get_bd_pins ps7_0_axi_periph/ACLK] [get_bd_pins ps7_0_axi_periph/M00_ACLK] [get_bd_pins ps7_0_axi_periph/S00_ACLK] [get_bd_pins rst_ps7_0_100M/slowest_sync_clk]
   connect_bd_net -net processing_system7_0_FCLK_RESET0_N [get_bd_pins processing_system7_0/FCLK_RESET0_N] [get_bd_pins rst_ps7_0_100M/ext_reset_in]
   connect_bd_net -net rst_ps7_0_100M_peripheral_aresetn [get_bd_pins GpAxisInterface_0/rst_n] [get_bd_pins axi_dma_0/axi_resetn] [get_bd_pins axi_smc/aresetn] [get_bd_pins axi_smc_1/aresetn] [get_bd_pins inverter_0/din] [get_bd_pins ps7_0_axi_periph/ARESETN] [get_bd_pins ps7_0_axi_periph/M00_ARESETN] [get_bd_pins ps7_0_axi_periph/S00_ARESETN] [get_bd_pins rst_ps7_0_100M/peripheral_aresetn]

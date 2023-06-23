@@ -19,12 +19,12 @@
       "axis_data_fifo_1": "",
       "axi_smc": "",
       "axi_smc_1": "",
-      "GpAxisInterface_0": "",
       "inverter_0": "",
       "processing_system7_0": "",
       "rst_ps7_0_100M": "",
-      "DenseBiasLut_0": "",
       "DenseWeightLut_0": "",
+      "GpAxisInterface_0": "",
+      "DenseBiasLut_0": "",
       "Dense_0": ""
     },
     "interface_ports": {
@@ -357,24 +357,6 @@
           "M00_AXI": {
             "mode": "Master",
             "vlnv": "xilinx.com:interface:aximm_rtl:1.0"
-          }
-        }
-      },
-      "GpAxisInterface_0": {
-        "vlnv": "xilinx.com:user:GpAxisInterface:1.0",
-        "xci_name": "design_1_GpAxisInterface_0_0",
-        "parameters": {
-          "IN_ADR_WIDTH": {
-            "value": "4"
-          },
-          "IN_DATA_NUM": {
-            "value": "10"
-          },
-          "OUT_ADR_WIDTH": {
-            "value": "11"
-          },
-          "OUT_DATA_NUM": {
-            "value": "1600"
           }
         }
       },
@@ -2004,41 +1986,6 @@
         "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
         "xci_name": "design_1_rst_ps7_0_100M_1"
       },
-      "DenseBiasLut_0": {
-        "vlnv": "xilinx.com:module_ref:DenseBiasLut:1.0",
-        "xci_name": "design_1_DenseBiasLut_0_0",
-        "reference_info": {
-          "ref_type": "hdl",
-          "ref_name": "DenseBiasLut",
-          "boundary_crc": "0x0"
-        },
-        "ports": {
-          "clk": {
-            "type": "clk",
-            "direction": "I",
-            "parameters": {
-              "CLK_DOMAIN": {
-                "value": "design_1_processing_system7_0_2_FCLK_CLK0",
-                "value_src": "default_prop"
-              },
-              "FREQ_HZ": {
-                "value": "100000000",
-                "value_src": "user_prop"
-              }
-            }
-          },
-          "adr": {
-            "direction": "I",
-            "left": "3",
-            "right": "0"
-          },
-          "dataOut": {
-            "direction": "O",
-            "left": "31",
-            "right": "0"
-          }
-        }
-      },
       "DenseWeightLut_0": {
         "vlnv": "xilinx.com:module_ref:DenseWeightLut:1.0",
         "xci_name": "design_1_DenseWeightLut_0_0",
@@ -2082,20 +2029,173 @@
           }
         }
       },
-      "Dense_0": {
-        "vlnv": "xilinx.com:user:Dense:1.0",
-        "xci_name": "design_1_Dense_0_0",
+      "GpAxisInterface_0": {
+        "vlnv": "xilinx.com:user:GpAxisInterface:1.0",
+        "xci_name": "design_1_GpAxisInterface_0_0",
         "parameters": {
           "IN_ADR_WIDTH": {
-            "value": "4"
+            "value": "11"
+          },
+          "IN_DATA_NUM": {
+            "value": "10"
           },
           "OUT_ADR_WIDTH": {
-            "value": "11"
+            "value": "4"
+          },
+          "OUT_DATA_NUM": {
+            "value": "1600"
+          }
+        }
+      },
+      "DenseBiasLut_0": {
+        "vlnv": "xilinx.com:module_ref:DenseBiasLut:1.0",
+        "xci_name": "design_1_DenseBiasLut_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "DenseBiasLut",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_2_FCLK_CLK0",
+                "value_src": "default_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "adr": {
+            "direction": "I",
+            "left": "3",
+            "right": "0"
+          },
+          "dataOut": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          }
+        }
+      },
+      "Dense_0": {
+        "vlnv": "xilinx.com:module_ref:Dense:1.0",
+        "xci_name": "design_1_Dense_0_0",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "Dense",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "clk": {
+            "type": "clk",
+            "direction": "I",
+            "parameters": {
+              "ASSOCIATED_RESET": {
+                "value": "rst",
+                "value_src": "constant"
+              },
+              "CLK_DOMAIN": {
+                "value": "design_1_processing_system7_0_2_FCLK_CLK0",
+                "value_src": "default_prop"
+              },
+              "FREQ_HZ": {
+                "value": "100000000",
+                "value_src": "user_prop"
+              }
+            }
+          },
+          "rst": {
+            "type": "rst",
+            "direction": "I"
+          },
+          "weightAdr": {
+            "direction": "O",
+            "left": "13",
+            "right": "0"
+          },
+          "weightData": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "biasAdr": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "biasData": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "axisif_start": {
+            "direction": "I"
+          },
+          "axisif_done": {
+            "direction": "O"
+          },
+          "axisif_bufferIn_adr": {
+            "direction": "O",
+            "left": "10",
+            "right": "0"
+          },
+          "axisif_bufferIn_data": {
+            "direction": "I",
+            "left": "31",
+            "right": "0"
+          },
+          "axisif_bufferOut_adr": {
+            "direction": "O",
+            "left": "3",
+            "right": "0"
+          },
+          "axisif_bufferOut_data": {
+            "direction": "O",
+            "left": "31",
+            "right": "0"
+          },
+          "axisif_bufferOut_wr": {
+            "direction": "O"
           }
         }
       }
     },
     "interface_nets": {
+      "processing_system7_0_DDR": {
+        "interface_ports": [
+          "DDR",
+          "processing_system7_0/DDR"
+        ]
+      },
+      "axis_data_fifo_0_M_AXIS": {
+        "interface_ports": [
+          "axis_data_fifo_0/M_AXIS",
+          "GpAxisInterface_0/S_AXIS"
+        ]
+      },
+      "axi_smc_M00_AXI": {
+        "interface_ports": [
+          "axi_smc/M00_AXI",
+          "processing_system7_0/S_AXI_HP0"
+        ]
+      },
+      "axi_smc_1_M00_AXI": {
+        "interface_ports": [
+          "axi_smc_1/M00_AXI",
+          "processing_system7_0/S_AXI_HP2"
+        ]
+      },
+      "processing_system7_0_FIXED_IO": {
+        "interface_ports": [
+          "FIXED_IO",
+          "processing_system7_0/FIXED_IO"
+        ]
+      },
       "processing_system7_0_M_AXI_GP0": {
         "interface_ports": [
           "processing_system7_0/M_AXI_GP0",
@@ -2137,36 +2237,6 @@
           "GpAxisInterface_0/M_AXIS",
           "axis_data_fifo_1/S_AXIS"
         ]
-      },
-      "axis_data_fifo_0_M_AXIS": {
-        "interface_ports": [
-          "axis_data_fifo_0/M_AXIS",
-          "GpAxisInterface_0/S_AXIS"
-        ]
-      },
-      "processing_system7_0_DDR": {
-        "interface_ports": [
-          "DDR",
-          "processing_system7_0/DDR"
-        ]
-      },
-      "processing_system7_0_FIXED_IO": {
-        "interface_ports": [
-          "FIXED_IO",
-          "processing_system7_0/FIXED_IO"
-        ]
-      },
-      "axi_smc_M00_AXI": {
-        "interface_ports": [
-          "axi_smc/M00_AXI",
-          "processing_system7_0/S_AXI_HP0"
-        ]
-      },
-      "axi_smc_1_M00_AXI": {
-        "interface_ports": [
-          "axi_smc_1/M00_AXI",
-          "processing_system7_0/S_AXI_HP2"
-        ]
       }
     },
     "nets": {
@@ -2183,20 +2253,39 @@
           "axi_smc_1/aclk",
           "axis_data_fifo_0/s_axis_aclk",
           "axis_data_fifo_1/s_axis_aclk",
-          "GpAxisInterface_0/clk",
           "rst_ps7_0_100M/slowest_sync_clk",
           "processing_system7_0/M_AXI_GP0_ACLK",
           "processing_system7_0/S_AXI_HP0_ACLK",
           "processing_system7_0/S_AXI_HP2_ACLK",
-          "DenseBiasLut_0/clk",
           "DenseWeightLut_0/clk",
+          "GpAxisInterface_0/clk",
+          "DenseBiasLut_0/clk",
           "Dense_0/clk"
         ]
       },
-      "DenseWeightLut_0_dataOut": {
+      "processing_system7_0_FCLK_RESET0_N": {
         "ports": [
-          "DenseWeightLut_0/dataOut",
-          "Dense_0/weightData"
+          "processing_system7_0/FCLK_RESET0_N",
+          "rst_ps7_0_100M/ext_reset_in"
+        ]
+      },
+      "rst_ps7_0_100M_peripheral_aresetn": {
+        "ports": [
+          "rst_ps7_0_100M/peripheral_aresetn",
+          "ps7_0_axi_periph/ARESETN",
+          "ps7_0_axi_periph/S00_ARESETN",
+          "axi_dma_0/axi_resetn",
+          "ps7_0_axi_periph/M00_ARESETN",
+          "axi_smc/aresetn",
+          "axi_smc_1/aresetn",
+          "inverter_0/din",
+          "GpAxisInterface_0/rst_n"
+        ]
+      },
+      "inverter_0_dout": {
+        "ports": [
+          "inverter_0/dout",
+          "Dense_0/rst"
         ]
       },
       "DenseBiasLut_0_dataOut": {
@@ -2205,16 +2294,10 @@
           "Dense_0/biasData"
         ]
       },
-      "Dense_0_weightAdr": {
+      "DenseWeightLut_0_dataOut": {
         "ports": [
-          "Dense_0/weightAdr",
-          "DenseWeightLut_0/adr"
-        ]
-      },
-      "Dense_0_biasAdr": {
-        "ports": [
-          "Dense_0/biasAdr",
-          "DenseBiasLut_0/adr"
+          "DenseWeightLut_0/dataOut",
+          "Dense_0/weightData"
         ]
       },
       "GpAxisInterface_0_axisif_start": {
@@ -2235,6 +2318,24 @@
           "GpAxisInterface_0/axisif_done"
         ]
       },
+      "Dense_0_axisif_bufferOut_wr": {
+        "ports": [
+          "Dense_0/axisif_bufferOut_wr",
+          "GpAxisInterface_0/axisif_bufferOut_wr"
+        ]
+      },
+      "Dense_0_weightAdr": {
+        "ports": [
+          "Dense_0/weightAdr",
+          "DenseWeightLut_0/adr"
+        ]
+      },
+      "Dense_0_biasAdr": {
+        "ports": [
+          "Dense_0/biasAdr",
+          "DenseBiasLut_0/adr"
+        ]
+      },
       "Dense_0_axisif_bufferIn_adr": {
         "ports": [
           "Dense_0/axisif_bufferIn_adr",
@@ -2251,37 +2352,6 @@
         "ports": [
           "Dense_0/axisif_bufferOut_data",
           "GpAxisInterface_0/axisif_bufferOut_data"
-        ]
-      },
-      "Dense_0_axisif_bufferOut_wr": {
-        "ports": [
-          "Dense_0/axisif_bufferOut_wr",
-          "GpAxisInterface_0/axisif_bufferOut_wr"
-        ]
-      },
-      "inverter_0_out": {
-        "ports": [
-          "inverter_0/dout",
-          "Dense_0/rst"
-        ]
-      },
-      "processing_system7_0_FCLK_RESET0_N": {
-        "ports": [
-          "processing_system7_0/FCLK_RESET0_N",
-          "rst_ps7_0_100M/ext_reset_in"
-        ]
-      },
-      "rst_ps7_0_100M_peripheral_aresetn": {
-        "ports": [
-          "rst_ps7_0_100M/peripheral_aresetn",
-          "ps7_0_axi_periph/ARESETN",
-          "ps7_0_axi_periph/S00_ARESETN",
-          "axi_dma_0/axi_resetn",
-          "ps7_0_axi_periph/M00_ARESETN",
-          "axi_smc/aresetn",
-          "axi_smc_1/aresetn",
-          "inverter_0/din",
-          "GpAxisInterface_0/rst_n"
         ]
       }
     },
