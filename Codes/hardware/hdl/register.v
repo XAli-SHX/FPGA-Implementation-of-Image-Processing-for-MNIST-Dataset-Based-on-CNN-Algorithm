@@ -11,7 +11,7 @@ module Register #(parameter SIZE = 32) (
     input [SIZE-1:0] dataIn;
     output reg [SIZE-1:0] dataOut;
 
-    always @(posedge clk or negedge rst) begin
+    always @(posedge clk or posedge rst) begin
         if (rst)
             dataOut <= {SIZE{1'b0}};
         else if (clr)
