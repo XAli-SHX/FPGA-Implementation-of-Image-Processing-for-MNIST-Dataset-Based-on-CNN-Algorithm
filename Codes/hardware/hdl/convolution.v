@@ -178,7 +178,7 @@ wire	[DATA_WIDTH-1:0]	outReg_out_dataOut;
 Register #(.SIZE(DATA_WIDTH)) OutReg
 (
 	.clk(clk),
-	.rst_n(rst_n),
+	.rst(~rst_n),
 	.ld(outReg_in_ld),
 	.clr(outReg_in_clear),
 	.dataIn(outReg_in_dataIn),

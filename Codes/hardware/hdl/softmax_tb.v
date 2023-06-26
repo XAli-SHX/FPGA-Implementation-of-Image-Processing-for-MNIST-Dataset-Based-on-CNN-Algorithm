@@ -46,7 +46,8 @@ end
 always @(*) begin
 	// in_dataIn = (out_adrIn == 0) ? 6 : 0;
 	// in_dataIn = out_adrIn;
-	in_dataIn = 0;
+	// in_dataIn = 0;
+	in_dataIn = out_adrIn + 1;
 	in_dataIn = in_dataIn << FRACTION_BITS;
 end
 
