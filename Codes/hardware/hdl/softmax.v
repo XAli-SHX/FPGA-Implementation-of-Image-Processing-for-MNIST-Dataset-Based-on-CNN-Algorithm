@@ -122,7 +122,7 @@ wire			[DATA_WIDTH-1:0]	sum_out_dataOut;
 Register #(.SIZE(DATA_WIDTH)) Sum
 (
     .clk(clk),
-    .rst_n(rst_n),
+    .rst(~rst_n),
     .ld(sum_in_ld),
     .clr(sum_in_clear),
     .dataIn(sum_in_dataIn),
@@ -150,7 +150,7 @@ wire			[DATA_WIDTH-1:0]	denom_out_dataOut;
 Register #(.SIZE(DATA_WIDTH)) Denom
 (
     .clk(clk),
-    .rst_n(rst_n),
+    .rst(~rst_n),
     .ld(denom_in_ld),
     .clr(denom_in_clear),
     .dataIn(denom_in_dataIn),

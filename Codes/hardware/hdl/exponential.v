@@ -48,7 +48,7 @@ output			[DATA_WIDTH-1:0]	out;
 wire			[ADR_WIDTH-1:0]		lut_in_adr;
 wire			[DATA_WIDTH-1:0]	lut_out_val;
 
-TaylorLUT #(.DATA_WIDTH(DATA_WIDTH), .FRACTION_BITS(FRACTION_BITS)) Lut
+ExpTaylorLut #(.DATA_WIDTH(DATA_WIDTH), .FRACTION_BITS(FRACTION_BITS)) Lut
 (
 	.adr(lut_in_adr),
 	.val(lut_out_val)
@@ -82,7 +82,7 @@ wire			[DATA_WIDTH-1:0]	sumReg_out_dataOut;
 Register #(.SIZE(DATA_WIDTH)) SumReg
 (
 	.clk(clk),
-	.rst_n(rst_n),
+	.rst(~rst_n),
 	.ld(sumReg_in_ld),
 	.clr(sumReg_in_clr),
 	.dataIn(sumReg_in_dataIn),
@@ -99,7 +99,7 @@ wire			[DATA_WIDTH-1:0]	prodReg_out_dataOut;
 Register #(.SIZE(DATA_WIDTH)) ProdReg
 (
 	.clk(clk),
-	.rst_n(rst_n),
+	.rst(~rst_n),
 	.ld(prodReg_in_ld),
 	.clr(prodReg_in_clr),
 	.dataIn(prodReg_in_dataIn),
