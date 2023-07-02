@@ -1,0 +1,47 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port DDR -pg 1 -lvl 8 -x 2600 -y 510 -defaultsOSRD
+preplace port FIXED_IO -pg 1 -lvl 8 -x 2600 -y 540 -defaultsOSRD
+preplace inst processing_system7_0 -pg 1 -lvl 7 -x 2350 -y 570 -defaultsOSRD
+preplace inst axi_dma_0 -pg 1 -lvl 5 -x 1690 -y 470 -defaultsOSRD
+preplace inst ps7_0_axi_periph -pg 1 -lvl 4 -x 1350 -y 570 -defaultsOSRD
+preplace inst rst_ps7_0_100M -pg 1 -lvl 1 -x 190 -y 320 -defaultsOSRD
+preplace inst axis_data_fifo_0 -pg 1 -lvl 2 -x 590 -y 360 -defaultsOSRD
+preplace inst axis_data_fifo_1 -pg 1 -lvl 4 -x 1350 -y 360 -defaultsOSRD
+preplace inst GpAxisInterface_0 -pg 1 -lvl 3 -x 1000 -y 150 -defaultsOSRD
+preplace inst axi_smc -pg 1 -lvl 6 -x 2010 -y 430 -defaultsOSRD
+preplace inst axi_smc_1 -pg 1 -lvl 6 -x 2010 -y 570 -defaultsOSRD
+preplace inst adder5_0 -pg 1 -lvl 2 -x 590 -y 180 -defaultsOSRD
+preplace netloc processing_system7_0_FCLK_CLK0 1 0 8 20 220 370 280 810 280 1200 700 1500 600 1870 650 2140 690 2570
+preplace netloc processing_system7_0_FCLK_RESET0_N 1 0 8 20 440 NJ 440 NJ 440 NJ 440 1510J 700 NJ 700 NJ 700 2560
+preplace netloc rst_ps7_0_100M_peripheral_aresetn 1 1 5 360 80 790 290 1190 450 1490 590 1880
+preplace netloc adder5_0_axisif_done 1 2 1 N 140
+preplace netloc GpAxisInterface_0_axisif_start 1 1 3 390 20 NJ 20 1190
+preplace netloc GpAxisInterface_0_axisif_bufferIn_data 1 1 3 380 10 NJ 10 1200
+preplace netloc adder5_0_axisif_bufferIn_adr 1 2 1 N 160
+preplace netloc adder5_0_axisif_bufferOut_adr 1 2 1 N 180
+preplace netloc adder5_0_axisif_bufferOut_data 1 2 1 N 200
+preplace netloc adder5_0_axisif_bufferOut_wr 1 2 1 N 220
+preplace netloc processing_system7_0_DDR 1 7 1 2580J 510n
+preplace netloc processing_system7_0_FIXED_IO 1 7 1 NJ 540
+preplace netloc processing_system7_0_M_AXI_GP0 1 3 5 1210 710 NJ 710 NJ 710 NJ 710 2580
+preplace netloc ps7_0_axi_periph_M00_AXI 1 4 1 1520 420n
+preplace netloc axi_dma_0_M_AXIS_MM2S 1 1 5 390 690 NJ 690 NJ 690 NJ 690 1850
+preplace netloc axis_data_fifo_0_M_AXIS 1 2 1 800 80n
+preplace netloc GpAxisInterface_0_M_AXIS 1 3 1 1210 130n
+preplace netloc axis_data_fifo_1_M_AXIS 1 4 1 1530 360n
+preplace netloc axi_dma_0_M_AXI_MM2S 1 5 1 N 410
+preplace netloc axi_smc_M00_AXI 1 6 1 2140 430n
+preplace netloc axi_dma_0_M_AXI_S2MM 1 5 1 1860 430n
+preplace netloc axi_smc_1_M00_AXI 1 6 1 N 570
+levelinfo -pg 1 0 190 590 1000 1350 1690 2010 2350 2600
+pagesize -pg 1 -db -bbox -sgen 0 0 2710 720
+"
+}
+{
+   "da_axi4_cnt":"3",
+   "da_clkrst_cnt":"3",
+   "da_ps7_cnt":"1"
+}

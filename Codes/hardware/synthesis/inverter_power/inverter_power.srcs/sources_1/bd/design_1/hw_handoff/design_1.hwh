@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Wed Jun 28 17:57:08 2023" VIVADOVERSION="2019.1">
+
+  <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
+
+  <EXTERNALPORTS>
+    <PORT DIR="I" NAME="in_0" SIGIS="undef" SIGNAME="External_Ports_in_0">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="inverter_0" PORT="inp"/>
+      </CONNECTIONS>
+    </PORT>
+    <PORT DIR="O" NAME="out_0" SIGIS="undef" SIGNAME="inverter_0_outp">
+      <CONNECTIONS>
+        <CONNECTION INSTANCE="inverter_0" PORT="outp"/>
+      </CONNECTIONS>
+    </PORT>
+  </EXTERNALPORTS>
+
+  <EXTERNALINTERFACES/>
+
+  <MODULES>
+    <MODULE COREREVISION="1" FULLNAME="/inverter_0" HWVERSION="1.0" INSTANCE="inverter_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="inverter" VLNV="xilinx.com:module_ref:inverter:1.0">
+      <DOCUMENTS/>
+      <PARAMETERS>
+        <PARAMETER NAME="Component_Name" VALUE="design_1_inverter_0_1"/>
+        <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
+      </PARAMETERS>
+      <PORTS>
+        <PORT DIR="I" NAME="inp" SIGIS="undef" SIGNAME="External_Ports_in_0">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="in_0"/>
+          </CONNECTIONS>
+        </PORT>
+        <PORT DIR="O" NAME="outp" SIGIS="undef" SIGNAME="inverter_0_outp">
+          <CONNECTIONS>
+            <CONNECTION INSTANCE="External_Ports" PORT="out_0"/>
+          </CONNECTIONS>
+        </PORT>
+      </PORTS>
+      <BUSINTERFACES/>
+    </MODULE>
+  </MODULES>
+
+</EDKSYSTEM>

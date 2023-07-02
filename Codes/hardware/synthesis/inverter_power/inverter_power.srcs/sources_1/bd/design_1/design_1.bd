@@ -1,0 +1,56 @@
+{
+  "design": {
+    "design_info": {
+      "boundary_crc": "0x5BA246B25BA246B2",
+      "device": "xc7z020clg400-1",
+      "name": "design_1",
+      "synth_flow_mode": "Hierarchical",
+      "tool_version": "2019.1",
+      "validated": "true"
+    },
+    "design_tree": {
+      "inverter_0": ""
+    },
+    "ports": {
+      "in_0": {
+        "direction": "I"
+      },
+      "out_0": {
+        "direction": "O"
+      }
+    },
+    "components": {
+      "inverter_0": {
+        "vlnv": "xilinx.com:module_ref:inverter:1.0",
+        "xci_name": "design_1_inverter_0_1",
+        "reference_info": {
+          "ref_type": "hdl",
+          "ref_name": "inverter",
+          "boundary_crc": "0x0"
+        },
+        "ports": {
+          "inp": {
+            "direction": "I"
+          },
+          "outp": {
+            "direction": "O"
+          }
+        }
+      }
+    },
+    "nets": {
+      "inverter_0_out": {
+        "ports": [
+          "inverter_0/outp",
+          "out_0"
+        ]
+      },
+      "in_0_1": {
+        "ports": [
+          "in_0",
+          "inverter_0/inp"
+        ]
+      }
+    }
+  }
+}

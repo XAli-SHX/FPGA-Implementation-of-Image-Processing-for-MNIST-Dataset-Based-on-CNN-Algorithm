@@ -1,0 +1,14 @@
+{
+   "ExpandedHierarchyInLayout":"",
+   "guistr":"# # String gsaved with Nlview 7.0.19  2019-03-26 bk=1.5019 VDI=41 GEI=35 GUI=JA:9.0 non-TLS
+#  -string -flagsOSRD
+preplace port in_0 -pg 1 -lvl 0 -x -20 -y -10 -defaultsOSRD
+preplace port out_0 -pg 1 -lvl 2 -x 200 -y -10 -defaultsOSRD
+preplace inst inverter_0 -pg 1 -lvl 1 -x 90 -y -10 -defaultsOSRD
+preplace netloc inverter_0_out 1 1 1 N -10
+preplace netloc in_0_1 1 0 1 N -10
+levelinfo -pg 1 -20 90 200
+pagesize -pg 1 -db -bbox -sgen -100 -70 290 120
+"
+}
+
