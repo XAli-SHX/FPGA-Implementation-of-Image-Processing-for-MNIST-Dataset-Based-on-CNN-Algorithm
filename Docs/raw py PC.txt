@@ -1,0 +1,39 @@
+start layer0_conv2d
+end layer0_conv2d
+time = 0.3963614
+
+start layer0ReLU
+end layer0ReLU
+time = 0.0070078
+
+start layer1_maxpooling
+end layer1_maxpooling
+time = 0.0060443
+
+start layer2_conv2d
+end layer2_conv2d
+time = 1.5204479
+
+start layer2ReLU
+end layer2ReLU
+time = 0.0029997
+
+start layer3_maxpooling
+end layer3_maxpooling
+time = 0.0029995
+
+start layer4_flatten
+end layer4_flatten
+time = 0.0
+
+start layer5_dropout
+end layer5_dropout
+time = 0.001009
+
+start layer6_dense
+end layer6_dense
+time = 0.0050367
+
+start layer6_softmax
+end layer6_softmax
+time = 0.0

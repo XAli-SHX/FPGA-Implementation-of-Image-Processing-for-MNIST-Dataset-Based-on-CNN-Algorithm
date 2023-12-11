@@ -22,7 +22,8 @@
       "axis_data_fifo_1": "",
       "axi_smc": "",
       "axi_smc_1": "",
-      "adder5_0": ""
+      "adder5_0": "",
+      "system_ila_0": ""
     },
     "interface_ports": {
       "DDR": {
@@ -544,6 +545,9 @@
           },
           "PCW_INCLUDE_ACP_TRANS_CHECK": {
             "value": "0"
+          },
+          "PCW_IRQ_F2P_MODE": {
+            "value": "DIRECT"
           },
           "PCW_MIO_0_IOTYPE": {
             "value": "LVCMOS 3.3V"
@@ -1176,7 +1180,7 @@
             "value": "200"
           },
           "PCW_PERIPHERAL_BOARD_PRESET": {
-            "value": "None"
+            "value": "part0"
           },
           "PCW_PLL_BYPASSMODE_ENABLE": {
             "value": "0"
@@ -1302,7 +1306,7 @@
             "value": "0"
           },
           "PCW_S_AXI_HP0_DATA_WIDTH": {
-            "value": "32"
+            "value": "64"
           },
           "PCW_S_AXI_HP0_FREQMHZ": {
             "value": "10"
@@ -1310,14 +1314,20 @@
           "PCW_S_AXI_HP0_ID_WIDTH": {
             "value": "6"
           },
+          "PCW_S_AXI_HP1_DATA_WIDTH": {
+            "value": "64"
+          },
           "PCW_S_AXI_HP2_DATA_WIDTH": {
-            "value": "32"
+            "value": "64"
           },
           "PCW_S_AXI_HP2_FREQMHZ": {
             "value": "10"
           },
           "PCW_S_AXI_HP2_ID_WIDTH": {
             "value": "6"
+          },
+          "PCW_S_AXI_HP3_DATA_WIDTH": {
+            "value": "64"
           },
           "PCW_TPIU_PERIPHERAL_CLKSRC": {
             "value": "External"
@@ -1692,7 +1702,24 @@
       },
       "GpAxisInterface_0": {
         "vlnv": "xilinx.com:user:GpAxisInterface:1.0",
-        "xci_name": "design_1_GpAxisInterface_0_0"
+        "xci_name": "design_1_GpAxisInterface_0_0",
+        "parameters": {
+          "DATA_WIDTH": {
+            "value": "64"
+          },
+          "IN_ADR_WIDTH": {
+            "value": "4"
+          },
+          "IN_DATA_NUM": {
+            "value": "10"
+          },
+          "OUT_ADR_WIDTH": {
+            "value": "4"
+          },
+          "OUT_DATA_NUM": {
+            "value": "10"
+          }
+        }
       },
       "axi_dma_0": {
         "vlnv": "xilinx.com:ip:axi_dma:7.1",
@@ -1700,6 +1727,15 @@
         "parameters": {
           "c_include_sg": {
             "value": "0"
+          },
+          "c_m_axi_mm2s_data_width": {
+            "value": "64"
+          },
+          "c_m_axis_mm2s_tdata_width": {
+            "value": "64"
+          },
+          "c_mm2s_burst_size": {
+            "value": "16"
           },
           "c_sg_length_width": {
             "value": "26"
@@ -1832,16 +1868,16 @@
               }
             },
             "interface_nets": {
-              "s00_couplers_to_auto_pc": {
-                "interface_ports": [
-                  "S_AXI",
-                  "auto_pc/S_AXI"
-                ]
-              },
               "auto_pc_to_s00_couplers": {
                 "interface_ports": [
                   "M_AXI",
                   "auto_pc/M_AXI"
+                ]
+              },
+              "s00_couplers_to_auto_pc": {
+                "interface_ports": [
+                  "S_AXI",
+                  "auto_pc/S_AXI"
                 ]
               }
             },
@@ -1963,7 +1999,10 @@
         "xci_name": "design_1_adder5_0_0",
         "parameters": {
           "ADR": {
-            "value": "8"
+            "value": "4"
+          },
+          "WIDTH": {
+            "value": "64"
           }
         },
         "reference_info": {
@@ -2004,26 +2043,99 @@
           },
           "axisif_bufferIn_adr": {
             "direction": "O",
-            "left": "7",
+            "left": "3",
             "right": "0"
           },
           "axisif_bufferIn_data": {
             "direction": "I",
-            "left": "31",
+            "left": "63",
             "right": "0"
           },
           "axisif_bufferOut_adr": {
             "direction": "O",
-            "left": "7",
+            "left": "3",
             "right": "0"
           },
           "axisif_bufferOut_data": {
             "direction": "O",
-            "left": "31",
+            "left": "63",
             "right": "0"
           },
           "axisif_bufferOut_wr": {
             "direction": "O"
+          }
+        }
+      },
+      "system_ila_0": {
+        "vlnv": "xilinx.com:ip:system_ila:1.1",
+        "xci_name": "design_1_system_ila_0_0",
+        "parameters": {
+          "C_MON_TYPE": {
+            "value": "MIX"
+          },
+          "C_NUM_MONITOR_SLOTS": {
+            "value": "2"
+          },
+          "C_NUM_OF_PROBES": {
+            "value": "8"
+          },
+          "C_PROBE0_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE1_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE2_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE3_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE4_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE5_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE6_TYPE": {
+            "value": "0"
+          },
+          "C_PROBE7_TYPE": {
+            "value": "0"
+          },
+          "C_SLOT_0_APC_EN": {
+            "value": "0"
+          },
+          "C_SLOT_0_AXI_DATA_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_0_AXI_TRIG_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_0_INTF_TYPE": {
+            "value": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "C_SLOT_1_APC_EN": {
+            "value": "0"
+          },
+          "C_SLOT_1_AXI_DATA_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_1_AXI_TRIG_SEL": {
+            "value": "1"
+          },
+          "C_SLOT_1_INTF_TYPE": {
+            "value": "xilinx.com:interface:axis_rtl:1.0"
+          }
+        },
+        "interface_ports": {
+          "SLOT_0_AXIS": {
+            "mode": "Monitor",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
+          },
+          "SLOT_1_AXIS": {
+            "mode": "Monitor",
+            "vlnv": "xilinx.com:interface:axis_rtl:1.0"
           }
         }
       }
@@ -2044,14 +2156,32 @@
       "axis_data_fifo_0_M_AXIS": {
         "interface_ports": [
           "axis_data_fifo_0/M_AXIS",
-          "GpAxisInterface_0/S_AXIS"
-        ]
+          "GpAxisInterface_0/S_AXIS",
+          "system_ila_0/SLOT_0_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "GpAxisInterface_0_M_AXIS": {
         "interface_ports": [
           "GpAxisInterface_0/M_AXIS",
-          "axis_data_fifo_1/S_AXIS"
-        ]
+          "axis_data_fifo_1/S_AXIS",
+          "system_ila_0/SLOT_1_AXIS"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "axi_smc_1_M00_AXI": {
         "interface_ports": [
@@ -2121,7 +2251,8 @@
           "axi_dma_0/m_axi_s2mm_aclk",
           "axi_smc_1/aclk",
           "processing_system7_0/S_AXI_HP2_ACLK",
-          "adder5_0/clk"
+          "adder5_0/clk",
+          "system_ila_0/clk"
         ]
       },
       "processing_system7_0_FCLK_RESET0_N": {
@@ -2142,50 +2273,123 @@
           "GpAxisInterface_0/rst_n",
           "axi_smc/aresetn",
           "axi_smc_1/aresetn",
-          "adder5_0/rst_n"
-        ]
+          "adder5_0/rst_n",
+          "system_ila_0/resetn",
+          "system_ila_0/probe0"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "GpAxisInterface_0_axisif_start": {
         "ports": [
           "GpAxisInterface_0/axisif_start",
-          "adder5_0/axisif_start"
-        ]
+          "adder5_0/axisif_start",
+          "system_ila_0/probe1"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "GpAxisInterface_0_axisif_bufferIn_data": {
         "ports": [
           "GpAxisInterface_0/axisif_bufferIn_data",
-          "adder5_0/axisif_bufferIn_data"
-        ]
+          "adder5_0/axisif_bufferIn_data",
+          "system_ila_0/probe2"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "adder5_0_axisif_done": {
         "ports": [
           "adder5_0/axisif_done",
-          "GpAxisInterface_0/axisif_done"
-        ]
+          "GpAxisInterface_0/axisif_done",
+          "system_ila_0/probe3"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "adder5_0_axisif_bufferIn_adr": {
         "ports": [
           "adder5_0/axisif_bufferIn_adr",
-          "GpAxisInterface_0/axisif_bufferIn_adr"
-        ]
+          "GpAxisInterface_0/axisif_bufferIn_adr",
+          "system_ila_0/probe4"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "adder5_0_axisif_bufferOut_adr": {
         "ports": [
           "adder5_0/axisif_bufferOut_adr",
-          "GpAxisInterface_0/axisif_bufferOut_adr"
-        ]
+          "GpAxisInterface_0/axisif_bufferOut_adr",
+          "system_ila_0/probe5"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "adder5_0_axisif_bufferOut_data": {
         "ports": [
           "adder5_0/axisif_bufferOut_data",
-          "GpAxisInterface_0/axisif_bufferOut_data"
-        ]
+          "GpAxisInterface_0/axisif_bufferOut_data",
+          "system_ila_0/probe6"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       },
       "adder5_0_axisif_bufferOut_wr": {
         "ports": [
           "adder5_0/axisif_bufferOut_wr",
-          "GpAxisInterface_0/axisif_bufferOut_wr"
-        ]
+          "GpAxisInterface_0/axisif_bufferOut_wr",
+          "system_ila_0/probe7"
+        ],
+        "hdl_attributes": {
+          "DEBUG": {
+            "value": "true"
+          },
+          "MARK_DEBUG": {
+            "value": "true"
+          }
+        }
       }
     },
     "addressing": {

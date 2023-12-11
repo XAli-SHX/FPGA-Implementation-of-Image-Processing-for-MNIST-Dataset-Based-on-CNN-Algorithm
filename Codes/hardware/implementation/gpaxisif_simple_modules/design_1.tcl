@@ -234,6 +234,13 @@ proc create_root_design { parentCell } {
 
   # Create instance: GpAxisInterface_0, and set properties
   set GpAxisInterface_0 [ create_bd_cell -type ip -vlnv xilinx.com:user:GpAxisInterface:1.0 GpAxisInterface_0 ]
+  set_property -dict [ list \
+   CONFIG.DATA_WIDTH {64} \
+   CONFIG.IN_ADR_WIDTH {4} \
+   CONFIG.IN_DATA_NUM {10} \
+   CONFIG.OUT_ADR_WIDTH {4} \
+   CONFIG.OUT_DATA_NUM {10} \
+ ] $GpAxisInterface_0
 
   # Create instance: adder5_0, and set properties
   set block_name adder5
@@ -246,13 +253,17 @@ proc create_root_design { parentCell } {
      return 1
    }
     set_property -dict [ list \
-   CONFIG.ADR {8} \
+   CONFIG.ADR {4} \
+   CONFIG.WIDTH {64} \
  ] $adder5_0
 
   # Create instance: axi_dma_0, and set properties
   set axi_dma_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_dma:7.1 axi_dma_0 ]
   set_property -dict [ list \
    CONFIG.c_include_sg {0} \
+   CONFIG.c_m_axi_mm2s_data_width {64} \
+   CONFIG.c_m_axis_mm2s_tdata_width {64} \
+   CONFIG.c_mm2s_burst_size {16} \
    CONFIG.c_sg_include_stscntrl_strm {0} \
    CONFIG.c_sg_length_width {26} \
  ] $axi_dma_0
@@ -804,7 +815,7 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_PCAP_PERIPHERAL_CLKSRC {IO PLL} \
    CONFIG.PCW_PCAP_PERIPHERAL_DIVISOR0 {5} \
    CONFIG.PCW_PCAP_PERIPHERAL_FREQMHZ {200} \
-   CONFIG.PCW_PERIPHERAL_BOARD_PRESET {None} \
+   CONFIG.PCW_PERIPHERAL_BOARD_PRESET {part0} \
    CONFIG.PCW_PLL_BYPASSMODE_ENABLE {0} \
    CONFIG.PCW_PRESET_BANK0_VOLTAGE {LVCMOS 3.3V} \
    CONFIG.PCW_PRESET_BANK1_VOLTAGE {LVCMOS 1.8V} \
@@ -872,11 +883,11 @@ proc create_root_design { parentCell } {
    CONFIG.PCW_S_AXI_ACP_ID_WIDTH {3} \
    CONFIG.PCW_S_AXI_GP0_ID_WIDTH {6} \
    CONFIG.PCW_S_AXI_GP1_ID_WIDTH {6} \
-   CONFIG.PCW_S_AXI_HP0_DATA_WIDTH {32} \
+   CONFIG.PCW_S_AXI_HP0_DATA_WIDTH {64} \
    CONFIG.PCW_S_AXI_HP0_ID_WIDTH {6} \
    CONFIG.PCW_S_AXI_HP1_DATA_WIDTH {64} \
    CONFIG.PCW_S_AXI_HP1_ID_WIDTH {6} \
-   CONFIG.PCW_S_AXI_HP2_DATA_WIDTH {32} \
+   CONFIG.PCW_S_AXI_HP2_DATA_WIDTH {64} \
    CONFIG.PCW_S_AXI_HP2_ID_WIDTH {6} \
    CONFIG.PCW_S_AXI_HP3_DATA_WIDTH {64} \
    CONFIG.PCW_S_AXI_HP3_ID_WIDTH {6} \

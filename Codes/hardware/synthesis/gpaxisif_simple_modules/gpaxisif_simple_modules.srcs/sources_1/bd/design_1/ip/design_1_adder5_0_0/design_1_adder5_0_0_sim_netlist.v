@@ -1,7 +1,7 @@
 // Copyright 1986-2019 Xilinx, Inc. All Rights Reserved.
 // --------------------------------------------------------------------------------
 // Tool Version: Vivado v.2019.1 (win64) Build 2552052 Fri May 24 14:49:42 MDT 2019
-// Date        : Sun Jul  2 11:17:28 2023
+// Date        : Sun Jul  2 12:24:40 2023
 // Host        : DESKTOP-18V1G5L running 64-bit major release  (build 9200)
 // Command     : write_verilog -force -mode funcsim
 //               V:/gpaxisif_simple_modules/gpaxisif_simple_modules.srcs/sources_1/bd/design_1/ip/design_1_adder5_0_0/design_1_adder5_0_0_sim_netlist.v
@@ -29,25 +29,25 @@ module design_1_adder5_0_0
   (* X_INTERFACE_INFO = "xilinx.com:signal:reset:1.0 rst_n RST" *) (* X_INTERFACE_PARAMETER = "XIL_INTERFACENAME rst_n, POLARITY ACTIVE_LOW, INSERT_VIP 0" *) input rst_n;
   input axisif_start;
   output axisif_done;
-  output [7:0]axisif_bufferIn_adr;
-  input [31:0]axisif_bufferIn_data;
-  output [7:0]axisif_bufferOut_adr;
-  output [31:0]axisif_bufferOut_data;
+  output [3:0]axisif_bufferIn_adr;
+  input [63:0]axisif_bufferIn_data;
+  output [3:0]axisif_bufferOut_adr;
+  output [63:0]axisif_bufferOut_data;
   output axisif_bufferOut_wr;
 
-  wire [31:0]axisif_bufferIn_data;
-  wire [7:0]axisif_bufferOut_adr;
-  wire [31:0]axisif_bufferOut_data;
+  wire [63:0]axisif_bufferIn_data;
+  wire [3:0]axisif_bufferOut_adr;
+  wire [63:0]axisif_bufferOut_data;
   wire axisif_bufferOut_wr;
   wire axisif_done;
   wire axisif_start;
   wire clk;
   wire rst_n;
 
-  assign axisif_bufferIn_adr[7:0] = axisif_bufferOut_adr;
+  assign axisif_bufferIn_adr[3:0] = axisif_bufferOut_adr;
   design_1_adder5_0_0_adder5 inst
-       (.axisif_bufferIn_adr(axisif_bufferOut_adr),
-        .axisif_bufferIn_data(axisif_bufferIn_data),
+       (.axisif_bufferIn_data(axisif_bufferIn_data),
+        .axisif_bufferOut_adr(axisif_bufferOut_adr),
         .axisif_bufferOut_data(axisif_bufferOut_data),
         .axisif_bufferOut_wr(axisif_bufferOut_wr),
         .axisif_done(axisif_done),
@@ -59,7 +59,7 @@ endmodule
 (* ORIG_REF_NAME = "adder5" *) 
 module design_1_adder5_0_0_adder5
    (axisif_bufferOut_wr,
-    axisif_bufferIn_adr,
+    axisif_bufferOut_adr,
     axisif_bufferOut_data,
     axisif_done,
     clk,
@@ -67,17 +67,17 @@ module design_1_adder5_0_0_adder5
     axisif_start,
     rst_n);
   output axisif_bufferOut_wr;
-  output [7:0]axisif_bufferIn_adr;
-  output [31:0]axisif_bufferOut_data;
+  output [3:0]axisif_bufferOut_adr;
+  output [63:0]axisif_bufferOut_data;
   output axisif_done;
   input clk;
-  input [31:0]axisif_bufferIn_data;
+  input [63:0]axisif_bufferIn_data;
   input axisif_start;
   input rst_n;
 
-  wire [7:0]axisif_bufferIn_adr;
-  wire [31:0]axisif_bufferIn_data;
-  wire [31:0]axisif_bufferOut_data;
+  wire [63:0]axisif_bufferIn_data;
+  wire [3:0]axisif_bufferOut_adr;
+  wire [63:0]axisif_bufferOut_data;
   wire \axisif_bufferOut_data[13]_INST_0_n_0 ;
   wire \axisif_bufferOut_data[13]_INST_0_n_1 ;
   wire \axisif_bufferOut_data[13]_INST_0_n_2 ;
@@ -99,12 +99,44 @@ module design_1_adder5_0_0_adder5
   wire \axisif_bufferOut_data[25]_INST_0_n_1 ;
   wire \axisif_bufferOut_data[25]_INST_0_n_2 ;
   wire \axisif_bufferOut_data[25]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[29]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[29]_INST_0_n_1 ;
   wire \axisif_bufferOut_data[29]_INST_0_n_2 ;
   wire \axisif_bufferOut_data[29]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[33]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[33]_INST_0_n_1 ;
+  wire \axisif_bufferOut_data[33]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[33]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[37]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[37]_INST_0_n_1 ;
+  wire \axisif_bufferOut_data[37]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[37]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[41]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[41]_INST_0_n_1 ;
+  wire \axisif_bufferOut_data[41]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[41]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[45]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[45]_INST_0_n_1 ;
+  wire \axisif_bufferOut_data[45]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[45]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[49]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[49]_INST_0_n_1 ;
+  wire \axisif_bufferOut_data[49]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[49]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[53]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[53]_INST_0_n_1 ;
+  wire \axisif_bufferOut_data[53]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[53]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[57]_INST_0_n_0 ;
+  wire \axisif_bufferOut_data[57]_INST_0_n_1 ;
+  wire \axisif_bufferOut_data[57]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[57]_INST_0_n_3 ;
   wire \axisif_bufferOut_data[5]_INST_0_n_0 ;
   wire \axisif_bufferOut_data[5]_INST_0_n_1 ;
   wire \axisif_bufferOut_data[5]_INST_0_n_2 ;
   wire \axisif_bufferOut_data[5]_INST_0_n_3 ;
+  wire \axisif_bufferOut_data[61]_INST_0_n_2 ;
+  wire \axisif_bufferOut_data[61]_INST_0_n_3 ;
   wire \axisif_bufferOut_data[9]_INST_0_n_0 ;
   wire \axisif_bufferOut_data[9]_INST_0_n_1 ;
   wire \axisif_bufferOut_data[9]_INST_0_n_2 ;
@@ -113,18 +145,15 @@ module design_1_adder5_0_0_adder5
   wire axisif_done;
   wire axisif_start;
   wire calcDone;
-  wire calcDone_0;
-  wire calcDone_i_2_n_0;
+  wire calcDone_i_1_n_0;
   wire clk;
   wire \cnt[0]_i_1_n_0 ;
-  wire \cnt[5]_i_2_n_0 ;
-  wire \cnt[7]_i_2_n_0 ;
-  wire \cnt[7]_i_3_n_0 ;
+  wire \cnt[3]_i_2_n_0 ;
   wire ns;
-  wire [7:1]p_0_in;
+  wire [3:1]p_0_in;
   wire rst_n;
-  wire [3:2]\NLW_axisif_bufferOut_data[29]_INST_0_CO_UNCONNECTED ;
-  wire [3:3]\NLW_axisif_bufferOut_data[29]_INST_0_O_UNCONNECTED ;
+  wire [3:2]\NLW_axisif_bufferOut_data[61]_INST_0_CO_UNCONNECTED ;
+  wire [3:3]\NLW_axisif_bufferOut_data[61]_INST_0_O_UNCONNECTED ;
 
   LUT1 #(
     .INIT(2'h1)) 
@@ -173,11 +202,60 @@ module design_1_adder5_0_0_adder5
         .S(axisif_bufferIn_data[28:25]));
   CARRY4 \axisif_bufferOut_data[29]_INST_0 
        (.CI(\axisif_bufferOut_data[25]_INST_0_n_0 ),
-        .CO({\NLW_axisif_bufferOut_data[29]_INST_0_CO_UNCONNECTED [3:2],\axisif_bufferOut_data[29]_INST_0_n_2 ,\axisif_bufferOut_data[29]_INST_0_n_3 }),
+        .CO({\axisif_bufferOut_data[29]_INST_0_n_0 ,\axisif_bufferOut_data[29]_INST_0_n_1 ,\axisif_bufferOut_data[29]_INST_0_n_2 ,\axisif_bufferOut_data[29]_INST_0_n_3 }),
         .CYINIT(1'b0),
         .DI({1'b0,1'b0,1'b0,1'b0}),
-        .O({\NLW_axisif_bufferOut_data[29]_INST_0_O_UNCONNECTED [3],axisif_bufferOut_data[31:29]}),
-        .S({1'b0,axisif_bufferIn_data[31:29]}));
+        .O(axisif_bufferOut_data[32:29]),
+        .S(axisif_bufferIn_data[32:29]));
+  CARRY4 \axisif_bufferOut_data[33]_INST_0 
+       (.CI(\axisif_bufferOut_data[29]_INST_0_n_0 ),
+        .CO({\axisif_bufferOut_data[33]_INST_0_n_0 ,\axisif_bufferOut_data[33]_INST_0_n_1 ,\axisif_bufferOut_data[33]_INST_0_n_2 ,\axisif_bufferOut_data[33]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(axisif_bufferOut_data[36:33]),
+        .S(axisif_bufferIn_data[36:33]));
+  CARRY4 \axisif_bufferOut_data[37]_INST_0 
+       (.CI(\axisif_bufferOut_data[33]_INST_0_n_0 ),
+        .CO({\axisif_bufferOut_data[37]_INST_0_n_0 ,\axisif_bufferOut_data[37]_INST_0_n_1 ,\axisif_bufferOut_data[37]_INST_0_n_2 ,\axisif_bufferOut_data[37]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(axisif_bufferOut_data[40:37]),
+        .S(axisif_bufferIn_data[40:37]));
+  CARRY4 \axisif_bufferOut_data[41]_INST_0 
+       (.CI(\axisif_bufferOut_data[37]_INST_0_n_0 ),
+        .CO({\axisif_bufferOut_data[41]_INST_0_n_0 ,\axisif_bufferOut_data[41]_INST_0_n_1 ,\axisif_bufferOut_data[41]_INST_0_n_2 ,\axisif_bufferOut_data[41]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(axisif_bufferOut_data[44:41]),
+        .S(axisif_bufferIn_data[44:41]));
+  CARRY4 \axisif_bufferOut_data[45]_INST_0 
+       (.CI(\axisif_bufferOut_data[41]_INST_0_n_0 ),
+        .CO({\axisif_bufferOut_data[45]_INST_0_n_0 ,\axisif_bufferOut_data[45]_INST_0_n_1 ,\axisif_bufferOut_data[45]_INST_0_n_2 ,\axisif_bufferOut_data[45]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(axisif_bufferOut_data[48:45]),
+        .S(axisif_bufferIn_data[48:45]));
+  CARRY4 \axisif_bufferOut_data[49]_INST_0 
+       (.CI(\axisif_bufferOut_data[45]_INST_0_n_0 ),
+        .CO({\axisif_bufferOut_data[49]_INST_0_n_0 ,\axisif_bufferOut_data[49]_INST_0_n_1 ,\axisif_bufferOut_data[49]_INST_0_n_2 ,\axisif_bufferOut_data[49]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(axisif_bufferOut_data[52:49]),
+        .S(axisif_bufferIn_data[52:49]));
+  CARRY4 \axisif_bufferOut_data[53]_INST_0 
+       (.CI(\axisif_bufferOut_data[49]_INST_0_n_0 ),
+        .CO({\axisif_bufferOut_data[53]_INST_0_n_0 ,\axisif_bufferOut_data[53]_INST_0_n_1 ,\axisif_bufferOut_data[53]_INST_0_n_2 ,\axisif_bufferOut_data[53]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(axisif_bufferOut_data[56:53]),
+        .S(axisif_bufferIn_data[56:53]));
+  CARRY4 \axisif_bufferOut_data[57]_INST_0 
+       (.CI(\axisif_bufferOut_data[53]_INST_0_n_0 ),
+        .CO({\axisif_bufferOut_data[57]_INST_0_n_0 ,\axisif_bufferOut_data[57]_INST_0_n_1 ,\axisif_bufferOut_data[57]_INST_0_n_2 ,\axisif_bufferOut_data[57]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O(axisif_bufferOut_data[60:57]),
+        .S(axisif_bufferIn_data[60:57]));
   CARRY4 \axisif_bufferOut_data[5]_INST_0 
        (.CI(\axisif_bufferOut_data[1]_INST_0_n_0 ),
         .CO({\axisif_bufferOut_data[5]_INST_0_n_0 ,\axisif_bufferOut_data[5]_INST_0_n_1 ,\axisif_bufferOut_data[5]_INST_0_n_2 ,\axisif_bufferOut_data[5]_INST_0_n_3 }),
@@ -185,6 +263,13 @@ module design_1_adder5_0_0_adder5
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(axisif_bufferOut_data[8:5]),
         .S(axisif_bufferIn_data[8:5]));
+  CARRY4 \axisif_bufferOut_data[61]_INST_0 
+       (.CI(\axisif_bufferOut_data[57]_INST_0_n_0 ),
+        .CO({\NLW_axisif_bufferOut_data[61]_INST_0_CO_UNCONNECTED [3:2],\axisif_bufferOut_data[61]_INST_0_n_2 ,\axisif_bufferOut_data[61]_INST_0_n_3 }),
+        .CYINIT(1'b0),
+        .DI({1'b0,1'b0,1'b0,1'b0}),
+        .O({\NLW_axisif_bufferOut_data[61]_INST_0_O_UNCONNECTED [3],axisif_bufferOut_data[63:61]}),
+        .S({1'b0,axisif_bufferIn_data[63:61]}));
   CARRY4 \axisif_bufferOut_data[9]_INST_0 
        (.CI(\axisif_bufferOut_data[5]_INST_0_n_0 ),
         .CO({\axisif_bufferOut_data[9]_INST_0_n_0 ,\axisif_bufferOut_data[9]_INST_0_n_1 ,\axisif_bufferOut_data[9]_INST_0_n_2 ,\axisif_bufferOut_data[9]_INST_0_n_3 }),
@@ -192,176 +277,90 @@ module design_1_adder5_0_0_adder5
         .DI({1'b0,1'b0,1'b0,1'b0}),
         .O(axisif_bufferOut_data[12:9]),
         .S(axisif_bufferIn_data[12:9]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
   LUT1 #(
     .INIT(2'h1)) 
     axisif_done_INST_0
        (.I0(axisif_bufferOut_wr),
         .O(axisif_done));
-  LUT4 #(
-    .INIT(16'h0400)) 
+  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  LUT5 #(
+    .INIT(32'h00080000)) 
     calcDone_i_1
-       (.I0(axisif_bufferIn_adr[1]),
-        .I1(axisif_bufferIn_adr[3]),
-        .I2(axisif_bufferIn_adr[2]),
-        .I3(calcDone_i_2_n_0),
-        .O(calcDone_0));
-  LUT6 #(
-    .INIT(64'h0001000000000000)) 
-    calcDone_i_2
-       (.I0(axisif_bufferIn_adr[6]),
-        .I1(axisif_bufferIn_adr[7]),
-        .I2(axisif_bufferIn_adr[4]),
-        .I3(axisif_bufferIn_adr[5]),
-        .I4(axisif_bufferOut_wr),
-        .I5(axisif_bufferIn_adr[0]),
-        .O(calcDone_i_2_n_0));
+       (.I0(axisif_bufferOut_wr),
+        .I1(axisif_bufferOut_adr[3]),
+        .I2(axisif_bufferOut_adr[2]),
+        .I3(axisif_bufferOut_adr[1]),
+        .I4(axisif_bufferOut_adr[0]),
+        .O(calcDone_i_1_n_0));
   FDCE calcDone_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
-        .D(calcDone_0),
+        .CLR(\cnt[3]_i_2_n_0 ),
+        .D(calcDone_i_1_n_0),
         .Q(calcDone));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT2 #(
     .INIT(4'h2)) 
     \cnt[0]_i_1 
        (.I0(axisif_bufferOut_wr),
-        .I1(axisif_bufferIn_adr[0]),
+        .I1(axisif_bufferOut_adr[0]),
         .O(\cnt[0]_i_1_n_0 ));
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT3 #(
-    .INIT(8'h48)) 
+    .INIT(8'h60)) 
     \cnt[1]_i_1 
-       (.I0(axisif_bufferIn_adr[1]),
-        .I1(axisif_bufferOut_wr),
-        .I2(axisif_bufferIn_adr[0]),
+       (.I0(axisif_bufferOut_adr[1]),
+        .I1(axisif_bufferOut_adr[0]),
+        .I2(axisif_bufferOut_wr),
         .O(p_0_in[1]));
-  (* SOFT_HLUTNM = "soft_lutpair0" *) 
+  (* SOFT_HLUTNM = "soft_lutpair1" *) 
   LUT4 #(
-    .INIT(16'h7800)) 
+    .INIT(16'h6A00)) 
     \cnt[2]_i_1 
-       (.I0(axisif_bufferIn_adr[1]),
-        .I1(axisif_bufferIn_adr[0]),
-        .I2(axisif_bufferIn_adr[2]),
+       (.I0(axisif_bufferOut_adr[2]),
+        .I1(axisif_bufferOut_adr[1]),
+        .I2(axisif_bufferOut_adr[0]),
         .I3(axisif_bufferOut_wr),
         .O(p_0_in[2]));
   (* SOFT_HLUTNM = "soft_lutpair0" *) 
   LUT5 #(
-    .INIT(32'h7F008000)) 
+    .INIT(32'h6AAA0000)) 
     \cnt[3]_i_1 
-       (.I0(axisif_bufferIn_adr[0]),
-        .I1(axisif_bufferIn_adr[1]),
-        .I2(axisif_bufferIn_adr[2]),
-        .I3(axisif_bufferOut_wr),
-        .I4(axisif_bufferIn_adr[3]),
-        .O(p_0_in[3]));
-  LUT6 #(
-    .INIT(64'h7FFF000080000000)) 
-    \cnt[4]_i_1 
-       (.I0(axisif_bufferIn_adr[2]),
-        .I1(axisif_bufferIn_adr[1]),
-        .I2(axisif_bufferIn_adr[0]),
-        .I3(axisif_bufferIn_adr[3]),
+       (.I0(axisif_bufferOut_adr[3]),
+        .I1(axisif_bufferOut_adr[2]),
+        .I2(axisif_bufferOut_adr[0]),
+        .I3(axisif_bufferOut_adr[1]),
         .I4(axisif_bufferOut_wr),
-        .I5(axisif_bufferIn_adr[4]),
-        .O(p_0_in[4]));
-  (* SOFT_HLUTNM = "soft_lutpair3" *) 
-  LUT3 #(
-    .INIT(8'h84)) 
-    \cnt[5]_i_1 
-       (.I0(\cnt[5]_i_2_n_0 ),
-        .I1(axisif_bufferOut_wr),
-        .I2(axisif_bufferIn_adr[5]),
-        .O(p_0_in[5]));
-  LUT5 #(
-    .INIT(32'h7FFFFFFF)) 
-    \cnt[5]_i_2 
-       (.I0(axisif_bufferIn_adr[3]),
-        .I1(axisif_bufferIn_adr[0]),
-        .I2(axisif_bufferIn_adr[1]),
-        .I3(axisif_bufferIn_adr[2]),
-        .I4(axisif_bufferIn_adr[4]),
-        .O(\cnt[5]_i_2_n_0 ));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT3 #(
-    .INIT(8'h84)) 
-    \cnt[6]_i_1 
-       (.I0(\cnt[7]_i_3_n_0 ),
-        .I1(axisif_bufferOut_wr),
-        .I2(axisif_bufferIn_adr[6]),
-        .O(p_0_in[6]));
-  (* SOFT_HLUTNM = "soft_lutpair1" *) 
-  LUT4 #(
-    .INIT(16'hB040)) 
-    \cnt[7]_i_1 
-       (.I0(\cnt[7]_i_3_n_0 ),
-        .I1(axisif_bufferIn_adr[6]),
-        .I2(axisif_bufferOut_wr),
-        .I3(axisif_bufferIn_adr[7]),
-        .O(p_0_in[7]));
+        .O(p_0_in[3]));
   LUT1 #(
     .INIT(2'h1)) 
-    \cnt[7]_i_2 
+    \cnt[3]_i_2 
        (.I0(rst_n),
-        .O(\cnt[7]_i_2_n_0 ));
-  LUT6 #(
-    .INIT(64'h7FFFFFFFFFFFFFFF)) 
-    \cnt[7]_i_3 
-       (.I0(axisif_bufferIn_adr[4]),
-        .I1(axisif_bufferIn_adr[2]),
-        .I2(axisif_bufferIn_adr[1]),
-        .I3(axisif_bufferIn_adr[0]),
-        .I4(axisif_bufferIn_adr[3]),
-        .I5(axisif_bufferIn_adr[5]),
-        .O(\cnt[7]_i_3_n_0 ));
+        .O(\cnt[3]_i_2_n_0 ));
   FDCE \cnt_reg[0] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
+        .CLR(\cnt[3]_i_2_n_0 ),
         .D(\cnt[0]_i_1_n_0 ),
-        .Q(axisif_bufferIn_adr[0]));
+        .Q(axisif_bufferOut_adr[0]));
   FDCE \cnt_reg[1] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
+        .CLR(\cnt[3]_i_2_n_0 ),
         .D(p_0_in[1]),
-        .Q(axisif_bufferIn_adr[1]));
+        .Q(axisif_bufferOut_adr[1]));
   FDCE \cnt_reg[2] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
+        .CLR(\cnt[3]_i_2_n_0 ),
         .D(p_0_in[2]),
-        .Q(axisif_bufferIn_adr[2]));
+        .Q(axisif_bufferOut_adr[2]));
   FDCE \cnt_reg[3] 
        (.C(clk),
         .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
+        .CLR(\cnt[3]_i_2_n_0 ),
         .D(p_0_in[3]),
-        .Q(axisif_bufferIn_adr[3]));
-  FDCE \cnt_reg[4] 
-       (.C(clk),
-        .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
-        .D(p_0_in[4]),
-        .Q(axisif_bufferIn_adr[4]));
-  FDCE \cnt_reg[5] 
-       (.C(clk),
-        .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
-        .D(p_0_in[5]),
-        .Q(axisif_bufferIn_adr[5]));
-  FDCE \cnt_reg[6] 
-       (.C(clk),
-        .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
-        .D(p_0_in[6]),
-        .Q(axisif_bufferIn_adr[6]));
-  FDCE \cnt_reg[7] 
-       (.C(clk),
-        .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
-        .D(p_0_in[7]),
-        .Q(axisif_bufferIn_adr[7]));
+        .Q(axisif_bufferOut_adr[3]));
   (* SOFT_HLUTNM = "soft_lutpair2" *) 
   LUT3 #(
     .INIT(8'h74)) 
@@ -373,7 +372,7 @@ module design_1_adder5_0_0_adder5
   FDCE ps_reg
        (.C(clk),
         .CE(1'b1),
-        .CLR(\cnt[7]_i_2_n_0 ),
+        .CLR(\cnt[3]_i_2_n_0 ),
         .D(ns),
         .Q(axisif_bufferOut_wr));
 endmodule

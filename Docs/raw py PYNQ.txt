@@ -1,0 +1,45 @@
+root@pynq:/home/xilinx/jupyter_notebooks/Ali/timing_test# python3 main.py
+(28, 28)
+start layer0_conv2d
+end layer0_conv2d
+time = -14.135528087615967
+
+start layer0ReLU
+end layer0ReLU
+time = -0.16965746879577637
+
+start layer1_maxpooling
+end layer1_maxpooling
+time = -0.1645796298980713
+
+start layer2_conv2d
+end layer2_conv2d
+time = -36.425392389297485
+
+start layer2ReLU
+end layer2ReLU
+time = -0.08422088623046875
+
+start layer3_maxpooling
+end layer3_maxpooling
+time = -0.059531211853027344
+
+start layer4Flatten
+end layer4Flatten
+time = -0.0010907649993896484
+
+start layer5Dropout
+end layer5Dropout
+time = -0.01592707633972168
+
+start layer6Dense
+end layer6Dense
+time = -0.08876514434814453
+
+start layer6Softmax
+end layer6Softmax
+time = -0.00011873245239257812
+
+actual: [0.06701640436884225, 0.007307831856990515, 0.14195802578042305, 0.04536165739781275, 0.012551023504621058, 0.048113211214635535, 0.0009
+528870290478114, 0.020366374793710416, 0.09839977476702304, 0.5579728092868936]
+root@pynq:/home/xilinx/jupyter_notebooks/Ali/timing_test#

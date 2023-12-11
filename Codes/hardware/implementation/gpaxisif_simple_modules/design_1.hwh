@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
-<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Jul  2 11:16:40 2023" VIVADOVERSION="2019.1">
+<EDKSYSTEM EDWVERSION="1.2" TIMESTAMP="Sun Jul  2 12:23:45 2023" VIVADOVERSION="2019.1">
 
   <SYSTEMINFO ARCH="zynq" BOARD="tul.com.tw:pynq-z2:part0:1.0" DEVICE="7z020" NAME="design_1" PACKAGE="clg400" SPEEDGRADE="-1"/>
 
@@ -162,11 +162,11 @@
     <MODULE COREREVISION="3" FULLNAME="/GpAxisInterface_0" HWVERSION="1.0" INSTANCE="GpAxisInterface_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="GpAxisInterface" VLNV="xilinx.com:user:GpAxisInterface:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="IN_DATA_NUM" VALUE="8"/>
-        <PARAMETER NAME="OUT_DATA_NUM" VALUE="4"/>
-        <PARAMETER NAME="IN_ADR_WIDTH" VALUE="8"/>
-        <PARAMETER NAME="OUT_ADR_WIDTH" VALUE="8"/>
+        <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="IN_DATA_NUM" VALUE="10"/>
+        <PARAMETER NAME="OUT_DATA_NUM" VALUE="10"/>
+        <PARAMETER NAME="IN_ADR_WIDTH" VALUE="4"/>
+        <PARAMETER NAME="OUT_ADR_WIDTH" VALUE="4"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_GpAxisInterface_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
       </PARAMETERS>
@@ -181,7 +181,7 @@
             <CONNECTION INSTANCE="rst_ps7_0_100M" PORT="peripheral_aresetn"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="s_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_s_data">
+        <PORT DIR="I" LEFT="63" NAME="s_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_s_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_data_fifo_0" PORT="m_axis_tdata"/>
           </CONNECTIONS>
@@ -201,7 +201,7 @@
             <CONNECTION INSTANCE="axis_data_fifo_0" PORT="m_axis_tready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="m_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_m_data">
+        <PORT DIR="O" LEFT="63" NAME="m_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_m_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_data_fifo_1" PORT="s_axis_tdata"/>
           </CONNECTIONS>
@@ -231,22 +231,22 @@
             <CONNECTION INSTANCE="adder5_0" PORT="axisif_done"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="axisif_bufferIn_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferIn_adr">
+        <PORT DIR="I" LEFT="3" NAME="axisif_bufferIn_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferIn_adr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="adder5_0" PORT="axisif_bufferIn_adr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="axisif_bufferIn_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_axisif_bufferIn_data">
+        <PORT DIR="O" LEFT="63" NAME="axisif_bufferIn_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_axisif_bufferIn_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="adder5_0" PORT="axisif_bufferIn_data"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="7" NAME="axisif_bufferOut_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_adr">
+        <PORT DIR="I" LEFT="3" NAME="axisif_bufferOut_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_adr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="adder5_0" PORT="axisif_bufferOut_adr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="axisif_bufferOut_data" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_data">
+        <PORT DIR="I" LEFT="63" NAME="axisif_bufferOut_data" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="adder5_0" PORT="axisif_bufferOut_data"/>
           </CONNECTIONS>
@@ -259,7 +259,7 @@
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="axis_data_fifo_0_M_AXIS" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -280,7 +280,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="GpAxisInterface_0_M_AXIS" NAME="M_AXIS" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -305,8 +305,8 @@
     <MODULE COREREVISION="1" FULLNAME="/adder5_0" HWVERSION="1.0" INSTANCE="adder5_0" IPTYPE="PERIPHERAL" IS_ENABLE="1" MODCLASS="PERIPHERAL" MODTYPE="adder5" VLNV="xilinx.com:module_ref:adder5:1.0">
       <DOCUMENTS/>
       <PARAMETERS>
-        <PARAMETER NAME="WIDTH" VALUE="32"/>
-        <PARAMETER NAME="ADR" VALUE="8"/>
+        <PARAMETER NAME="WIDTH" VALUE="64"/>
+        <PARAMETER NAME="ADR" VALUE="4"/>
         <PARAMETER NAME="NUMBER" VALUE="10"/>
         <PARAMETER NAME="Component_Name" VALUE="design_1_adder5_0_0"/>
         <PARAMETER NAME="EDK_IPTYPE" VALUE="PERIPHERAL"/>
@@ -332,22 +332,22 @@
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="axisif_done"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="axisif_bufferIn_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferIn_adr">
+        <PORT DIR="O" LEFT="3" NAME="axisif_bufferIn_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferIn_adr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="axisif_bufferIn_adr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="axisif_bufferIn_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_axisif_bufferIn_data">
+        <PORT DIR="I" LEFT="63" NAME="axisif_bufferIn_data" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_axisif_bufferIn_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="axisif_bufferIn_data"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="7" NAME="axisif_bufferOut_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_adr">
+        <PORT DIR="O" LEFT="3" NAME="axisif_bufferOut_adr" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_adr">
           <CONNECTIONS>
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="axisif_bufferOut_adr"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="axisif_bufferOut_data" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_data">
+        <PORT DIR="O" LEFT="63" NAME="axisif_bufferOut_data" RIGHT="0" SIGIS="undef" SIGNAME="adder5_0_axisif_bufferOut_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="axisif_bufferOut_data"/>
           </CONNECTIONS>
@@ -1201,15 +1201,15 @@
         <PARAMETER NAME="C_INCLUDE_MM2S_SF" VALUE="1"/>
         <PARAMETER NAME="C_MM2S_BURST_SIZE" VALUE="16"/>
         <PARAMETER NAME="C_M_AXI_MM2S_ADDR_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_M_AXI_MM2S_DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_M_AXIS_MM2S_TDATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_M_AXI_MM2S_DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="C_M_AXIS_MM2S_TDATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_INCLUDE_MM2S_DRE" VALUE="0"/>
         <PARAMETER NAME="C_INCLUDE_S2MM" VALUE="1"/>
         <PARAMETER NAME="C_INCLUDE_S2MM_SF" VALUE="1"/>
         <PARAMETER NAME="C_S2MM_BURST_SIZE" VALUE="16"/>
         <PARAMETER NAME="C_M_AXI_S2MM_ADDR_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_M_AXI_S2MM_DATA_WIDTH" VALUE="32"/>
-        <PARAMETER NAME="C_S_AXIS_S2MM_TDATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_M_AXI_S2MM_DATA_WIDTH" VALUE="64"/>
+        <PARAMETER NAME="C_S_AXIS_S2MM_TDATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_INCLUDE_S2MM_DRE" VALUE="0"/>
         <PARAMETER NAME="C_INCREASE_THROUGHPUT" VALUE="0"/>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
@@ -1224,15 +1224,15 @@
         <PARAMETER NAME="c_sg_include_stscntrl_strm" VALUE="0"/>
         <PARAMETER NAME="c_micro_dma" VALUE="0"/>
         <PARAMETER NAME="c_include_mm2s" VALUE="1"/>
-        <PARAMETER NAME="c_m_axi_mm2s_data_width" VALUE="32"/>
-        <PARAMETER NAME="c_m_axis_mm2s_tdata_width" VALUE="32"/>
+        <PARAMETER NAME="c_m_axi_mm2s_data_width" VALUE="64"/>
+        <PARAMETER NAME="c_m_axis_mm2s_tdata_width" VALUE="64"/>
         <PARAMETER NAME="c_include_mm2s_dre" VALUE="0"/>
         <PARAMETER NAME="c_include_mm2s_sf" VALUE="1"/>
         <PARAMETER NAME="c_mm2s_burst_size" VALUE="16"/>
         <PARAMETER NAME="c_include_s2mm" VALUE="1"/>
         <PARAMETER NAME="c_sg_use_stsapp_length" VALUE="0"/>
-        <PARAMETER NAME="c_m_axi_s2mm_data_width" VALUE="32"/>
-        <PARAMETER NAME="c_s_axis_s2mm_tdata_width" VALUE="32"/>
+        <PARAMETER NAME="c_m_axi_s2mm_data_width" VALUE="64"/>
+        <PARAMETER NAME="c_s_axis_s2mm_tdata_width" VALUE="64"/>
         <PARAMETER NAME="c_include_s2mm_dre" VALUE="0"/>
         <PARAMETER NAME="c_include_s2mm_sf" VALUE="1"/>
         <PARAMETER NAME="c_s2mm_burst_size" VALUE="16"/>
@@ -1384,7 +1384,7 @@
             <CONNECTION INSTANCE="axi_smc" PORT="S00_AXI_arready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="m_axi_mm2s_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_mm2s_rdata">
+        <PORT DIR="I" LEFT="63" NAME="m_axi_mm2s_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_mm2s_rdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_smc" PORT="S00_AXI_rdata"/>
           </CONNECTIONS>
@@ -1410,12 +1410,12 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="mm2s_prmry_reset_out_n" SIGIS="rst"/>
-        <PORT DIR="O" LEFT="31" NAME="m_axis_mm2s_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tdata">
+        <PORT DIR="O" LEFT="63" NAME="m_axis_mm2s_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_data_fifo_0" PORT="s_axis_tdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="m_axis_mm2s_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tkeep">
+        <PORT DIR="O" LEFT="7" NAME="m_axis_mm2s_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tkeep">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_data_fifo_0" PORT="s_axis_tkeep"/>
           </CONNECTIONS>
@@ -1475,12 +1475,12 @@
             <CONNECTION INSTANCE="axi_smc_1" PORT="S00_AXI_awready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="m_axi_s2mm_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wdata">
+        <PORT DIR="O" LEFT="63" NAME="m_axi_s2mm_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_smc_1" PORT="S00_AXI_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="m_axi_s2mm_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wstrb">
+        <PORT DIR="O" LEFT="7" NAME="m_axi_s2mm_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wstrb">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_smc_1" PORT="S00_AXI_wstrb"/>
           </CONNECTIONS>
@@ -1516,12 +1516,12 @@
           </CONNECTIONS>
         </PORT>
         <PORT DIR="O" NAME="s2mm_prmry_reset_out_n" SIGIS="rst"/>
-        <PORT DIR="I" LEFT="31" NAME="s_axis_s2mm_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axis_s2mm_tdata">
+        <PORT DIR="I" LEFT="63" NAME="s_axis_s2mm_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axis_s2mm_tdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_data_fifo_1" PORT="m_axis_tdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="s_axis_s2mm_tkeep" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="7" NAME="s_axis_s2mm_tkeep" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" NAME="s_axis_s2mm_tvalid" SIGIS="undef" SIGNAME="axi_dma_0_s_axis_s2mm_tvalid">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axis_data_fifo_1" PORT="m_axis_tvalid"/>
@@ -1592,10 +1592,10 @@
             <PORTMAP LOGICAL="WVALID" PHYSICAL="s_axi_lite_wvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_MM2S" DATAWIDTH="32" NAME="M_AXI_MM2S" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_MM2S" DATAWIDTH="64" NAME="M_AXI_MM2S" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="16"/>
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
@@ -1640,10 +1640,10 @@
             <PORTMAP LOGICAL="RVALID" PHYSICAL="m_axi_mm2s_rvalid"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_S2MM" DATAWIDTH="32" NAME="M_AXI_S2MM" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_S2MM" DATAWIDTH="64" NAME="M_AXI_S2MM" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="SUPPORTS_NARROW_BURST" VALUE="0"/>
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="16"/>
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
@@ -1692,7 +1692,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="axi_dma_0_M_AXIS_MM2S" NAME="M_AXIS_MM2S" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -1715,7 +1715,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="axis_data_fifo_1_M_AXIS" NAME="S_AXIS_S2MM" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -1812,7 +1812,7 @@
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_mm2s_arready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_mm2s_rdata">
+        <PORT DIR="O" LEFT="63" NAME="S00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_mm2s_rdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_mm2s_rdata"/>
           </CONNECTIONS>
@@ -1887,7 +1887,7 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_ARREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_M00_AXI_rdata">
+        <PORT DIR="I" LEFT="63" NAME="M00_AXI_rdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_M00_AXI_rdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP0_RDATA"/>
           </CONNECTIONS>
@@ -1914,8 +1914,8 @@
         </PORT>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_MM2S" DATAWIDTH="32" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_MM2S" DATAWIDTH="64" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
@@ -1964,8 +1964,8 @@
             <PORTMAP LOGICAL="RREADY" PHYSICAL="S00_AXI_rready"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_smc_M00_AXI" DATAWIDTH="32" NAME="M00_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+        <BUSINTERFACE BUSNAME="axi_smc_M00_AXI" DATAWIDTH="64" NAME="M00_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
@@ -2082,12 +2082,12 @@
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_awready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wdata">
+        <PORT DIR="I" LEFT="63" NAME="S00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wstrb">
+        <PORT DIR="I" LEFT="7" NAME="S00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axi_s2mm_wstrb">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axi_s2mm_wstrb"/>
           </CONNECTIONS>
@@ -2172,12 +2172,12 @@
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP2_AWREADY"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wdata">
+        <PORT DIR="O" LEFT="63" NAME="M00_AXI_wdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP2_WDATA"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="M00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wstrb">
+        <PORT DIR="O" LEFT="7" NAME="M00_AXI_wstrb" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wstrb">
           <CONNECTIONS>
             <CONNECTION INSTANCE="processing_system7_0" PORT="S_AXI_HP2_WSTRB"/>
           </CONNECTIONS>
@@ -2214,8 +2214,8 @@
         </PORT>
       </PORTS>
       <BUSINTERFACES>
-        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_S2MM" DATAWIDTH="32" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+        <BUSINTERFACE BUSNAME="axi_dma_0_M_AXI_S2MM" DATAWIDTH="64" NAME="S00_AXI" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI4"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
@@ -2267,8 +2267,8 @@
             <PORTMAP LOGICAL="BREADY" PHYSICAL="S00_AXI_bready"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_smc_1_M00_AXI" DATAWIDTH="32" NAME="M00_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+        <BUSINTERFACE BUSNAME="axi_smc_1_M00_AXI" DATAWIDTH="64" NAME="M00_AXI" TYPE="MASTER" VLNV="xilinx.com:interface:aximm:1.0">
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="0"/>
@@ -2328,7 +2328,7 @@
       </DOCUMENTS>
       <PARAMETERS>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
-        <PARAMETER NAME="C_AXIS_TDATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_AXIS_TDATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_AXIS_TID_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_TDEST_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_TUSER_WIDTH" VALUE="1"/>
@@ -2343,7 +2343,7 @@
         <PARAMETER NAME="C_USE_ADV_FEATURES" VALUE="825241648"/>
         <PARAMETER NAME="C_PROG_EMPTY_THRESH" VALUE="5"/>
         <PARAMETER NAME="C_PROG_FULL_THRESH" VALUE="11"/>
-        <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+        <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
         <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
         <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
         <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -2391,12 +2391,12 @@
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axis_mm2s_tready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tdata">
+        <PORT DIR="I" LEFT="63" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axis_mm2s_tdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="s_axis_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tkeep">
+        <PORT DIR="I" LEFT="7" NAME="s_axis_tkeep" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_m_axis_mm2s_tkeep">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_0" PORT="m_axis_mm2s_tkeep"/>
           </CONNECTIONS>
@@ -2416,12 +2416,12 @@
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="s_ready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_s_data">
+        <PORT DIR="O" LEFT="63" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_s_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="s_data"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="3" NAME="m_axis_tkeep" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="7" NAME="m_axis_tkeep" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" NAME="m_axis_tlast" SIGIS="undef" SIGNAME="GpAxisInterface_0_s_last">
           <CONNECTIONS>
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="s_last"/>
@@ -2430,7 +2430,7 @@
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="axi_dma_0_M_AXIS_MM2S" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -2452,7 +2452,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="axis_data_fifo_0_M_AXIS" NAME="M_AXIS" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -2481,7 +2481,7 @@
       </DOCUMENTS>
       <PARAMETERS>
         <PARAMETER NAME="C_FAMILY" VALUE="zynq"/>
-        <PARAMETER NAME="C_AXIS_TDATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_AXIS_TDATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_AXIS_TID_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_TDEST_WIDTH" VALUE="1"/>
         <PARAMETER NAME="C_AXIS_TUSER_WIDTH" VALUE="1"/>
@@ -2496,7 +2496,7 @@
         <PARAMETER NAME="C_USE_ADV_FEATURES" VALUE="825241648"/>
         <PARAMETER NAME="C_PROG_EMPTY_THRESH" VALUE="5"/>
         <PARAMETER NAME="C_PROG_FULL_THRESH" VALUE="11"/>
-        <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+        <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
         <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
         <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
         <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -2544,7 +2544,7 @@
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="m_ready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="31" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_m_data">
+        <PORT DIR="I" LEFT="63" NAME="s_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="GpAxisInterface_0_m_data">
           <CONNECTIONS>
             <CONNECTION INSTANCE="GpAxisInterface_0" PORT="m_data"/>
           </CONNECTIONS>
@@ -2564,7 +2564,7 @@
             <CONNECTION INSTANCE="axi_dma_0" PORT="s_axis_s2mm_tready"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="O" LEFT="31" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axis_s2mm_tdata">
+        <PORT DIR="O" LEFT="63" NAME="m_axis_tdata" RIGHT="0" SIGIS="undef" SIGNAME="axi_dma_0_s_axis_s2mm_tdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_dma_0" PORT="s_axis_s2mm_tdata"/>
           </CONNECTIONS>
@@ -2577,7 +2577,7 @@
       </PORTS>
       <BUSINTERFACES>
         <BUSINTERFACE BUSNAME="GpAxisInterface_0_M_AXIS" NAME="S_AXIS" TYPE="TARGET" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -2598,7 +2598,7 @@
           </PORTMAPS>
         </BUSINTERFACE>
         <BUSINTERFACE BUSNAME="axis_data_fifo_1_M_AXIS" NAME="M_AXIS" TYPE="INITIATOR" VLNV="xilinx.com:interface:axis:1.0">
-          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="4"/>
+          <PARAMETER NAME="TDATA_NUM_BYTES" VALUE="8"/>
           <PARAMETER NAME="TDEST_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TID_WIDTH" VALUE="0"/>
           <PARAMETER NAME="TUSER_WIDTH" VALUE="0"/>
@@ -2647,11 +2647,11 @@
         <PARAMETER NAME="C_S_AXI_GP1_ID_WIDTH" VALUE="6"/>
         <PARAMETER NAME="C_S_AXI_ACP_ID_WIDTH" VALUE="3"/>
         <PARAMETER NAME="C_S_AXI_HP0_ID_WIDTH" VALUE="6"/>
-        <PARAMETER NAME="C_S_AXI_HP0_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_S_AXI_HP0_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_S_AXI_HP1_ID_WIDTH" VALUE="6"/>
         <PARAMETER NAME="C_S_AXI_HP1_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_S_AXI_HP2_ID_WIDTH" VALUE="6"/>
-        <PARAMETER NAME="C_S_AXI_HP2_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="C_S_AXI_HP2_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_S_AXI_HP3_ID_WIDTH" VALUE="6"/>
         <PARAMETER NAME="C_S_AXI_HP3_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="C_M_AXI_GP0_THREAD_ID_WIDTH" VALUE="12"/>
@@ -2992,11 +2992,11 @@
         <PARAMETER NAME="PCW_S_AXI_ACP_ARUSER_VAL" VALUE="31"/>
         <PARAMETER NAME="PCW_S_AXI_ACP_AWUSER_VAL" VALUE="31"/>
         <PARAMETER NAME="PCW_S_AXI_HP0_ID_WIDTH" VALUE="6"/>
-        <PARAMETER NAME="PCW_S_AXI_HP0_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="PCW_S_AXI_HP0_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="PCW_S_AXI_HP1_ID_WIDTH" VALUE="6"/>
         <PARAMETER NAME="PCW_S_AXI_HP1_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="PCW_S_AXI_HP2_ID_WIDTH" VALUE="6"/>
-        <PARAMETER NAME="PCW_S_AXI_HP2_DATA_WIDTH" VALUE="32"/>
+        <PARAMETER NAME="PCW_S_AXI_HP2_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="PCW_S_AXI_HP3_ID_WIDTH" VALUE="6"/>
         <PARAMETER NAME="PCW_S_AXI_HP3_DATA_WIDTH" VALUE="64"/>
         <PARAMETER NAME="PCW_NUM_F2P_INTR_INPUTS" VALUE="1"/>
@@ -3078,7 +3078,7 @@
         <PARAMETER NAME="PCW_GP0_EN_MODIFIABLE_TXN" VALUE="1"/>
         <PARAMETER NAME="PCW_GP1_EN_MODIFIABLE_TXN" VALUE="1"/>
         <PARAMETER NAME="PCW_IMPORT_BOARD_PRESET" VALUE="None"/>
-        <PARAMETER NAME="PCW_PERIPHERAL_BOARD_PRESET" VALUE="None"/>
+        <PARAMETER NAME="PCW_PERIPHERAL_BOARD_PRESET" VALUE="part0"/>
         <PARAMETER NAME="PCW_PRESET_BANK0_VOLTAGE" VALUE="LVCMOS 3.3V"/>
         <PARAMETER NAME="PCW_PRESET_BANK1_VOLTAGE" VALUE="LVCMOS 1.8V"/>
         <PARAMETER NAME="PCW_UIPARAM_DDR_ENABLE" VALUE="1"/>
@@ -3788,7 +3788,7 @@
         </PORT>
         <PORT DIR="O" LEFT="5" NAME="S_AXI_HP0_BID" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="5" NAME="S_AXI_HP0_RID" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="S_AXI_HP0_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_M00_AXI_rdata">
+        <PORT DIR="O" LEFT="63" NAME="S_AXI_HP0_RDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_M00_AXI_rdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_smc" PORT="M00_AXI_rdata"/>
           </CONNECTIONS>
@@ -3869,8 +3869,8 @@
         <PORT DIR="I" LEFT="5" NAME="S_AXI_HP0_ARID" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="5" NAME="S_AXI_HP0_AWID" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="5" NAME="S_AXI_HP0_WID" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="S_AXI_HP0_WDATA" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="3" NAME="S_AXI_HP0_WSTRB" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="63" NAME="S_AXI_HP0_WDATA" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="I" LEFT="7" NAME="S_AXI_HP0_WSTRB" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" NAME="S_AXI_HP2_ARREADY" SIGIS="undef"/>
         <PORT DIR="O" NAME="S_AXI_HP2_AWREADY" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_awready">
           <CONNECTIONS>
@@ -3897,7 +3897,7 @@
         <PORT DIR="O" LEFT="1" NAME="S_AXI_HP2_RRESP" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="5" NAME="S_AXI_HP2_BID" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="5" NAME="S_AXI_HP2_RID" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="O" LEFT="31" NAME="S_AXI_HP2_RDATA" RIGHT="0" SIGIS="undef"/>
+        <PORT DIR="O" LEFT="63" NAME="S_AXI_HP2_RDATA" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="7" NAME="S_AXI_HP2_RCOUNT" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="7" NAME="S_AXI_HP2_WCOUNT" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="O" LEFT="2" NAME="S_AXI_HP2_RACOUNT" RIGHT="0" SIGIS="undef"/>
@@ -3982,12 +3982,12 @@
         <PORT DIR="I" LEFT="5" NAME="S_AXI_HP2_ARID" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="5" NAME="S_AXI_HP2_AWID" RIGHT="0" SIGIS="undef"/>
         <PORT DIR="I" LEFT="5" NAME="S_AXI_HP2_WID" RIGHT="0" SIGIS="undef"/>
-        <PORT DIR="I" LEFT="31" NAME="S_AXI_HP2_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wdata">
+        <PORT DIR="I" LEFT="63" NAME="S_AXI_HP2_WDATA" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wdata">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_smc_1" PORT="M00_AXI_wdata"/>
           </CONNECTIONS>
         </PORT>
-        <PORT DIR="I" LEFT="3" NAME="S_AXI_HP2_WSTRB" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wstrb">
+        <PORT DIR="I" LEFT="7" NAME="S_AXI_HP2_WSTRB" RIGHT="0" SIGIS="undef" SIGNAME="axi_smc_1_M00_AXI_wstrb">
           <CONNECTIONS>
             <CONNECTION INSTANCE="axi_smc_1" PORT="M00_AXI_wstrb"/>
           </CONNECTIONS>
@@ -4268,10 +4268,10 @@
             <PORTMAP LOGICAL="RDATA" PHYSICAL="M_AXI_GP0_RDATA"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_smc_M00_AXI" DATAWIDTH="32" NAME="S_AXI_HP0" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+        <BUSINTERFACE BUSNAME="axi_smc_M00_AXI" DATAWIDTH="64" NAME="S_AXI_HP0" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="6"/>
@@ -4341,10 +4341,10 @@
             <PORTMAP LOGICAL="WSTRB" PHYSICAL="S_AXI_HP0_WSTRB"/>
           </PORTMAPS>
         </BUSINTERFACE>
-        <BUSINTERFACE BUSNAME="axi_smc_1_M00_AXI" DATAWIDTH="32" NAME="S_AXI_HP2" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
+        <BUSINTERFACE BUSNAME="axi_smc_1_M00_AXI" DATAWIDTH="64" NAME="S_AXI_HP2" TYPE="SLAVE" VLNV="xilinx.com:interface:aximm:1.0">
           <PARAMETER NAME="NUM_WRITE_OUTSTANDING" VALUE="8"/>
           <PARAMETER NAME="NUM_READ_OUTSTANDING" VALUE="8"/>
-          <PARAMETER NAME="DATA_WIDTH" VALUE="32"/>
+          <PARAMETER NAME="DATA_WIDTH" VALUE="64"/>
           <PARAMETER NAME="PROTOCOL" VALUE="AXI3"/>
           <PARAMETER NAME="FREQ_HZ" VALUE="100000000"/>
           <PARAMETER NAME="ID_WIDTH" VALUE="6"/>
